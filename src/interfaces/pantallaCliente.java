@@ -13,6 +13,10 @@ import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
 
 public class pantallaCliente extends JFrame {
 
@@ -22,6 +26,7 @@ public class pantallaCliente extends JFrame {
 	private JTextField textApellido2;
 	private JTextField textDireccion;
 	private JTextField textEmail;
+	private ButtonGroup bg = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -46,16 +51,71 @@ public class pantallaCliente extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaCliente.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setTitle("Concesionario ESTEVE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 400, 360);
+		setBounds(100, 100, 480, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] {30, 0, 30, 30, 30, 30, 30, 30};
-		gbl_contentPane.rowHeights = new int[] {0, 0, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
+		gbl_contentPane.columnWidths = new int[] {10, 30, 30, 30, 30, 30, 30};
+		gbl_contentPane.rowHeights = new int[] {30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
+		
+		JButton btnSigiente = new JButton("SIGIENTE");
+		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
+		gbc_btnSigiente.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnSigiente.gridwidth = 3;
+		gbc_btnSigiente.insets = new Insets(15, 0, 5, 5);
+		gbc_btnSigiente.gridx = 3;
+		gbc_btnSigiente.gridy = 10;
+		contentPane.add(btnSigiente, gbc_btnSigiente);
+		
+		JButton btnGuardar = new JButton("GUARDAR");
+		GridBagConstraints gbc_btnGuardar = new GridBagConstraints();
+		gbc_btnGuardar.ipadx = 60;
+		gbc_btnGuardar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnGuardar.gridwidth = 2;
+		gbc_btnGuardar.insets = new Insets(15, 0, 5, 5);
+		gbc_btnGuardar.gridx = 0;
+		gbc_btnGuardar.gridy = 10;
+		contentPane.add(btnGuardar, gbc_btnGuardar);
+		
+		JLabel lblFecha = new JLabel("Fecha Nacimiento");
+		lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblFecha = new GridBagConstraints();
+		gbc_lblFecha.anchor = GridBagConstraints.WEST;
+		gbc_lblFecha.gridwidth = 2;
+		gbc_lblFecha.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFecha.gridx = 0;
+		gbc_lblFecha.gridy = 9;
+		contentPane.add(lblFecha, gbc_lblFecha);
+		
+		JRadioButton radioButtonOtro = new JRadioButton("No determinado");
+		GridBagConstraints gbc_radioButtonOtro = new GridBagConstraints();
+		gbc_radioButtonOtro.gridwidth = 2;
+		gbc_radioButtonOtro.insets = new Insets(0, 0, 5, 5);
+		gbc_radioButtonOtro.gridx = 4;
+		gbc_radioButtonOtro.gridy = 8;
+		contentPane.add(radioButtonOtro, gbc_radioButtonOtro);
+		
+		JRadioButton radioButtonMujer = new JRadioButton("Mujer");
+		GridBagConstraints gbc_radioButtonMujer = new GridBagConstraints();
+		gbc_radioButtonMujer.insets = new Insets(0, 0, 5, 5);
+		gbc_radioButtonMujer.gridx = 3;
+		gbc_radioButtonMujer.gridy = 8;
+		contentPane.add(radioButtonMujer, gbc_radioButtonMujer);
+		
+		JRadioButton rdbtnHombre = new JRadioButton("Hombre");
+		GridBagConstraints gbc_rdbtnHombre = new GridBagConstraints();
+		gbc_rdbtnHombre.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnHombre.gridx = 2;
+		gbc_rdbtnHombre.gridy = 8;
+		contentPane.add(rdbtnHombre, gbc_rdbtnHombre);
+		
+		bg.add(radioButtonMujer);
+		bg.add(rdbtnHombre);
+		bg.add(radioButtonOtro);
 		
 		JLabel lblGenero = new JLabel("G\u00E9nero");
 		lblGenero.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -64,7 +124,7 @@ public class pantallaCliente extends JFrame {
 		gbc_lblGenero.gridwidth = 2;
 		gbc_lblGenero.insets = new Insets(0, 0, 5, 5);
 		gbc_lblGenero.gridx = 0;
-		gbc_lblGenero.gridy = 9;
+		gbc_lblGenero.gridy = 8;
 		contentPane.add(lblGenero, gbc_lblGenero);
 		
 		textEmail = new JTextField();
@@ -74,16 +134,17 @@ public class pantallaCliente extends JFrame {
 		gbc_textEmail.insets = new Insets(0, 0, 5, 5);
 		gbc_textEmail.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textEmail.gridx = 3;
-		gbc_textEmail.gridy = 8;
+		gbc_textEmail.gridy = 7;
 		contentPane.add(textEmail, gbc_textEmail);
 		
 		JLabel lblEmail = new JLabel("Correo electr\u00F3nico*");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
+		gbc_lblEmail.anchor = GridBagConstraints.WEST;
 		gbc_lblEmail.gridwidth = 2;
 		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEmail.gridx = 0;
-		gbc_lblEmail.gridy = 8;
+		gbc_lblEmail.gridy = 7;
 		contentPane.add(lblEmail, gbc_lblEmail);
 		
 		textDireccion = new JTextField();
@@ -93,7 +154,7 @@ public class pantallaCliente extends JFrame {
 		gbc_textDireccion.insets = new Insets(0, 0, 5, 5);
 		gbc_textDireccion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textDireccion.gridx = 3;
-		gbc_textDireccion.gridy = 7;
+		gbc_textDireccion.gridy = 6;
 		contentPane.add(textDireccion, gbc_textDireccion);
 		
 		JLabel lblDireccion = new JLabel("Direccion*");
@@ -103,7 +164,7 @@ public class pantallaCliente extends JFrame {
 		gbc_lblDireccion.gridwidth = 2;
 		gbc_lblDireccion.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDireccion.gridx = 0;
-		gbc_lblDireccion.gridy = 7;
+		gbc_lblDireccion.gridy = 6;
 		contentPane.add(lblDireccion, gbc_lblDireccion);
 		
 		textApellido2 = new JTextField();
@@ -113,7 +174,7 @@ public class pantallaCliente extends JFrame {
 		gbc_textApellido2.gridwidth = 4;
 		gbc_textApellido2.insets = new Insets(0, 0, 5, 5);
 		gbc_textApellido2.gridx = 3;
-		gbc_textApellido2.gridy = 6;
+		gbc_textApellido2.gridy = 5;
 		contentPane.add(textApellido2, gbc_textApellido2);
 		
 		JLabel lblApellido2 = new JLabel("Segundo Apellido*");
@@ -123,7 +184,7 @@ public class pantallaCliente extends JFrame {
 		gbc_lblApellido2.gridwidth = 2;
 		gbc_lblApellido2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblApellido2.gridx = 0;
-		gbc_lblApellido2.gridy = 6;
+		gbc_lblApellido2.gridy = 5;
 		contentPane.add(lblApellido2, gbc_lblApellido2);
 		
 		textApellido1 = new JTextField();
@@ -133,7 +194,7 @@ public class pantallaCliente extends JFrame {
 		gbc_textApellido1.insets = new Insets(0, 0, 5, 5);
 		gbc_textApellido1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textApellido1.gridx = 3;
-		gbc_textApellido1.gridy = 5;
+		gbc_textApellido1.gridy = 4;
 		contentPane.add(textApellido1, gbc_textApellido1);
 		
 		JLabel lblApellido1 = new JLabel("Primer Apellido*");
@@ -143,7 +204,7 @@ public class pantallaCliente extends JFrame {
 		gbc_lblApellido1.anchor = GridBagConstraints.WEST;
 		gbc_lblApellido1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblApellido1.gridx = 0;
-		gbc_lblApellido1.gridy = 5;
+		gbc_lblApellido1.gridy = 4;
 		contentPane.add(lblApellido1, gbc_lblApellido1);
 		
 		textNombre = new JTextField();
@@ -152,7 +213,7 @@ public class pantallaCliente extends JFrame {
 		gbc_textNombre.insets = new Insets(0, 0, 5, 5);
 		gbc_textNombre.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textNombre.gridx = 3;
-		gbc_textNombre.gridy = 4;
+		gbc_textNombre.gridy = 3;
 		contentPane.add(textNombre, gbc_textNombre);
 		textNombre.setColumns(10);
 		
@@ -163,7 +224,7 @@ public class pantallaCliente extends JFrame {
 		gbc_lblNombre.anchor = GridBagConstraints.WEST;
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNombre.gridx = 0;
-		gbc_lblNombre.gridy = 4;
+		gbc_lblNombre.gridy = 3;
 		contentPane.add(lblNombre, gbc_lblNombre);
 		
 		JPanel pUser = new JPanel();
