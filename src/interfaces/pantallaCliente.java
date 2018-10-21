@@ -21,6 +21,7 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import com.toedter.calendar.JDateChooser;
 
 public class pantallaCliente extends JFrame {
 
@@ -63,8 +64,17 @@ public class pantallaCliente extends JFrame {
 		gbl_contentPane.columnWidths = new int[] {10, 30, 30, 30, 30, 30, 30};
 		gbl_contentPane.rowHeights = new int[] {30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
+		gbc_dateChooser.gridwidth = 4;
+		gbc_dateChooser.insets = new Insets(5, 0, 5, 5);
+		gbc_dateChooser.fill = GridBagConstraints.BOTH;
+		gbc_dateChooser.gridx = 2;
+		gbc_dateChooser.gridy = 9;
+		contentPane.add(dateChooser, gbc_dateChooser);
 		
 		JButton btnSigiente = new JButton("SIGIENTE");
 		btnSigiente.addActionListener(new ActionListener() {
@@ -148,7 +158,7 @@ public class pantallaCliente extends JFrame {
 		textEmail.setColumns(10);
 		GridBagConstraints gbc_textEmail = new GridBagConstraints();
 		gbc_textEmail.gridwidth = 4;
-		gbc_textEmail.insets = new Insets(0, 0, 5, 5);
+		gbc_textEmail.insets = new Insets(0, 0, 5, 0);
 		gbc_textEmail.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textEmail.gridx = 3;
 		gbc_textEmail.gridy = 7;
@@ -168,7 +178,7 @@ public class pantallaCliente extends JFrame {
 		textDireccion.setColumns(10);
 		GridBagConstraints gbc_textDireccion = new GridBagConstraints();
 		gbc_textDireccion.gridwidth = 4;
-		gbc_textDireccion.insets = new Insets(0, 0, 5, 5);
+		gbc_textDireccion.insets = new Insets(0, 0, 5, 0);
 		gbc_textDireccion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textDireccion.gridx = 3;
 		gbc_textDireccion.gridy = 6;
@@ -189,7 +199,7 @@ public class pantallaCliente extends JFrame {
 		GridBagConstraints gbc_textApellido2 = new GridBagConstraints();
 		gbc_textApellido2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textApellido2.gridwidth = 4;
-		gbc_textApellido2.insets = new Insets(0, 0, 5, 5);
+		gbc_textApellido2.insets = new Insets(0, 0, 5, 0);
 		gbc_textApellido2.gridx = 3;
 		gbc_textApellido2.gridy = 5;
 		contentPane.add(textApellido2, gbc_textApellido2);
@@ -208,7 +218,7 @@ public class pantallaCliente extends JFrame {
 		textApellido1.setColumns(10);
 		GridBagConstraints gbc_textApellido1 = new GridBagConstraints();
 		gbc_textApellido1.gridwidth = 4;
-		gbc_textApellido1.insets = new Insets(0, 0, 5, 5);
+		gbc_textApellido1.insets = new Insets(0, 0, 5, 0);
 		gbc_textApellido1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textApellido1.gridx = 3;
 		gbc_textApellido1.gridy = 4;
@@ -227,7 +237,7 @@ public class pantallaCliente extends JFrame {
 		textNombre = new JTextField();
 		GridBagConstraints gbc_textNombre = new GridBagConstraints();
 		gbc_textNombre.gridwidth = 4;
-		gbc_textNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_textNombre.insets = new Insets(0, 0, 5, 0);
 		gbc_textNombre.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textNombre.gridx = 3;
 		gbc_textNombre.gridy = 3;
@@ -247,7 +257,7 @@ public class pantallaCliente extends JFrame {
 		JPanel pUser = new JPanel();
 		GridBagConstraints gbc_pUser = new GridBagConstraints();
 		gbc_pUser.gridwidth = 2;
-		gbc_pUser.insets = new Insets(0, 0, 5, 5);
+		gbc_pUser.insets = new Insets(0, 0, 5, 0);
 		gbc_pUser.fill = GridBagConstraints.BOTH;
 		gbc_pUser.gridx = 5;
 		gbc_pUser.gridy = 1;
