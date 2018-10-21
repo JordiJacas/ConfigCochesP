@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config-coches>
+	<languages>
+		<lenguage>es</lenguage>
+		<lenguage>ca</lenguage>
+		<lenguage>en</lenguage>
+	</languages>
+	<language_default>es</language_default>
+	<postfix_language_file_name>_cv.language</postfix_language_file_name>
+	<version>1.0</version>
+	<language_files_path>src\\lenguages\\</language_files_path>
+	<car_configuration_path>src\\cars\\</car_configuration_path>
+	<car_configuration_file_name>cars_configuration.txt</car_configuration_file_name>
+	<employee_list>admin,employee,user</employee_list>
+	<employee_version>false,true,false</employee_version>
+	<employee_password>P@ssW0rd,P@ssw0rd,P@ssw0rd</employee_password>
+	<specifications_file_path>/specifications/</specifications_file_path>
+</config-coches>
