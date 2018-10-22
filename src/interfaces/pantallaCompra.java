@@ -28,8 +28,12 @@ import javax.swing.UIManager;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 
 public class pantallaCompra extends JFrame {
 
@@ -55,6 +59,8 @@ public class pantallaCompra extends JFrame {
 	 * Create the frame.
 	 */
 	public pantallaCompra() {
+		setTitle("Concesionario ESTEVE");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaCompra.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -117,15 +123,16 @@ public class pantallaCompra extends JFrame {
 		gbc_btnAnterior.gridy = 7;
 		contentPane.add(btnAnterior, gbc_btnAnterior);
 		
-		JTextArea areaMostrar = new JTextArea();
-		GridBagConstraints gbc_areaMostrar = new GridBagConstraints();
-		gbc_areaMostrar.gridheight = 4;
-		gbc_areaMostrar.gridwidth = 4;
-		gbc_areaMostrar.insets = new Insets(0, 50, 5, 50);
-		gbc_areaMostrar.fill = GridBagConstraints.BOTH;
-		gbc_areaMostrar.gridx = 1;
-		gbc_areaMostrar.gridy = 1;
-		contentPane.add(areaMostrar, gbc_areaMostrar);
+		JLabel lblMostrar = new JLabel();
+		lblMostrar.setBackground(Color.WHITE);
+		GridBagConstraints gbc_lblMostrar = new GridBagConstraints();
+		gbc_lblMostrar.gridheight = 4;
+		gbc_lblMostrar.gridwidth = 4;
+		gbc_lblMostrar.insets = new Insets(0, 50, 5, 50);
+		gbc_lblMostrar.fill = GridBagConstraints.BOTH;
+		gbc_lblMostrar.gridx = 1;
+		gbc_lblMostrar.gridy = 1;
+		contentPane.add(lblMostrar, gbc_lblMostrar);
 		
 		JTextArea areaDescripcion = new JTextArea();
 		GridBagConstraints gbc_areaDescripcion = new GridBagConstraints();
@@ -139,12 +146,23 @@ public class pantallaCompra extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,1,0,10));
+		String[] aImg = new String[] {"citroen_cactus.jpg", "ibiza.jpg", "kia_carens.jpg", "mini.jpg"};
 		
-        for (int i = 0; i < 7; i++) {
-        	JButton[] arraybtn = new JButton[7];
-        	arraybtn[i] = new JButton("Hello-" + i);
-        	arraybtn[i].setPreferredSize(new Dimension(30, 50));
+        for (int i = 0; i < aImg.length; i++) {
+        	JButton[] arraybtn = new JButton[aImg.length];
+        	ImageIcon iconobtn = new ImageIcon("src/recursos/imgCoches/" + aImg[i]);
+        	ImageIcon icono = new ImageIcon(iconobtn.getImage().getScaledInstance(130,60,
+                    java.awt.Image.SCALE_DEFAULT));
+        	arraybtn[i] = new JButton();
+        	arraybtn[i].setIcon(icono);
         	panel.add(arraybtn[i]);
+        	
+        	arraybtn[i].addActionListener(new ActionListener() {
+    			public void actionPerformed(ActionEvent arg0) {
+    			 areaDescripcion.setText("Aqui va la descripcion");
+    			 lblMostrar.setIcon(icono);
+    			}
+    		});
         }
         
 		JScrollPane scrollBar = new JScrollPane(panel);
