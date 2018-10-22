@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -22,6 +24,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class pantallaCliente extends JFrame {
 
@@ -34,29 +38,14 @@ public class pantallaCliente extends JFrame {
 	private ButtonGroup bg = new ButtonGroup();
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					pantallaCliente frame = new pantallaCliente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public pantallaCliente() {
+	public pantallaCliente(String userName) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaCliente.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setTitle("Concesionario ESTEVE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 480, 400);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -82,7 +71,6 @@ public class pantallaCliente extends JFrame {
 				emptyTxt();
 			}
 		});
-		
 		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
 		gbc_btnSigiente.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnSigiente.gridwidth = 3;
@@ -91,14 +79,12 @@ public class pantallaCliente extends JFrame {
 		gbc_btnSigiente.gridy = 10;
 		contentPane.add(btnSigiente, gbc_btnSigiente);
 		
-		
 		JButton btnGuardar = new JButton("GUARDAR");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				emptyTxt();
 			}
 		});
-		
 		GridBagConstraints gbc_btnGuardar = new GridBagConstraints();
 		gbc_btnGuardar.ipadx = 60;
 		gbc_btnGuardar.fill = GridBagConstraints.HORIZONTAL;
@@ -266,7 +252,7 @@ public class pantallaCliente extends JFrame {
 		JLabel lblUsuario = new JLabel("Usuario:");
 		pUser.add(lblUsuario);
 		
-		JLabel lblnUser = new JLabel("user");
+		JLabel lblnUser = new JLabel(userName);
 		pUser.add(lblnUser);
 		
 		JLabel lblTitulo = new JLabel("DATOS DEL CLIENTE");
@@ -278,13 +264,15 @@ public class pantallaCliente extends JFrame {
 		gbc_lblTitulo.gridy = 1;
 		contentPane.add(lblTitulo, gbc_lblTitulo);
 	}
-
+	
 	public boolean emptyTxt() {
-		if(textNombre.getText().isEmpty() || textApellido1.getText().isEmpty() || textApellido2.getText().isEmpty() 
-				|| textDireccion.getText().isEmpty() || textEmail.getText().isEmpty()) {
-			pantallaLogin frame = new pantallaLogin();
+		if(textNombre.getText().isEmpty() || textApellido1.getText().isEmpty() ||
+			textApellido2.getText().isEmpty() || textDireccion.getText().isEmpty() ||
+			textEmail.getText().isEmpty()) {
+			
+			pantallaCliente frame = new pantallaCliente(" ");
 			JOptionPane.showMessageDialog(frame,
-				    "Empty Fields.",
+				    "Los campos con * no pueden estar vacios.",
 				    "Empty Error",
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;

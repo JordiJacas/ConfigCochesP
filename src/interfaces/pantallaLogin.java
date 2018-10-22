@@ -44,7 +44,9 @@ public class pantallaLogin extends JFrame {
 		setTitle("Concesionario ESTEVE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 320, 210);
-		contentPane = new JPanel();
+		setResizable(false);
+		
+		contentPane = new JPanel();		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -123,8 +125,8 @@ public class pantallaLogin extends JFrame {
 			for (int i = 0; i < employees.length; i++) {
 				if(textLogin.getText().equals(employees[i]) && textPassword.getText().equals(passwords[i])) {
 					isError = false;
-					pantallaCliente frame = new pantallaCliente();
-					frame.setVisible(true);
+					pantallaCliente pC = new pantallaCliente("user");
+					pC.setVisible(true);
 					this.dispose();
 					break;
 				}
@@ -147,7 +149,7 @@ public class pantallaLogin extends JFrame {
 		if(textLogin.getText().isEmpty() || textPassword.getText().isEmpty()) {
 			pantallaLogin frame = new pantallaLogin();
 			JOptionPane.showMessageDialog(frame,
-				    "Empty Fields.",
+				    "Los campos con * son obligatorios.",
 				    "Empty Error",
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;
@@ -155,5 +157,4 @@ public class pantallaLogin extends JFrame {
 		
 		return true;
 	}
-
 }
