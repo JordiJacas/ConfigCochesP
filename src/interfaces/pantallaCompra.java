@@ -138,17 +138,16 @@ public class pantallaCompra extends JFrame {
 		contentPane.add(areaDescripcion, gbc_areaDescripcion);
 		
 		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(0,1,0,10));
 		
-        for (int i = 0; i < 10; i++) {
-        	JButton[] arraybtn = new JButton[10];
+        for (int i = 0; i < 7; i++) {
+        	JButton[] arraybtn = new JButton[7];
         	arraybtn[i] = new JButton("Hello-" + i);
-        	arraybtn[i].setPreferredSize(new Dimension(120, 100));
-        	panel.add(arraybtn[i]);  
+        	arraybtn[i].setPreferredSize(new Dimension(30, 50));
+        	panel.add(arraybtn[i]);
         }
-        //panel.setPreferredSize(new Dimension(120, 0));
         
 		JScrollPane scrollBar = new JScrollPane(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         scrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollBar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         
