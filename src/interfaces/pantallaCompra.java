@@ -25,6 +25,11 @@ import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
 import java.awt.FlowLayout;
 import javax.swing.UIManager;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
 
 public class pantallaCompra extends JFrame {
 
@@ -133,21 +138,19 @@ public class pantallaCompra extends JFrame {
 		contentPane.add(areaDescripcion, gbc_areaDescripcion);
 		
 		JPanel panel = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 10; i++) {
         	JButton[] arraybtn = new JButton[10];
         	arraybtn[i] = new JButton("Hello-" + i);
-        	arraybtn[i].setPreferredSize(new Dimension(120, 120));
+        	arraybtn[i].setPreferredSize(new Dimension(120, 100));
         	panel.add(arraybtn[i]);  
         }
-        panel.setPreferredSize(new Dimension(160, 100));
+        //panel.setPreferredSize(new Dimension(120, 0));
         
 		JScrollPane scrollBar = new JScrollPane(panel);
-		scrollBar.setViewportBorder(null);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         scrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollBar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollBar.setBounds(100, 100, 300, 100);
         
 		GridBagConstraints gbc_scrollBar = new GridBagConstraints();
 		gbc_scrollBar.weightx = 160.0;
