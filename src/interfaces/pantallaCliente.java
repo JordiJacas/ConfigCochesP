@@ -7,8 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Insets;
@@ -63,6 +67,12 @@ public class pantallaCliente extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JButton btnSigiente = new JButton("SIGIENTE");
+		btnSigiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				emptyTxt();
+			}
+		});
+		
 		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
 		gbc_btnSigiente.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnSigiente.gridwidth = 3;
@@ -71,7 +81,14 @@ public class pantallaCliente extends JFrame {
 		gbc_btnSigiente.gridy = 10;
 		contentPane.add(btnSigiente, gbc_btnSigiente);
 		
+		
 		JButton btnGuardar = new JButton("GUARDAR");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				emptyTxt();
+			}
+		});
+		
 		GridBagConstraints gbc_btnGuardar = new GridBagConstraints();
 		gbc_btnGuardar.ipadx = 60;
 		gbc_btnGuardar.fill = GridBagConstraints.HORIZONTAL;
@@ -79,7 +96,7 @@ public class pantallaCliente extends JFrame {
 		gbc_btnGuardar.insets = new Insets(15, 0, 5, 5);
 		gbc_btnGuardar.gridx = 0;
 		gbc_btnGuardar.gridy = 10;
-		contentPane.add(btnGuardar, gbc_btnGuardar);
+		contentPane.add(btnGuardar, gbc_btnGuardar);	
 		
 		JLabel lblFecha = new JLabel("Fecha Nacimiento");
 		lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -252,4 +269,18 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(lblTitulo, gbc_lblTitulo);
 	}
 
+	public boolean emptyTxt() {
+		if(textNombre.getText().isEmpty() || textApellido1.getText().isEmpty() || textApellido2.getText().isEmpty() 
+				|| textDireccion.getText().isEmpty() || textEmail.getText().isEmpty()) {
+			pantallaLogin frame = new pantallaLogin();
+			JOptionPane.showMessageDialog(frame,
+				    "Empty Fields.",
+				    "Empty Error",
+				    JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		}
+		
+		return true;
+	}
+	
 }

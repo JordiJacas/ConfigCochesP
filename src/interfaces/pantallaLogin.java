@@ -37,22 +37,6 @@ public class pantallaLogin extends JFrame {
 	private boolean isError = false;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					pantallaLogin frame = new pantallaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public pantallaLogin() {
@@ -139,7 +123,9 @@ public class pantallaLogin extends JFrame {
 			for (int i = 0; i < employees.length; i++) {
 				if(textLogin.getText().equals(employees[i]) && textPassword.getText().equals(passwords[i])) {
 					isError = false;
-					
+					pantallaCliente frame = new pantallaCliente();
+					frame.setVisible(true);
+					this.dispose();
 					break;
 				}
 				else {
