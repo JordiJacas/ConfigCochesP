@@ -176,7 +176,7 @@ public class pantallaCompra extends JFrame {
         }
         
 		JScrollPane scrollBar = new JScrollPane(panel);
-        scrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollBar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         
 		GridBagConstraints gbc_scrollBar = new GridBagConstraints();
