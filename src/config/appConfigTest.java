@@ -7,7 +7,7 @@ public class appConfigTest {
 		/*for (boolean employee: AppConfiguration.getConfig().getEmployeeVersion()) {
             System.out.println(employee);
         }*/
-		System.out.println(AppConfiguration.getConfig().getVersion());
+		System.out.println(ConfigurationLoader.getConfig().getVersion());
 	}
 
 }

@@ -2,9 +2,9 @@ package config;
 
 import java.io.File;
 
-public class AppConfiguration {
+public class ConfigurationLoader {
 	
-	private static AppConfiguration appConfig; 
+	private static ConfigurationLoader appConfig; 
 	private String car_configuration_path;
 	private String car_configuration_file_name;
 	private String[] employee_list;
@@ -42,7 +42,7 @@ public class AppConfiguration {
 		return employee_version;
 	}
 	
-	private AppConfiguration() {
+	private ConfigurationLoader() {
 		car_configuration_path = loadCarPath();	
 		car_configuration_file_name = loadCarName();
 		employee_list = loadEmployeeList();
@@ -99,9 +99,9 @@ public class AppConfiguration {
 		}
 		return bVersion;
 	}
-	public static AppConfiguration getConfig() {
+	public static ConfigurationLoader getConfig() {
 		if (appConfig == null) {
-			appConfig = new AppConfiguration();
+			appConfig = new ConfigurationLoader();
 		}
 		
 		return appConfig;

@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
 
-import config.AppConfiguration;
+import config.ConfigurationLoader;
 
 import java.awt.Toolkit;
 import java.awt.GridBagLayout;
@@ -118,8 +118,8 @@ public class pantallaLogin extends JFrame {
 	}
 	
 	public void compareLoginPassword() {
-		String[] employees = AppConfiguration.getConfig().getEmployeeList();
-		String [] passwords = AppConfiguration.getConfig().getEmployeePassword();
+		String[] employees = ConfigurationLoader.getConfig().getEmployeeList();
+		String [] passwords = ConfigurationLoader.getConfig().getEmployeePassword();
 		
 		if(emptyTxt()) {
 			for (int i = 0; i < employees.length; i++) {

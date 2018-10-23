@@ -59,6 +59,8 @@ public class pantallaCompra extends JFrame {
 	 * Create the frame.
 	 */
 	public pantallaCompra() {
+		String[] aImg = new String[] {"citroen_cactus.jpg", "ibiza.jpg", "kia_carens.jpg", "mini.jpg"};		
+		
 		setTitle("Concesionario ESTEVE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaCompra.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,14 +119,19 @@ public class pantallaCompra extends JFrame {
 		gbc_btnAnterior.ipady = 10;
 		gbc_btnAnterior.ipadx = 60;
 		gbc_btnAnterior.weightx = 5.0;
-		gbc_btnAnterior.anchor = GridBagConstraints.WEST;
-		gbc_btnAnterior.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAnterior.insets = new Insets(0, 0, 5, 0);
 		gbc_btnAnterior.gridx = 1;
 		gbc_btnAnterior.gridy = 7;
 		contentPane.add(btnAnterior, gbc_btnAnterior);
 		
 		JLabel lblMostrar = new JLabel();
 		lblMostrar.setBackground(Color.WHITE);
+		ImageIcon iconolbl = new ImageIcon("src/recursos/imgCoches/" + aImg[0]);
+		
+		ImageIcon lblicono = new ImageIcon(iconolbl.getImage().getScaledInstance(480,240,
+                java.awt.Image.SCALE_DEFAULT));
+		lblMostrar.setIcon(lblicono);
+		
 		GridBagConstraints gbc_lblMostrar = new GridBagConstraints();
 		gbc_lblMostrar.gridheight = 4;
 		gbc_lblMostrar.gridwidth = 4;
@@ -135,10 +142,12 @@ public class pantallaCompra extends JFrame {
 		contentPane.add(lblMostrar, gbc_lblMostrar);
 		
 		JTextArea areaDescripcion = new JTextArea();
+		areaDescripcion.setBackground(Color.WHITE);
+		areaDescripcion.setText("Aqui va la descripcion");
 		GridBagConstraints gbc_areaDescripcion = new GridBagConstraints();
 		gbc_areaDescripcion.gridwidth = 2;
 		gbc_areaDescripcion.gridheight = 2;
-		gbc_areaDescripcion.insets = new Insets(10, 50, 5, 50);
+		gbc_areaDescripcion.insets = new Insets(10, 0, 5, 50);
 		gbc_areaDescripcion.fill = GridBagConstraints.BOTH;
 		gbc_areaDescripcion.gridx = 3;
 		gbc_areaDescripcion.gridy = 5;
@@ -146,21 +155,22 @@ public class pantallaCompra extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,1,0,10));
-		String[] aImg = new String[] {"citroen_cactus.jpg", "ibiza.jpg", "kia_carens.jpg", "mini.jpg"};
 		
         for (int i = 0; i < aImg.length; i++) {
         	JButton[] arraybtn = new JButton[aImg.length];
         	ImageIcon iconobtn = new ImageIcon("src/recursos/imgCoches/" + aImg[i]);
-        	ImageIcon icono = new ImageIcon(iconobtn.getImage().getScaledInstance(130,60,
+        	ImageIcon btnicono = new ImageIcon(iconobtn.getImage().getScaledInstance(130,60,
                     java.awt.Image.SCALE_DEFAULT));
         	arraybtn[i] = new JButton();
-        	arraybtn[i].setIcon(icono);
+        	arraybtn[i].setIcon(btnicono);
         	panel.add(arraybtn[i]);
         	
         	arraybtn[i].addActionListener(new ActionListener() {
     			public void actionPerformed(ActionEvent arg0) {
+				ImageIcon accionicono = new ImageIcon(iconobtn.getImage().getScaledInstance(480,240,
+	                    java.awt.Image.SCALE_DEFAULT));
     			 areaDescripcion.setText("Aqui va la descripcion");
-    			 lblMostrar.setIcon(icono);
+    			 lblMostrar.setIcon(accionicono);
     			}
     		});
         }

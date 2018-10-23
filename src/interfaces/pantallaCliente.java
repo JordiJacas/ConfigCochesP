@@ -43,7 +43,7 @@ public class pantallaCliente extends JFrame {
 	public pantallaCliente(String userName) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaCliente.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setTitle("Concesionario ESTEVE");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 480, 400);
 		setResizable(false);
 		contentPane = new JPanel();
@@ -68,7 +68,11 @@ public class pantallaCliente extends JFrame {
 		JButton btnSigiente = new JButton("SIGIENTE");
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				emptyTxt();
+				if(emptyTxt()) {
+					pantallaCompra pCompra = new pantallaCompra();
+					pCompra.setVisible(true);
+				}
+				
 			}
 		});
 		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
@@ -277,7 +281,7 @@ public class pantallaCliente extends JFrame {
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;
 		}
-		
+		this.dispose();
 		return true;
 	}
 	
