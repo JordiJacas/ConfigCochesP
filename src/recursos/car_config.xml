@@ -1,0 +1,98 @@
+<Coches>
+	<modelos>
+		<modelo>
+			<id>1</id>
+			<nombre>Citroen Cactus</nombre>
+			<descripcion>Texto Descripcion</descripcion>
+			<imagen_nombre>citroen_cactus.jpg</imagen_nombre>
+			<precio>10000</precio>
+		</modelo>
+		<modelo>
+			<id>2</id>
+			<nombre>Seat Ibiza</nombre>
+			<descripcion>Texto Descripcion</descripcion>
+			<imagen_nombre>ibiza.jpg</imagen_nombre>
+			<precio>5000</precio>
+		</modelo>
+		<modelo>
+			<id>3</id>
+			<nombre>Lia Carens</nombre>
+			<descripcion>Texto Descripcion</descripcion>
+			<imagen_nombre>kia_carens.jpg</imagen_nombre>
+			<precio>12000</precio>
+		</modelo>
+		<modelo>
+			<id>4</id>
+			<nombre>Mini</nombre>
+			<descripcion>Texto Descripcion</descripcion>
+			<imagen_nombre>mini.jpg</imagen_nombre>
+			<precio>8000</precio>
+		</modelo>
+	</modelos>
+	<motores>
+		<motor>
+			<id>1</id>
+			<nombre>Honda 3.5 V6 híbrido</nombre>
+			<descripcion>Texto Descripcion motor</descripcion>
+			<imagen_nombre>honda_hibrido.jpg</imagen_nombre>
+			<precio>1000</precio>
+		</motor>
+		<motor>
+			<id>2</id>
+			<nombre>Audi 1.8 TFSI</nombre>
+			<descripcion>Volkswagen Jetta, Polo GTI, Beetle, Passat, Golf, Audi A3</descripcion>
+			<imagen_nombre>audi_tfsi.jpg</imagen_nombre>
+			<precio>500</precio>
+		</motor>
+	</motores>
+	<accesorios>
+		<accesorio>
+			<id>1</id>
+			<nombre>Conectores USB</nombre>
+			<descripcion>Desripcion accesprop</descripcion>
+			<imagen_nombre>con_usb.jpg</imagen_nombre>
+			<precio>50</precio>
+			<modelos_disponibles>5</modelos_disponibles>
+		</accesorios>
+		<accesorio>
+			<id>2</id>
+			<nombre>Navegador</nombre>
+			<descripcion>Desripcion accesprop</descripcion>
+			<imagen_nombre>navegador.jpg</imagen_nombre>
+			<precio>100</precio>
+			<modelos_disponibles>5</modelos_disponibles>
+		</accesorios>
+		<accesorio>
+			<id>3</id>
+			<nombre>Yantas de aleación</nombre>
+			<descripcion>Desripcion accesprop</descripcion>
+			<imagen_nombre>yantas_aleacion.jpg</imagen_nombre>
+			<precio>200</precio>
+			<modelos_disponibles>5</modelos_disponibles>
+		</accesorios>
+		<accesorio>
+			<id>4</id>
+			<nombre>Asientos Calefactados</nombre>
+			<descripcion>Desripcion accesprop</descripcion>
+			<imagen_nombre>asientos_calefacion.jpg</imagen_nombre>
+			<precio>300</precio>
+			<modelos_disponibles>5</modelos_disponibles>
+		</accesorios>
+		<accesorio>
+			<id>5</id>
+			<nombre>Velocidad de Crucero</nombre>
+			<descripcion>Desripcion accesprop</descripcion>
+			<imagen_nombre>velocidad_crucero.jpg</imagen_nombre>
+			<precio>150</precio>
+			<modelos_disponibles>5</modelos_disponibles>
+		</accesorios>
+		<accesorio>
+			<id>6</id>
+			<nombre>Aparcamiento automático</nombre>
+			<descripcion>Desripcion accesprop</descripcion>
+			<imagen_nombre>aparcamiento_auto.jpg</imagen_nombre>
+			<precio>100</precio>
+			<modelos_disponibles>5</modelos_disponibles>
+		</accesorios>
+	</accesorios>
+</Coches>
