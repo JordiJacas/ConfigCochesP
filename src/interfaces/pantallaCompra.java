@@ -40,25 +40,9 @@ public class pantallaCompra extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					pantallaCompra frame = new pantallaCompra();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public pantallaCompra() {
+	public pantallaCompra(pantallaCliente frame) {
 		String[] aImg = new String[] {"citroen_cactus.jpg", "ibiza.jpg", "kia_carens.jpg", "mini.jpg"};		
 		
 		setTitle("Concesionario ESTEVE");
@@ -102,10 +86,15 @@ public class pantallaCompra extends JFrame {
 		JButton btnAnterior = new JButton("Anterior");
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				pasarAnteriorPantalla(frame);
 			}
 		});
 		
 		JButton btnSigiente = new JButton("Sigiente");
+		btnSigiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
 		gbc_btnSigiente.anchor = GridBagConstraints.EAST;
 		gbc_btnSigiente.gridwidth = 2;
@@ -192,4 +181,9 @@ public class pantallaCompra extends JFrame {
 	
 	}
 
+	private void pasarAnteriorPantalla(pantallaCliente frame) {
+		this.setVisible(false);
+		frame.setVisible(true);
+	}
+	
 }

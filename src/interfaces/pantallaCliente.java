@@ -68,11 +68,7 @@ public class pantallaCliente extends JFrame {
 		JButton btnSigiente = new JButton("SIGIENTE");
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(emptyTxt()) {
-					pantallaCompra pCompra = new pantallaCompra();
-					pCompra.setVisible(true);
-				}
-				
+				pasarSiguientePantalla();			
 			}
 		});
 		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
@@ -272,7 +268,7 @@ public class pantallaCliente extends JFrame {
 	public boolean emptyTxt() {
 		if(textNombre.getText().isEmpty() || textApellido1.getText().isEmpty() ||
 			textApellido2.getText().isEmpty() || textDireccion.getText().isEmpty() ||
-			textEmail.getText().isEmpty()) {
+			(textEmail.getText().isEmpty() && (textEmail.getText().contains("@") && textEmail.getText().contains(".")))) {
 			
 			pantallaCliente frame = new pantallaCliente(" ");
 			JOptionPane.showMessageDialog(frame,
@@ -283,6 +279,13 @@ public class pantallaCliente extends JFrame {
 		}
 		this.dispose();
 		return true;
+	}
+	
+	private void pasarSiguientePantalla() {
+		if(emptyTxt()) {
+			pantallaCompra pCompra = new pantallaCompra(this);
+			pCompra.setVisible(true);
+		}
 	}
 	
 }
