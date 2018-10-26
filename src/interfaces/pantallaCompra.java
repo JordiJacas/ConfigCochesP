@@ -17,9 +17,11 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Insets;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
@@ -179,6 +181,24 @@ public class pantallaCompra extends JFrame {
 		gbc_scrollBar.gridy = 1;
 		contentPane.add(scrollBar, gbc_scrollBar);
 	
+		this.addWindowListener( new WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				Object [] opciones ={"OK","CANCEL"};
+				int eleccion = JOptionPane.showOptionDialog(rootPane,"En realidad desea realizar cerrar sin guardar los datos","Mensaje de Confirmacion",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
+				if (eleccion == JOptionPane.YES_OPTION) {
+					int eleccion2 = JOptionPane.showOptionDialog(rootPane,"Está seguro","Mensaje de Confirmacion",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
+							if (eleccion2 == JOptionPane.YES_OPTION) {
+								System.exit(0);
+							}
+				}
+			}
+		} ); 
+		
 	}
 
 	private void pasarAnteriorPantalla(pantallaCliente frame) {

@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
 
@@ -23,6 +24,8 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+
+import com.sun.glass.events.WindowEvent;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -263,6 +266,24 @@ public class pantallaCliente extends JFrame {
 		gbc_lblTitulo.gridx = 1;
 		gbc_lblTitulo.gridy = 1;
 		contentPane.add(lblTitulo, gbc_lblTitulo);
+		
+		this.addWindowListener( new WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				Object [] opciones ={"OK","CANCEL"};
+				int eleccion = JOptionPane.showOptionDialog(rootPane,"En realidad desea realizar cerrar sin guardar los datos","Mensaje de Confirmacion",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
+				if (eleccion == JOptionPane.YES_OPTION) {
+					int eleccion2 = JOptionPane.showOptionDialog(rootPane,"Está seguro","Mensaje de Confirmacion",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
+							if (eleccion2 == JOptionPane.YES_OPTION) {
+								System.exit(0);
+							}
+				}
+			}
+		} ); 
 	}
 	
 	public boolean emptyTxt() {
@@ -273,6 +294,13 @@ public class pantallaCliente extends JFrame {
 			pantallaCliente frame = new pantallaCliente(" ");
 			JOptionPane.showMessageDialog(frame,
 				    "Los campos con * no pueden estar vacios.",
+				    "Empty Error",
+				    JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		} 
+		if (!(textEmail.getText().contains("@") && textEmail.getText().contains("."))) {
+			JOptionPane.showMessageDialog(this,
+				    "El correo electrònico tiene que tener el formato correcto.",
 				    "Empty Error",
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;
