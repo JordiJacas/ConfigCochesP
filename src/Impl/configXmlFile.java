@@ -1,4 +1,4 @@
-package config;
+package Impl;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-public class configXmlFile {
+import idao.IConfig;
+
+public class configXmlFile implements IConfig{
 	
 	private Document configXmlFile() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

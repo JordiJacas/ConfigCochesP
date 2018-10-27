@@ -2,6 +2,8 @@ package config;
 
 import java.io.File;
 
+import Impl.configXmlFile;
+
 public class ConfigurationLoader {
 	
 	private static ConfigurationLoader appConfig; 
