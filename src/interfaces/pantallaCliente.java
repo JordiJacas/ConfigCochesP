@@ -27,6 +27,9 @@ import javax.swing.JRadioButton;
 
 import com.sun.glass.events.WindowEvent;
 import com.toedter.calendar.JDateChooser;
+
+import Impl.createFile;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -39,7 +42,8 @@ public class pantallaCliente extends JFrame {
 	private JTextField textDireccion;
 	private JTextField textEmail;
 	private ButtonGroup bg = new ButtonGroup();
-
+	private createFile f = new createFile();
+	
 	/**
 	 * Create the frame.
 	 */
@@ -284,7 +288,13 @@ public class pantallaCliente extends JFrame {
 							if (eleccion2 == JOptionPane.YES_OPTION) {
 								System.exit(0);
 							}
-				} 
+				} else {
+					f.createFileEmployee();
+					f.incorporateToFile(textNombre.getText() + ";" + textApellido1.getText() + ";"
+					+ textApellido2.getText() + ";" + textDireccion.getText() + ";" + textEmail.getText()
+					 + ";" + bg.getSelection() + ";" + dateChooser.getDate().toString() + ";");
+					f.closeFile();
+				}
 				// Aquí el else para guardar los datos en un fichero.
 			}
 		} ); 
