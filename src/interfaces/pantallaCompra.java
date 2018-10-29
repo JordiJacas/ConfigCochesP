@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import model.Modelo;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -22,6 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
@@ -36,21 +40,41 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-
+		
 public class pantallaCompra extends JFrame {
 
 	private JPanel contentPane;
-
+	private ArrayList<Modelo> aModelo = new ArrayList<Modelo>();
+	private int contadorBtn = 0;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					//pantallaCompra frame = new pantallaCompra();
+					//frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	/**
 	 * Create the frame.
 	 */
 	public pantallaCompra(pantallaCliente frame) {
-		String[] aImg = new String[] {"citroen_cactus.jpg", "ibiza.jpg", "kia_carens.jpg", "mini.jpg"};		
+		aModelo.add(new Modelo(1,"Citroen Cactus","Texto Descripcion","citroen_cactus.jpg",10000));
+		aModelo.add(new Modelo(2,"Seat Ibiza","Texto Descripcion","ibiza.jpg",5000));
 		
 		setTitle("Concesionario ESTEVE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaCompra.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -88,7 +112,7 @@ public class pantallaCompra extends JFrame {
 		JButton btnAnterior = new JButton("Anterior");
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				pasarAnteriorPantalla(frame);
+				//pasarAnteriorPantalla(frame);
 			}
 		});
 		
@@ -118,7 +142,7 @@ public class pantallaCompra extends JFrame {
 		
 		JLabel lblMostrar = new JLabel();
 		lblMostrar.setBackground(Color.WHITE);
-		ImageIcon iconolbl = new ImageIcon("src/recursos/imgCoches/" + aImg[0]);
+		ImageIcon iconolbl = new ImageIcon("src/recursos/imgCoches/" + aModelo.get(0).getImagen());
 		
 		ImageIcon lblicono = new ImageIcon(iconolbl.getImage().getScaledInstance(480,240,
                 java.awt.Image.SCALE_DEFAULT));
@@ -135,7 +159,7 @@ public class pantallaCompra extends JFrame {
 		
 		JTextArea areaDescripcion = new JTextArea();
 		areaDescripcion.setBackground(Color.WHITE);
-		areaDescripcion.setText("Aqui va la descripcion");
+		areaDescripcion.setText(aModelo.get(0).getDescripcion());
 		GridBagConstraints gbc_areaDescripcion = new GridBagConstraints();
 		gbc_areaDescripcion.gridwidth = 2;
 		gbc_areaDescripcion.gridheight = 2;
@@ -147,25 +171,25 @@ public class pantallaCompra extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,1,0,10));
-		
-        for (int i = 0; i < aImg.length; i++) {
-        	JButton[] arraybtn = new JButton[aImg.length];
-        	ImageIcon iconobtn = new ImageIcon("src/recursos/imgCoches/" + aImg[i]);
+        
+        for (Modelo modelo : aModelo) {
+        	JButton[] arraybtn = new JButton[aModelo.size()];
+        	ImageIcon iconobtn = new ImageIcon("src/recursos/imgCoches/" + modelo.getImagen());
         	ImageIcon btnicono = new ImageIcon(iconobtn.getImage().getScaledInstance(130,60,
                     java.awt.Image.SCALE_DEFAULT));
-        	arraybtn[i] = new JButton();
-        	arraybtn[i].setIcon(btnicono);
-        	panel.add(arraybtn[i]);
-        	
-        	arraybtn[i].addActionListener(new ActionListener() {
+        	arraybtn[contadorBtn] = new JButton();
+        	arraybtn[contadorBtn].setIcon(btnicono);
+        	panel.add(arraybtn[contadorBtn]);
+        	arraybtn[contadorBtn].addActionListener(new ActionListener() {
     			public void actionPerformed(ActionEvent arg0) {
 				ImageIcon accionicono = new ImageIcon(iconobtn.getImage().getScaledInstance(480,240,
 	                    java.awt.Image.SCALE_DEFAULT));
-    			 areaDescripcion.setText("Aqui va la descripcion");
+    			 areaDescripcion.setText(modelo.getDescripcion());
     			 lblMostrar.setIcon(accionicono);
     			}
     		});
-        }
+        	contadorBtn++;
+		}
         
 		JScrollPane scrollBar = new JScrollPane(panel);
         scrollBar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
