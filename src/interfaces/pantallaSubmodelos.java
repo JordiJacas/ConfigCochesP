@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Modelo;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -25,8 +28,24 @@ import java.awt.event.ActionEvent;
 public class pantallaSubmodelos extends JFrame {
 
 	private JPanel contentPane;
-	private ArrayList<String> aSubmodelos;
-
+	private ArrayList<Modelo> aSubmodelos;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					pantallaSubmodelos frame = new pantallaSubmodelos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -57,10 +76,9 @@ public class pantallaSubmodelos extends JFrame {
 		contentPane.add(lblTitulo, gbc_lblTitulo);
 		
 		DefaultListModel<String> modelDatos = new DefaultListModel();
-		for (String submodelo : aSubmodelos) {
-				modelDatos.addElement(submodelo);
-		}
-		
+		//for (Modelo submodelo : aSubmodelos) {
+				//modelDatos.addElement(submodelo);
+		//};	
 		
 		JList listSubmodelos = new JList();
 		GridBagConstraints gbc_listSubmodelos = new GridBagConstraints();
