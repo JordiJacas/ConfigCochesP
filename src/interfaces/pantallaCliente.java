@@ -316,6 +316,7 @@ public class pantallaCliente extends JFrame {
 	private void pasarSiguientePantalla() {
 		if(emptyTxt()) {
 			pantallaCompra pCompra = new pantallaCompra(this);
+			this.setVisible(false);
 			pCompra.setVisible(true);
 		}
 	}

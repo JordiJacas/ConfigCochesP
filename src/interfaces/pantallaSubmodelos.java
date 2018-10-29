@@ -30,7 +30,7 @@ public class pantallaSubmodelos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pantallaSubmodelos() {
+	public pantallaSubmodelos(pantallaCompra frame) {
 		setResizable(false);
 		setTitle("Concecionario ESTEVE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaSubmodelos.class.getResource("/recursos/iconoEsteveTerradas.png")));
@@ -56,10 +56,10 @@ public class pantallaSubmodelos extends JFrame {
 		gbc_lblTitulo.gridy = 0;
 		contentPane.add(lblTitulo, gbc_lblTitulo);
 		
-		DefaultListModel<String> modelDatos = new DefaultListModel();
+		/*DefaultListModel<String> modelDatos = new DefaultListModel();
 		for (String submodelo : aSubmodelos) {
 				modelDatos.addElement(submodelo);
-		}
+		}*/
 		
 		
 		JList listSubmodelos = new JList();
@@ -70,7 +70,7 @@ public class pantallaSubmodelos extends JFrame {
 		gbc_listSubmodelos.gridx = 0;
 		gbc_listSubmodelos.gridy = 1;
 		contentPane.add(listSubmodelos, gbc_listSubmodelos);
-		listSubmodelos.setModel(modelDatos);
+		//listSubmodelos.setModel(modelDatos);
 		listSubmodelos.setVisible(true);
 		
 		JButton btnSigiente = new JButton("Sigiente");
@@ -92,6 +92,11 @@ public class pantallaSubmodelos extends JFrame {
 		contentPane.add(btnSigiente, gbc_btnSigiente);
 		
 		JButton btnAnterior = new JButton("Anterior");
+		btnAnterior.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				pasarAnteriorPantalla(frame);
+			}
+		});
 		GridBagConstraints gbc_btnAnterior = new GridBagConstraints();
 		gbc_btnAnterior.ipadx = 30;
 		gbc_btnAnterior.gridwidth = 2;
@@ -101,4 +106,15 @@ public class pantallaSubmodelos extends JFrame {
 		contentPane.add(btnAnterior, gbc_btnAnterior);
 	}
 
+	private void pasarAnteriorPantalla(pantallaCompra frame) {
+		this.setVisible(false);
+		frame.setVisible(true);
+	}
+	
+	private void pasarSiguientePantalla() {
+		//pantallaSubmodelos pCompra = new pantallaCompra(this);
+		//this.setVisible(false);
+		//pCompra.setVisible(true);
+	}
+	
 }
