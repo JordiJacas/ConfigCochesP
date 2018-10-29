@@ -212,9 +212,9 @@ public class pantallaCompra extends JFrame {
 	}
 	
 	private void pasarSiguientePantalla() {
-		/*pantallaSubmodelos ps = new pantallaSubmodelos(this);
+		pantallaSubmodelos ps = new pantallaSubmodelos(this);
 		this.setVisible(false);
-		ps.setVisible(true);*/
+		ps.setVisible(true);
 	}
 	
 }

@@ -49,7 +49,7 @@ public class pantallaSubmodelos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pantallaSubmodelos() {
+	public pantallaSubmodelos(pantallaCompra frame) {
 		aSubmodelos.add(new SubModelo("1.1", "Seat Alhambra 1.4","150CV | 5 puertas | Gasolina","imagen",25484));
 		aSubmodelos.add(new SubModelo("1.2", "Seat Alhambra 2.0","150CV | 5 puertas | Diesel","imagen",27166));
 		
@@ -78,10 +78,10 @@ public class pantallaSubmodelos extends JFrame {
 		gbc_lblTitulo.gridy = 0;
 		contentPane.add(lblTitulo, gbc_lblTitulo);
 
-		/*DefaultListModel<String> modelDatos = new DefaultListModel();
-		for (String submodelo : aSubmodelos) {
-				modelDatos.addElement(submodelo);
-		}*/
+		DefaultListModel<String> modelDatos = new DefaultListModel();
+		for (SubModelo submodelo : aSubmodelos) {
+				modelDatos.addElement(submodelo.toString());
+		}
 		
 		JList listSubmodelos = new JList();
 		GridBagConstraints gbc_listSubmodelos = new GridBagConstraints();
@@ -91,7 +91,7 @@ public class pantallaSubmodelos extends JFrame {
 		gbc_listSubmodelos.gridx = 0;
 		gbc_listSubmodelos.gridy = 1;
 		contentPane.add(listSubmodelos, gbc_listSubmodelos);
-		//listSubmodelos.setModel(modelDatos);
+		listSubmodelos.setModel(modelDatos);
 		listSubmodelos.setVisible(true);
 		
 		JButton btnSigiente = new JButton("Sigiente");
@@ -102,6 +102,8 @@ public class pantallaSubmodelos extends JFrame {
 				Iterator it = submodelo.iterator();
 				String elemento="";
 				elemento = (String) it.next();
+				String [] aElemento = elemento.split(" | ");
+				pasarSiguientePantalla(elemento, Integer.parseInt(aElemento[aElemento.length]));
 				
 			}
 		});
@@ -132,8 +134,8 @@ public class pantallaSubmodelos extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	private void pasarSiguientePantalla() {
-		pantallaAccesorios pCompra = new pantallaAccesorios("Seat Alhambra 1.4 Tsi S&s Reference | 150CV | 5 puertas | Gasolina | 25484", 25484);
+	private void pasarSiguientePantalla(String subModelo, int precio) {
+		pantallaAccesorios pCompra = new pantallaAccesorios(subModelo, precio, this);
 		this.setVisible(false);
 		pCompra.setVisible(true);
 	}

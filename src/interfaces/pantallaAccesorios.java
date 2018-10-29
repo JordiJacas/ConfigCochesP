@@ -43,8 +43,8 @@ public class pantallaAccesorios extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					pantallaAccesorios frame = new pantallaAccesorios("Seat Alhambra 1.4 Tsi S&s Reference | 150CV | 5 puertas | Gasolina | 25484", 25484);
-					frame.setVisible(true);
+					//pantallaAccesorios frame = new pantallaAccesorios("Seat Alhambra 1.4 Tsi S&s Reference | 150CV | 5 puertas | Gasolina | 25484", 25484);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,7 +55,7 @@ public class pantallaAccesorios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pantallaAccesorios(String submodelo, int pSubmodelo) {
+	public pantallaAccesorios(String submodelo, int pSubmodelo, pantallaSubmodelos frame) {
 		aAccesorios.add(new Accesorio(1,"USB","descripcion","imagen",15));
 		aAccesorios.add(new Accesorio(2,"Aparcamiento","descripcion","imagen",800));
 		aAccesorios.add(new Accesorio(3,"Radio","descripcion","imagen",150));
