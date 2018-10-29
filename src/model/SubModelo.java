@@ -1,21 +1,20 @@
 package model;
 
-public class Modelo {
-	private int id;
+public class SubModelo {
+	private String id;
 	private String nombre;
 	private String descripcion;
 	private String imagen;
 	private int precio;
 	
 	/*
-	 * Construcotres
+	 * Construcor
 	 */
-	public Modelo() {
+	public SubModelo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Modelo(int id, String nombre, String descripcion, String imagen, int precio) {
+	public SubModelo(String id, String nombre, String descripcion, String imagen, int precio) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -27,52 +26,42 @@ public class Modelo {
 	/*
 	 * Metodos
 	 */
-
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
 	public String getImagen() {
 		return imagen;
 	}
-
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-
 	public int getPrecio() {
 		return precio;
 	}
-
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
-
 	@Override
 	public String toString() {
-		return "Modelo [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen
-				+ ", precio=" + precio + "]";
+		return nombre + " | " + descripcion + " | " + precio;
 	}
+	
+	
 	
 	
 	

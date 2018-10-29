@@ -95,6 +95,7 @@ public class pantallaCompra extends JFrame {
 		JButton btnSigiente = new JButton("Sigiente");
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				pasarSiguientePantalla();
 			}
 		});
 		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
@@ -184,18 +185,22 @@ public class pantallaCompra extends JFrame {
 		this.addWindowListener( new WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent e) {
+				//Creamos las opciones
 				Object [] opciones ={"OK","CANCEL"};
-				int eleccion = JOptionPane.showOptionDialog(rootPane,"En realidad desea realizar cerrar sin guardar los datos","Mensaje de Confirmacion",
+				// Creamos las pregunta de guardar datos
+				int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quiere salir guardando los datos?","Mensaje de Confirmacion",
 				JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
-				if (eleccion == JOptionPane.YES_OPTION) {
-					int eleccion2 = JOptionPane.showOptionDialog(rootPane,"Está seguro","Mensaje de Confirmacion",
+				JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
+				//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
+				if (eleccion == JOptionPane.NO_OPTION) {
+					int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Quieres salir SIN guardar los datos?","Mensaje de Confirmacion",
 							JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
 							if (eleccion2 == JOptionPane.YES_OPTION) {
 								System.exit(0);
 							}
-				}
+				} 
+				// Aquí el else para guardar los datos en un fichero.
 			}
 		} ); 
 		
@@ -204,6 +209,12 @@ public class pantallaCompra extends JFrame {
 	private void pasarAnteriorPantalla(pantallaCliente frame) {
 		this.setVisible(false);
 		frame.setVisible(true);
+	}
+	
+	private void pasarSiguientePantalla() {
+		pantallaSubmodelos ps = new pantallaSubmodelos(this);
+		this.setVisible(false);
+		ps.setVisible(true);
 	}
 	
 }

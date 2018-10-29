@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.Modelo;
+import model.SubModelo;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -28,7 +28,7 @@ import java.awt.event.ActionEvent;
 public class pantallaSubmodelos extends JFrame {
 
 	private JPanel contentPane;
-	private ArrayList<Modelo> aSubmodelos;
+	private ArrayList<SubModelo> aSubmodelos = new ArrayList<SubModelo>();
 	
 	/**
 	 * Launch the application.
@@ -37,8 +37,8 @@ public class pantallaSubmodelos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					pantallaSubmodelos frame = new pantallaSubmodelos();
-					frame.setVisible(true);
+					//pantallaSubmodelos frame = new pantallaSubmodelos();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,6 +50,9 @@ public class pantallaSubmodelos extends JFrame {
 	 * Create the frame.
 	 */
 	public pantallaSubmodelos() {
+		aSubmodelos.add(new SubModelo("1.1", "Seat Alhambra 1.4","150CV | 5 puertas | Gasolina","imagen",25484));
+		aSubmodelos.add(new SubModelo("1.2", "Seat Alhambra 2.0","150CV | 5 puertas | Diesel","imagen",27166));
+		
 		setResizable(false);
 		setTitle("Concecionario ESTEVE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaSubmodelos.class.getResource("/recursos/iconoEsteveTerradas.png")));
@@ -74,11 +77,11 @@ public class pantallaSubmodelos extends JFrame {
 		gbc_lblTitulo.gridx = 0;
 		gbc_lblTitulo.gridy = 0;
 		contentPane.add(lblTitulo, gbc_lblTitulo);
-		
-		DefaultListModel<String> modelDatos = new DefaultListModel();
-		//for (Modelo submodelo : aSubmodelos) {
-				//modelDatos.addElement(submodelo);
-		//};	
+
+		/*DefaultListModel<String> modelDatos = new DefaultListModel();
+		for (String submodelo : aSubmodelos) {
+				modelDatos.addElement(submodelo);
+		}*/
 		
 		JList listSubmodelos = new JList();
 		GridBagConstraints gbc_listSubmodelos = new GridBagConstraints();
@@ -88,7 +91,7 @@ public class pantallaSubmodelos extends JFrame {
 		gbc_listSubmodelos.gridx = 0;
 		gbc_listSubmodelos.gridy = 1;
 		contentPane.add(listSubmodelos, gbc_listSubmodelos);
-		listSubmodelos.setModel(modelDatos);
+		//listSubmodelos.setModel(modelDatos);
 		listSubmodelos.setVisible(true);
 		
 		JButton btnSigiente = new JButton("Sigiente");
@@ -110,6 +113,11 @@ public class pantallaSubmodelos extends JFrame {
 		contentPane.add(btnSigiente, gbc_btnSigiente);
 		
 		JButton btnAnterior = new JButton("Anterior");
+		btnAnterior.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//pasarAnteriorPantalla(frame);
+			}
+		});
 		GridBagConstraints gbc_btnAnterior = new GridBagConstraints();
 		gbc_btnAnterior.ipadx = 30;
 		gbc_btnAnterior.gridwidth = 2;
@@ -119,4 +127,15 @@ public class pantallaSubmodelos extends JFrame {
 		contentPane.add(btnAnterior, gbc_btnAnterior);
 	}
 
+	private void pasarAnteriorPantalla(pantallaCompra frame) {
+		this.setVisible(false);
+		frame.setVisible(true);
+	}
+	
+	private void pasarSiguientePantalla() {
+		pantallaAccesorios pCompra = new pantallaAccesorios("Seat Alhambra 1.4 Tsi S&s Reference | 150CV | 5 puertas | Gasolina | 25484", 25484);
+		this.setVisible(false);
+		pCompra.setVisible(true);
+	}
+	
 }
