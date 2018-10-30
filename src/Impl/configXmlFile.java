@@ -95,4 +95,38 @@ public class configXmlFile implements IConfig{
 		return eVersion;
 	}
 	
+	public String languagePath() {
+		configXmlFile r = new configXmlFile();
+		Document doc = r.configXmlFile();
+		String eLangaugePath = doc.getElementsByTagName("language_files_path").item(0).getTextContent();
+		
+		return eLangaugePath;
+	}
+	
+	public String postfixLanguage() {
+		configXmlFile r = new configXmlFile();
+		Document doc = r.configXmlFile();
+		String postfixFileName = doc.getElementsByTagName("postfix_language_file_name").item(0).getTextContent();
+		
+		return postfixFileName;
+	}
+	
+	public String languagesDefault() {
+		configXmlFile r = new configXmlFile();
+		Document doc = r.configXmlFile();
+		String language = doc.getElementsByTagName("language_default").item(0).getTextContent();
+		
+		return language;
+	}
+	
+	public String languages() {
+		configXmlFile r = new configXmlFile();
+		Document doc = r.configXmlFile();
+		String languages = doc.getElementsByTagName("languages").item(0).getTextContent();
+		
+		return languages;
+	}
+	
+	
+	
 }

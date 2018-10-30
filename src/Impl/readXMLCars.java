@@ -8,12 +8,14 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 
+import config.ConfigurationLoader;
+
 public class readXMLCars {
 	private String modeloCoche,modelomotor,accesorios;
 	private int numModelos;
 	public static void Espec13() {	
 		try {
-			File archivo = new File("src\\car_config.xml");
+			File archivo = new File(ConfigurationLoader.getConfig().getCarConfigurationPath() + ConfigurationLoader.getConfig().getCarConfigurationFileName());
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder = dbf.newDocumentBuilder();
 			Document document = documentBuilder.parse(archivo);        	

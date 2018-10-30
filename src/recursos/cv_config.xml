@@ -4,11 +4,11 @@
 	<language_default>es</language_default>
 	<postfix_language_file_name>_cv.language</postfix_language_file_name>
 	<version>1.0</version>
-	<language_files_path>src\lenguages\</language_files_path>
-	<car_configuration_path>src\</car_configuration_path>
-	<car_configuration_file_name>car_config.txt</car_configuration_file_name>
+	<language_files_path>src\\recursos\\lenguages\\</language_files_path>
+	<car_configuration_path>src\\recursos\\</car_configuration_path>
+	<car_configuration_file_name>cars_config.xml</car_configuration_file_name>
 	<employee_list>admin,employee,user</employee_list>
 	<employee_version>true,true,false</employee_version>
 	<employee_password>P@ssw0rd,123456789,123</employee_password>
-	<specifications_file_path>/specifications/</specifications_file_path>
+	<specifications_file_path>src\\recursos\\specifications\\</specifications_file_path>
 </config-coches>
