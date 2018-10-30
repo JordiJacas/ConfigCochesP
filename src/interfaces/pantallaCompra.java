@@ -66,7 +66,7 @@ public class pantallaCompra extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pantallaCompra(pantallaCliente frame) {
+	public pantallaCompra(pantallaCliente frame, String userName) {
 		aModelo.add(new Modelo(1,"Citroen Cactus","Texto Descripcion","citroen_cactus.jpg",10000));
 		aModelo.add(new Modelo(2,"Seat Ibiza","Texto Descripcion","ibiza.jpg",5000));
 		
@@ -106,13 +106,13 @@ public class pantallaCompra extends JFrame {
 		JLabel lblUsuario = new JLabel("Usuario:");
 		pUser.add(lblUsuario);
 		
-		JLabel lblUser = new JLabel("User");
+		JLabel lblUser = new JLabel(userName);
 		pUser.add(lblUser);
 		
 		JButton btnAnterior = new JButton("Anterior");
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//pasarAnteriorPantalla(frame);
+				pasarAnteriorPantalla(frame);
 			}
 		});
 		

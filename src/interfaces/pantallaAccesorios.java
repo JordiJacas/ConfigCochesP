@@ -99,7 +99,6 @@ public class pantallaAccesorios extends JFrame {
 		
 		textFieldTotal = new JTextField();
 		textFieldTotal.setText(Integer.toString(pSubmodelo));
-		textFieldTotal.setEnabled(false);
 		textFieldTotal.setEditable(false);
 		textFieldTotal.setColumns(10);
 		GridBagConstraints gbc_textFieldTotal = new GridBagConstraints();
@@ -111,7 +110,6 @@ public class pantallaAccesorios extends JFrame {
 		
 		textFieldModelo = new JTextField();
 		textFieldModelo.setText(Integer.toString(pSubmodelo));
-		textFieldModelo.setEnabled(false);
 		textFieldModelo.setEditable(false);
 		textFieldModelo.setColumns(10);
 		GridBagConstraints gbc_textFieldModelo = new GridBagConstraints();
@@ -123,7 +121,6 @@ public class pantallaAccesorios extends JFrame {
 		
 		textFieldAccesorios = new JTextField();
 		textFieldAccesorios.setText("0");
-		textFieldAccesorios.setEnabled(false);
 		textFieldAccesorios.setEditable(false);
 		GridBagConstraints gbc_textFieldAccesorios = new GridBagConstraints();
 		gbc_textFieldAccesorios.fill = GridBagConstraints.HORIZONTAL;
@@ -207,12 +204,28 @@ public class pantallaAccesorios extends JFrame {
 		contentPane.add(btnFinalizar, gbc_btnFinalizar);
 		
 		JButton btnAnterior = new JButton("Anterior");
+		btnAnterior.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pasarAnteriorPantalla(frame);
+			}
+		});
 		GridBagConstraints gbc_btnAnterior = new GridBagConstraints();
 		gbc_btnAnterior.ipadx = 50;
 		gbc_btnAnterior.insets = new Insets(0, 0, 50, 5);
 		gbc_btnAnterior.gridx = 0;
 		gbc_btnAnterior.gridy = 10;
 		contentPane.add(btnAnterior, gbc_btnAnterior);
+	}
+	
+	private void pasarAnteriorPantalla(pantallaSubmodelos frame) {
+		this.setVisible(false);
+		frame.setVisible(true);
+	}
+	
+	private void pasarSiguientePantalla(String subModelo, int precio) {
+		//pantallaAccesorios pCompra = new pantallaAccesorios(subModelo, precio, this);
+		//this.setVisible(false);
+		//pCompra.setVisible(true);
 	}
 
 }

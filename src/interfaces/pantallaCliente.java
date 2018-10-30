@@ -75,7 +75,7 @@ public class pantallaCliente extends JFrame {
 		JButton btnSigiente = new JButton("SIGIENTE");
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				pasarSiguientePantalla();			
+				pasarSiguientePantalla(userName);			
 			}
 		});
 		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
@@ -323,9 +323,9 @@ public class pantallaCliente extends JFrame {
 		return true;
 	}
 	
-	private void pasarSiguientePantalla() {
+	private void pasarSiguientePantalla(String userName) {
 		if(emptyTxt()) {
-			pantallaCompra pCompra = new pantallaCompra(this);
+			pantallaCompra pCompra = new pantallaCompra(this, userName);
 			this.setVisible(false);
 			pCompra.setVisible(true);
 		}

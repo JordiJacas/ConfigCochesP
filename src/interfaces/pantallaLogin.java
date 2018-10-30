@@ -34,6 +34,7 @@ public class pantallaLogin extends JFrame {
 	private JTextField textLogin;
 	private JPasswordField textPassword;
 	private JButton btnEntrar;
+	private boolean employeeVersion;
 	private boolean isError = false;
 
 	/**
@@ -120,12 +121,14 @@ public class pantallaLogin extends JFrame {
 	public void compareLoginPassword() {
 		String[] employees = ConfigurationLoader.getConfig().getEmployeeList();
 		String [] passwords = ConfigurationLoader.getConfig().getEmployeePassword();
+		boolean [] eVersions = ConfigurationLoader.getConfig().getEmployeeVersion();
 		
 		if(emptyTxt()) {
 			for (int i = 0; i < employees.length; i++) {
 				if(textLogin.getText().equals(employees[i]) && textPassword.getText().equals(passwords[i])) {
 					isError = false;
-					pantallaCliente pC = new pantallaCliente("user");
+					employeeVersion = eVersions[i];
+					pantallaCliente pC = new pantallaCliente(employees[i]);
 					pC.setVisible(true);
 					this.dispose();
 					break;
@@ -157,4 +160,10 @@ public class pantallaLogin extends JFrame {
 		
 		return true;
 	}
+
+	public boolean isEmployeeVersion() {
+		return employeeVersion;
+	}
+	
+	
 }

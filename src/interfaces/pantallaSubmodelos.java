@@ -103,7 +103,7 @@ public class pantallaSubmodelos extends JFrame {
 				String elemento="";
 				elemento = (String) it.next();
 				String [] aElemento = elemento.split(" | ");
-				pasarSiguientePantalla(elemento, Integer.parseInt(aElemento[aElemento.length]));
+				pasarSiguientePantalla(elemento, Integer.parseInt(aElemento[aElemento.length-1]));
 				
 			}
 		});
@@ -117,7 +117,7 @@ public class pantallaSubmodelos extends JFrame {
 		JButton btnAnterior = new JButton("Anterior");
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//pasarAnteriorPantalla(frame);
+				pasarAnteriorPantalla(frame);
 			}
 		});
 		GridBagConstraints gbc_btnAnterior = new GridBagConstraints();
