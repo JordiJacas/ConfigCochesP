@@ -21,6 +21,8 @@ public class readXMLCars {
 	private String imagen_nombre;
 	private int precio;
 	private int modelos_disponibles;
+	private int attribModelo;
+	private String attribType;
 	
 	public Document readXMLCars() {	
 		try {
@@ -42,7 +44,7 @@ public class readXMLCars {
 		ArrayList<Modelo> vehiculos = new ArrayList<Modelo>();
 
 		/*Rellenamos ArrayList de modelos*/
-		for (int i = 0; i < document.getElementsByTagName("modelo").getLength(); i++) { 
+		for (int i = 0; i < document.getElementsByTagName("modelo").getLength(); i++) {
 			for (int j = 0; j < document.getElementsByTagName("modelo").item(0).getChildNodes().getLength(); j++) {	
 				id = Integer.parseInt(document.getElementsByTagName("modelo").item(i).getChildNodes().item(1).getTextContent());
 				nombre = document.getElementsByTagName("modelo").item(i).getChildNodes().item(3).getTextContent();
@@ -59,7 +61,8 @@ public class readXMLCars {
 	public ArrayList<SubModelo> readSubModelos(){
 		Document document = readXMLCars();
 		ArrayList<SubModelo> vehiculos = new ArrayList<SubModelo>(); 
-  	
+		attribModelo = Integer.parseInt(document.getElementsByTagName("motor").item(0).getAttributes().item(0).getTextContent());
+		attribType = document.getElementsByTagName("motor").item(0).getAttributes().item(1).getTextContent();
 		/*Rellenamos ArrayList de Motores*/
 	 	for (int i = 0; i < document.getElementsByTagName("motor").getLength(); i++) { 
 			for (int j = 0; j < document.getElementsByTagName("motor").item(0).getChildNodes().getLength(); j++) {
@@ -70,7 +73,7 @@ public class readXMLCars {
 				precio = Integer.parseInt(document.getElementsByTagName("motor").item(i).getChildNodes().item(9).getTextContent());
 				
 			}
-			vehiculos.add(new SubModelo(id,nombre,descripcion,imagen_nombre,precio));
+			vehiculos.add(new SubModelo(id,nombre,descripcion,imagen_nombre,precio, attribModelo, attribType));
 		}
 	 	
 	 	return vehiculos;
@@ -80,7 +83,7 @@ public class readXMLCars {
 	public ArrayList<Accesorio> readAccesorios(){
 		Document document = readXMLCars();
 		ArrayList<Accesorio> vehiculos = new ArrayList<Accesorio>();
-		
+		attribType = document.getElementsByTagName("accesorio").item(0).getAttributes().item(0).getTextContent();
 		/*Rellenamos ArrayList de accesorios*/
 		for (int i = 0; i < document.getElementsByTagName("accesorio").getLength(); i++) { 
 			for (int j = 0; j < document.getElementsByTagName("accesorio").item(0).getChildNodes().getLength(); j++) {
@@ -91,9 +94,8 @@ public class readXMLCars {
 				precio = Integer.parseInt(document.getElementsByTagName("accesorio").item(i).getChildNodes().item(9).getTextContent());
 				modelos_disponibles= Integer.parseInt(document.getElementsByTagName("accesorio").item(i).getChildNodes().item(11).getTextContent());
 			}
-			vehiculos.add(new Accesorio(id,nombre,descripcion,imagen_nombre,precio,modelos_disponibles));
+			vehiculos.add(new Accesorio(id,nombre,descripcion,imagen_nombre,precio,modelos_disponibles, attribType));
 		}
 		return vehiculos;
 	}
-	
 }

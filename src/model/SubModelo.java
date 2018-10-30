@@ -6,6 +6,8 @@ public class SubModelo {
 	private String descripcion;
 	private String imagen;
 	private int precio;
+	private int modelo;
+	private String type;
 	
 	/*
 	 * Construcor
@@ -14,13 +16,15 @@ public class SubModelo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SubModelo(int id, String nombre, String descripcion, String imagen, int precio) {
+	public SubModelo(int id, String nombre, String descripcion, String imagen, int precio, int modelo, String type) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.imagen = imagen;
 		this.precio = precio;
+		this.modelo = modelo;
+		this.type = type;
 	}
 	
 	/*
@@ -29,33 +33,31 @@ public class SubModelo {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getNombre() {
 		return nombre;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	
 	public String getDescripcion() {
 		return descripcion;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+	
 	public String getImagen() {
 		return imagen;
 	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
+	
 	public int getPrecio() {
 		return precio;
 	}
-	public void setPrecio(int precio) {
-		this.precio = precio;
+		
+	public int getModelo() {
+		return modelo;
 	}
+	
+	public String getType() {
+		return type;
+	}
+	
 	@Override
 	public String toString() {
 		return nombre + " | " + descripcion + " | " + precio;
