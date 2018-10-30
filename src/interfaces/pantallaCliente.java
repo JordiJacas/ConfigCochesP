@@ -329,6 +329,5 @@ public class pantallaCliente extends JFrame {
 			this.setVisible(false);
 			pCompra.setVisible(true);
 		}
-	}
-	
+	}	
 }
