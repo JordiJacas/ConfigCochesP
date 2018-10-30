@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import Impl.readXMLCars;
 import model.Accesorio;
+import model.SubModelo;
 
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
@@ -57,7 +58,7 @@ public class pantallaAccesorios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pantallaAccesorios(String submodelo, int pSubmodelo, pantallaSubmodelos frame) {
+	public pantallaAccesorios(SubModelo subModelo, pantallaSubmodelos frame) {
 		aAccesorios = readAccesorios.readAccesorios();
 		
 		setResizable(false);
@@ -76,7 +77,7 @@ public class pantallaAccesorios extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblSubmodelo = new JLabel(submodelo);
+		JLabel lblSubmodelo = new JLabel(subModelo.toString());
 		lblSubmodelo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		GridBagConstraints gbc_lblSubmodelo = new GridBagConstraints();
 		gbc_lblSubmodelo.anchor = GridBagConstraints.WEST;
@@ -97,7 +98,7 @@ public class pantallaAccesorios extends JFrame {
 		contentPane.add(lblTitulo, gbc_lblTitulo);
 		
 		textFieldTotal = new JTextField();
-		textFieldTotal.setText(Integer.toString(pSubmodelo));
+		textFieldTotal.setText(Integer.toString(subModelo.getId()));
 		textFieldTotal.setEditable(false);
 		textFieldTotal.setColumns(10);
 		GridBagConstraints gbc_textFieldTotal = new GridBagConstraints();
@@ -108,7 +109,7 @@ public class pantallaAccesorios extends JFrame {
 		contentPane.add(textFieldTotal, gbc_textFieldTotal);
 		
 		textFieldModelo = new JTextField();
-		textFieldModelo.setText(Integer.toString(pSubmodelo));
+		textFieldModelo.setText(Integer.toString(subModelo.getId()));
 		textFieldModelo.setEditable(false);
 		textFieldModelo.setColumns(10);
 		GridBagConstraints gbc_textFieldModelo = new GridBagConstraints();
@@ -167,9 +168,16 @@ public class pantallaAccesorios extends JFrame {
 		contentPane.add(panel, gbc_panel);
 		
 		for (Accesorio accesorio : aAccesorios) {
+			
 			JCheckBox check = new JCheckBox(accesorio.getNombre());
 			check.setPreferredSize(new Dimension(200,20));
 			check.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			if(subModelo.getType() == accesorio.getType()) {
+				check.setEnabled(true);
+			}
+			else {
+				check.setEnabled(false);
+			}
 			check.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent chck) {
 					
@@ -180,7 +188,6 @@ public class pantallaAccesorios extends JFrame {
 					if(chck.getStateChange() == ItemEvent.SELECTED) {
 						pAccesorios = pAccesorios + pAccesorio;
 						pTotal = pTotal + pAccesorio;
-						
 					}
 					else if(chck.getStateChange() == ItemEvent.DESELECTED) {
 						pAccesorios = pAccesorios - pAccesorio;

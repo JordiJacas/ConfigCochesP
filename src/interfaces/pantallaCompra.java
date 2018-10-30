@@ -67,6 +67,7 @@ public class pantallaCompra extends JFrame {
 	
 	/**
 	 * Create the frame.
+	 * pantallaCliente frame, String userName
 	 */
 	public pantallaCompra(pantallaCliente frame, String userName) {
 		aModelo = readCars.readModelos();
@@ -110,36 +111,8 @@ public class pantallaCompra extends JFrame {
 		JLabel lblUser = new JLabel(userName);
 		pUser.add(lblUser);
 		
-		JButton btnAnterior = new JButton("Anterior");
-		btnAnterior.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				pasarAnteriorPantalla(frame);
-			}
-		});
-		
-		JButton btnSigiente = new JButton("Sigiente");
-		btnSigiente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				pasarSiguientePantalla();
-			}
-		});
-		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
-		gbc_btnSigiente.anchor = GridBagConstraints.EAST;
-		gbc_btnSigiente.gridwidth = 2;
-		gbc_btnSigiente.ipady = 10;
-		gbc_btnSigiente.ipadx = 80;
-		gbc_btnSigiente.insets = new Insets(0, 0, 5, 50);
-		gbc_btnSigiente.gridx = 3;
-		gbc_btnSigiente.gridy = 7;
-		contentPane.add(btnSigiente, gbc_btnSigiente);
-		GridBagConstraints gbc_btnAnterior = new GridBagConstraints();
-		gbc_btnAnterior.ipady = 10;
-		gbc_btnAnterior.ipadx = 60;
-		gbc_btnAnterior.weightx = 5.0;
-		gbc_btnAnterior.insets = new Insets(0, 0, 5, 0);
-		gbc_btnAnterior.gridx = 1;
-		gbc_btnAnterior.gridy = 7;
-		contentPane.add(btnAnterior, gbc_btnAnterior);
+		JLabel lblId = new JLabel(Integer.toString(aModelo.get(0).getId()));
+		System.out.println(lblId.getText());
 		
 		JLabel lblMostrar = new JLabel();
 		lblMostrar.setBackground(Color.WHITE);
@@ -187,6 +160,7 @@ public class pantallaCompra extends JFrame {
 	                    java.awt.Image.SCALE_DEFAULT));
     			 areaDescripcion.setText(modelo.getDescripcion());
     			 lblMostrar.setIcon(accionicono);
+    			 lblId.setText(Integer.toString(modelo.getId()));
     			}
     		});
         	contadorBtn++;
@@ -206,7 +180,43 @@ public class pantallaCompra extends JFrame {
 		gbc_scrollBar.gridx = 0;
 		gbc_scrollBar.gridy = 1;
 		contentPane.add(scrollBar, gbc_scrollBar);
-	
+		
+		JButton btnSigiente = new JButton("Sigiente");
+		btnSigiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (Modelo modelo : aModelo) {
+					if(modelo.getId() == Integer.parseInt(lblId.getText())) {
+						pasarSiguientePantalla(modelo);
+					}
+				}
+				
+			}
+		});
+		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
+		gbc_btnSigiente.anchor = GridBagConstraints.EAST;
+		gbc_btnSigiente.gridwidth = 2;
+		gbc_btnSigiente.ipady = 10;
+		gbc_btnSigiente.ipadx = 80;
+		gbc_btnSigiente.insets = new Insets(0, 0, 5, 50);
+		gbc_btnSigiente.gridx = 3;
+		gbc_btnSigiente.gridy = 7;
+		contentPane.add(btnSigiente, gbc_btnSigiente);
+		
+		JButton btnAnterior = new JButton("Anterior");
+		btnAnterior.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				pasarAnteriorPantalla(frame);
+			}
+		});
+		GridBagConstraints gbc_btnAnterior = new GridBagConstraints();
+		gbc_btnAnterior.ipady = 10;
+		gbc_btnAnterior.ipadx = 60;
+		gbc_btnAnterior.weightx = 5.0;
+		gbc_btnAnterior.insets = new Insets(0, 0, 5, 0);
+		gbc_btnAnterior.gridx = 1;
+		gbc_btnAnterior.gridy = 7;
+		contentPane.add(btnAnterior, gbc_btnAnterior);
+		
 		this.addWindowListener( new WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent e) {
@@ -236,8 +246,8 @@ public class pantallaCompra extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	private void pasarSiguientePantalla() {
-		pantallaSubmodelos ps = new pantallaSubmodelos(this);
+	private void pasarSiguientePantalla(Modelo modelo) {
+		pantallaSubmodelos ps = new pantallaSubmodelos(this, modelo);
 		this.setVisible(false);
 		ps.setVisible(true);
 	}

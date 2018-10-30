@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Impl.readXMLCars;
+import model.Modelo;
 import model.SubModelo;
 
 import javax.swing.JLabel;
@@ -51,7 +52,7 @@ public class pantallaSubmodelos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pantallaSubmodelos(pantallaCompra frame) {
+	public pantallaSubmodelos(pantallaCompra frame, Modelo modelo) {
 		aSubmodelos = readSubModelos.readSubModelos();
 		
 		setResizable(false);
@@ -81,7 +82,9 @@ public class pantallaSubmodelos extends JFrame {
 
 		DefaultListModel<String> modelDatos = new DefaultListModel();
 		for (SubModelo submodelo : aSubmodelos) {
-				modelDatos.addElement(submodelo.toString());
+				if(modelo.getId() == submodelo.getModelo()) {
+					modelDatos.addElement(submodelo.toString());
+				}			
 		}
 		
 		JList listSubmodelos = new JList();
@@ -104,8 +107,11 @@ public class pantallaSubmodelos extends JFrame {
 				String elemento="";
 				elemento = (String) it.next();
 				String [] aElemento = elemento.split(" | ");
-				pasarSiguientePantalla(elemento, Integer.parseInt(aElemento[aElemento.length-1]));
-				
+				for(SubModelo subModelo:aSubmodelos) {
+					if(subModelo.toString() == elemento) {
+						pasarSiguientePantalla(subModelo);
+					}
+				}	
 			}
 		});
 		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
@@ -135,8 +141,8 @@ public class pantallaSubmodelos extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	private void pasarSiguientePantalla(String subModelo, int precio) {
-		pantallaAccesorios pCompra = new pantallaAccesorios(subModelo, precio, this);
+	private void pasarSiguientePantalla(SubModelo subModelo) {
+		pantallaAccesorios pCompra = new pantallaAccesorios(subModelo, this);
 		this.setVisible(false);
 		pCompra.setVisible(true);
 	}
