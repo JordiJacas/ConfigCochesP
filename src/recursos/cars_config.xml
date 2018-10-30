@@ -30,23 +30,26 @@
 		</modelo>
 	</modelos>
 	<motores>
-		<motor>
+		<motor modelo="1" type="A">
 			<id>1</id>
 			<nombre>Honda 3.5 V6 h�brido</nombre>
 			<descripcion>Texto Descripcion motor</descripcion>
 			<imagen_nombre>honda_hibrido.jpg</imagen_nombre>
 			<precio>1000</precio>
 		</motor>
-		<motor>
+		<motor modelo="2" type="C">
 			<id>2</id>
 			<nombre>Audi 1.8 TFSI</nombre>
-			<descripcion>Volkswagen Jetta, Polo GTI, Beetle, Passat, Golf, Audi A3</descripcion>
+			<descripcion>
+				Volkswagen Jetta, Polo GTI, Beetle, Passat, Golf, Audi
+				A3
+			</descripcion>
 			<imagen_nombre>audi_tfsi.jpg</imagen_nombre>
 			<precio>500</precio>
 		</motor>
 	</motores>
 	<accesorios>
-		<accesorio>
+		<accesorio type="A">
 			<id>1</id>
 			<nombre>Conectores USB</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
@@ -54,7 +57,7 @@
 			<precio>50</precio>
 			<modelos_disponibles>5</modelos_disponibles>
 		</accesorio>
-		<accesorio>
+		<accesorio type="B">
 			<id>2</id>
 			<nombre>Navegador</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
@@ -62,7 +65,7 @@
 			<precio>100</precio>
 			<modelos_disponibles>5</modelos_disponibles>
 		</accesorio>
-		<accesorio>
+		<accesorio type="A">
 			<id>3</id>
 			<nombre>Yantas de aleaci�n</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
@@ -70,7 +73,7 @@
 			<precio>200</precio>
 			<modelos_disponibles>5</modelos_disponibles>
 		</accesorio>
-		<accesorio>
+		<accesorio type="A">
 			<id>4</id>
 			<nombre>Asientos Calefactados</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
@@ -78,7 +81,7 @@
 			<precio>300</precio>
 			<modelos_disponibles>5</modelos_disponibles>
 		</accesorio>
-		<accesorio>
+		<accesorio type="C">
 			<id>5</id>
 			<nombre>Velocidad de Crucero</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
@@ -86,7 +89,7 @@
 			<precio>150</precio>
 			<modelos_disponibles>5</modelos_disponibles>
 		</accesorio>
-		<accesorio>
+		<accesorio type="B">
 			<id>6</id>
 			<nombre>Aparcamiento autom�tico</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
