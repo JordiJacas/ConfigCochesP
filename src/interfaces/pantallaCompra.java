@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import Impl.readXMLCars;
 import model.Modelo;
 
 import java.awt.GridBagLayout;
@@ -46,6 +47,7 @@ public class pantallaCompra extends JFrame {
 	private JPanel contentPane;
 	private ArrayList<Modelo> aModelo = new ArrayList<Modelo>();
 	private int contadorBtn = 0;
+	private readXMLCars readCars = new readXMLCars();
 	
 	/**
 	 * Launch the application.
@@ -67,8 +69,7 @@ public class pantallaCompra extends JFrame {
 	 * Create the frame.
 	 */
 	public pantallaCompra(pantallaCliente frame, String userName) {
-		aModelo.add(new Modelo(1,"Citroen Cactus","Texto Descripcion","citroen_cactus.jpg",10000));
-		aModelo.add(new Modelo(2,"Seat Ibiza","Texto Descripcion","ibiza.jpg",5000));
+		aModelo = readCars.readModelos();
 		
 		setTitle("Concesionario ESTEVE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaCompra.class.getResource("/recursos/iconoEsteveTerradas.png")));

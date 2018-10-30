@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Impl.readXMLCars;
 import model.Accesorio;
 
 import java.awt.GridBagLayout;
@@ -35,6 +36,7 @@ public class pantallaAccesorios extends JFrame {
 	private JTextField textFieldModelo;
 	private JTextField textFieldTotal;
 	private ArrayList<Accesorio> aAccesorios = new ArrayList<Accesorio>();
+	private readXMLCars readAccesorios = new readXMLCars(); 
 	
 	/**
 	 * Launch the application.
@@ -56,10 +58,7 @@ public class pantallaAccesorios extends JFrame {
 	 * Create the frame.
 	 */
 	public pantallaAccesorios(String submodelo, int pSubmodelo, pantallaSubmodelos frame) {
-		aAccesorios.add(new Accesorio(1,"USB","descripcion","imagen",15));
-		aAccesorios.add(new Accesorio(2,"Aparcamiento","descripcion","imagen",800));
-		aAccesorios.add(new Accesorio(3,"Radio","descripcion","imagen",150));
-		aAccesorios.add(new Accesorio(4,"Amortiguacion","descripcion","imagen",400));
+		aAccesorios = readAccesorios.readAccesorios();
 		
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaAccesorios.class.getResource("/recursos/iconoEsteveTerradas.png")));

@@ -32,7 +32,7 @@
 	<motores>
 		<motor>
 			<id>1</id>
-			<nombre>Honda 3.5 V6 híbrido</nombre>
+			<nombre>Honda 3.5 V6 hï¿½brido</nombre>
 			<descripcion>Texto Descripcion motor</descripcion>
 			<imagen_nombre>honda_hibrido.jpg</imagen_nombre>
 			<precio>1000</precio>
@@ -53,7 +53,7 @@
 			<imagen_nombre>con_usb.jpg</imagen_nombre>
 			<precio>50</precio>
 			<modelos_disponibles>5</modelos_disponibles>
-		</accesorios>
+		</accesorio>
 		<accesorio>
 			<id>2</id>
 			<nombre>Navegador</nombre>
@@ -61,15 +61,15 @@
 			<imagen_nombre>navegador.jpg</imagen_nombre>
 			<precio>100</precio>
 			<modelos_disponibles>5</modelos_disponibles>
-		</accesorios>
+		</accesorio>
 		<accesorio>
 			<id>3</id>
-			<nombre>Yantas de aleación</nombre>
+			<nombre>Yantas de aleaciï¿½n</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
 			<imagen_nombre>yantas_aleacion.jpg</imagen_nombre>
 			<precio>200</precio>
 			<modelos_disponibles>5</modelos_disponibles>
-		</accesorios>
+		</accesorio>
 		<accesorio>
 			<id>4</id>
 			<nombre>Asientos Calefactados</nombre>
@@ -77,7 +77,7 @@
 			<imagen_nombre>asientos_calefacion.jpg</imagen_nombre>
 			<precio>300</precio>
 			<modelos_disponibles>5</modelos_disponibles>
-		</accesorios>
+		</accesorio>
 		<accesorio>
 			<id>5</id>
 			<nombre>Velocidad de Crucero</nombre>
@@ -85,14 +85,14 @@
 			<imagen_nombre>velocidad_crucero.jpg</imagen_nombre>
 			<precio>150</precio>
 			<modelos_disponibles>5</modelos_disponibles>
-		</accesorios>
+		</accesorio>
 		<accesorio>
 			<id>6</id>
-			<nombre>Aparcamiento automático</nombre>
+			<nombre>Aparcamiento automï¿½tico</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
 			<imagen_nombre>aparcamiento_auto.jpg</imagen_nombre>
 			<precio>100</precio>
 			<modelos_disponibles>5</modelos_disponibles>
-		</accesorios>
+		</accesorio>
 	</accesorios>
 </Coches>

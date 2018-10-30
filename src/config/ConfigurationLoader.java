@@ -103,7 +103,7 @@ public class ConfigurationLoader {
 	}
 	
 	private String loadCarName() {
-		return xml.EmployeeList();
+		return xml.CarFileName();
 	}
 	
 	private String[] loadEmployeeList() {
