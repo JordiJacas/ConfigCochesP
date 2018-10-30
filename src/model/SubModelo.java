@@ -1,7 +1,7 @@
 package model;
 
 public class SubModelo {
-	private String id;
+	private int id;
 	private String nombre;
 	private String descripcion;
 	private String imagen;
@@ -14,7 +14,7 @@ public class SubModelo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SubModelo(String id, String nombre, String descripcion, String imagen, int precio) {
+	public SubModelo(int id, String nombre, String descripcion, String imagen, int precio) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -26,10 +26,10 @@ public class SubModelo {
 	/*
 	 * Metodos
 	 */
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getNombre() {

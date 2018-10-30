@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Impl.readXMLCars;
 import model.SubModelo;
 
 import javax.swing.JLabel;
@@ -29,6 +30,7 @@ public class pantallaSubmodelos extends JFrame {
 
 	private JPanel contentPane;
 	private ArrayList<SubModelo> aSubmodelos = new ArrayList<SubModelo>();
+	private readXMLCars readSubModelos = new readXMLCars();
 	
 	/**
 	 * Launch the application.
@@ -50,8 +52,7 @@ public class pantallaSubmodelos extends JFrame {
 	 * Create the frame.
 	 */
 	public pantallaSubmodelos(pantallaCompra frame) {
-		aSubmodelos.add(new SubModelo("1.1", "Seat Alhambra 1.4","150CV | 5 puertas | Gasolina","imagen",25484));
-		aSubmodelos.add(new SubModelo("1.2", "Seat Alhambra 2.0","150CV | 5 puertas | Diesel","imagen",27166));
+		aSubmodelos = readSubModelos.readSubModelos();
 		
 		setResizable(false);
 		setTitle("Concecionario ESTEVE");
