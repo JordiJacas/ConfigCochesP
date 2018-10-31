@@ -61,8 +61,7 @@ public class readXMLCars {
 	public ArrayList<SubModelo> readSubModelos(){
 		Document document = readXMLCars();
 		ArrayList<SubModelo> vehiculos = new ArrayList<SubModelo>(); 
-		attribModelo = Integer.parseInt(document.getElementsByTagName("motor").item(0).getAttributes().item(0).getTextContent());
-		attribType = document.getElementsByTagName("motor").item(0).getAttributes().item(1).getTextContent();
+		
 		/*Rellenamos ArrayList de Motores*/
 	 	for (int i = 0; i < document.getElementsByTagName("motor").getLength(); i++) { 
 			for (int j = 0; j < document.getElementsByTagName("motor").item(0).getChildNodes().getLength(); j++) {
@@ -71,6 +70,8 @@ public class readXMLCars {
 				descripcion = document.getElementsByTagName("motor").item(i).getChildNodes().item(5).getTextContent();
 				imagen_nombre = document.getElementsByTagName("motor").item(i).getChildNodes().item(7).getTextContent();
 				precio = Integer.parseInt(document.getElementsByTagName("motor").item(i).getChildNodes().item(9).getTextContent());
+				attribModelo = Integer.parseInt(document.getElementsByTagName("motor").item(i).getAttributes().item(0).getTextContent());
+				attribType = document.getElementsByTagName("motor").item(i).getAttributes().item(1).getTextContent();
 				
 			}
 			vehiculos.add(new SubModelo(id,nombre,descripcion,imagen_nombre,precio, attribModelo, attribType));
@@ -83,7 +84,7 @@ public class readXMLCars {
 	public ArrayList<Accesorio> readAccesorios(){
 		Document document = readXMLCars();
 		ArrayList<Accesorio> vehiculos = new ArrayList<Accesorio>();
-		attribType = document.getElementsByTagName("accesorio").item(0).getAttributes().item(0).getTextContent();
+		
 		/*Rellenamos ArrayList de accesorios*/
 		for (int i = 0; i < document.getElementsByTagName("accesorio").getLength(); i++) { 
 			for (int j = 0; j < document.getElementsByTagName("accesorio").item(0).getChildNodes().getLength(); j++) {
@@ -93,6 +94,7 @@ public class readXMLCars {
 				imagen_nombre = document.getElementsByTagName("accesorio").item(i).getChildNodes().item(7).getTextContent();
 				precio = Integer.parseInt(document.getElementsByTagName("accesorio").item(i).getChildNodes().item(9).getTextContent());
 				modelos_disponibles= Integer.parseInt(document.getElementsByTagName("accesorio").item(i).getChildNodes().item(11).getTextContent());
+				attribType = document.getElementsByTagName("accesorio").item(i).getAttributes().item(0).getTextContent();
 			}
 			vehiculos.add(new Accesorio(id,nombre,descripcion,imagen_nombre,precio,modelos_disponibles, attribType));
 		}

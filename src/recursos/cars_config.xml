@@ -2,50 +2,89 @@
 	<modelos>
 		<modelo>
 			<id>1</id>
-			<nombre>Citroen Cactus</nombre>
-			<descripcion>Texto Descripcion</descripcion>
-			<imagen_nombre>citroen_cactus.jpg</imagen_nombre>
-			<precio>10000</precio>
+			<nombre>Alhambra</nombre>
+			<descripcion>El monovolumen SEAT Alhambra ha sido diseñado para sobresalir entre los vehículos de su categoría.</descripcion>
+			<imagen_nombre>alhambra.jpg</imagen_nombre>
+			<precio>30960</precio>
 		</modelo>
 		<modelo>
 			<id>2</id>
-			<nombre>Seat Ibiza</nombre>
-			<descripcion>Texto Descripcion</descripcion>
+			<nombre>Ibiza</nombre>
+			<descripcion>El Nuevo SEAT Ibiza incorpora los sistemas de seguridad más avanzados como Control de velocidad de crucero adaptativo.</descripcion>
 			<imagen_nombre>ibiza.jpg</imagen_nombre>
-			<precio>5000</precio>
+			<precio>11860</precio>
 		</modelo>
 		<modelo>
 			<id>3</id>
-			<nombre>Lia Carens</nombre>
-			<descripcion>Texto Descripcion</descripcion>
-			<imagen_nombre>kia_carens.jpg</imagen_nombre>
-			<precio>12000</precio>
+			<nombre>Leon</nombre>
+			<descripcion>Que todos tus viajes empiecen cuidando el planeta. Gracias a la gama de motores eficientes del SEAT León conducirás produciendo menos emisiones.</descripcion>
+			<imagen_nombre>leon.jpg</imagen_nombre>
+			<precio>16020</precio>
 		</modelo>
 		<modelo>
 			<id>4</id>
-			<nombre>Mini</nombre>
-			<descripcion>Texto Descripcion</descripcion>
-			<imagen_nombre>mini.jpg</imagen_nombre>
-			<precio>8000</precio>
+			<nombre>Mii</nombre>
+			<descripcion>Con la tecnología TGI ahorrarás en combustible, podrás recorrer muchos más kilómetros sin repostar y gracias a sus bajas emisiones tendrás clasificación ECO. </descripcion>
+			<imagen_nombre>mii.jpg</imagen_nombre>
+			<precio>9460</precio>
 		</modelo>
 	</modelos>
 	<motores>
 		<motor modelo="1" type="A">
 			<id>1</id>
-			<nombre>Honda 3.5 V6 h�brido</nombre>
-			<descripcion>Texto Descripcion motor</descripcion>
-			<imagen_nombre>honda_hibrido.jpg</imagen_nombre>
-			<precio>1000</precio>
+			<nombre>Seat Alhambra 1.4 Tsi Reference</nombre>
+			<descripcion>150CV | 5 puertas | Gasolina</descripcion>
+			<imagen_nombre>alhambra1.4.jpg</imagen_nombre>
+			<precio>31980</precio>
+		</motor>
+		<motor modelo="1" type="C">
+			<id>2</id>
+			<nombre>Seat Alhambra 2. Tdi Cr Eco Reference</nombre>
+			<descripcion>150CV | 5 puertas | Diesel</descripcion>
+			<imagen_nombre>alhambra2.0.jpg</imagen_nombre>
+			<precio>32570</precio>
+		</motor>
+		<motor modelo="3" type="B">
+			<id>3</id>
+			<nombre>Leon ST</nombre>
+			<descripcion>400CV | 5 puertas | Diesel</descripcion>
+			<imagen_nombre>leonST.jpg</imagen_nombre>
+			<precio>17030</precio>
+		</motor>
+		<motor modelo="3" type="A">
+			<id>4</id>
+			<nombre>Leon X-PERIENCE</nombre>
+			<descripcion>500CV | 5 puertas | Diesel</descripcion>
+			<imagen_nombre>leonX.jpg</imagen_nombre>
+			<precio>20670</precio>
 		</motor>
 		<motor modelo="2" type="C">
-			<id>2</id>
-			<nombre>Audi 1.8 TFSI</nombre>
-			<descripcion>
-				Volkswagen Jetta, Polo GTI, Beetle, Passat, Golf, Audi
-				A3
-			</descripcion>
-			<imagen_nombre>audi_tfsi.jpg</imagen_nombre>
-			<precio>500</precio>
+			<id>5</id>
+			<nombre>SEAT Ibiza III</nombre>
+			<descripcion>105CV | 3 puertas | Gasolina</descripcion>
+			<imagen_nombre>ibizaIII.jpg</imagen_nombre>
+			<precio>125030</precio>
+		</motor>
+		<motor modelo="2" type="A">
+			<id>6</id>
+			<nombre>SEAT Ibiza IV FR</nombre>
+			<descripcion>200CV | 5 puertas | Diesel</descripcion>
+			<imagen_nombre>ibizaIV.jpg</imagen_nombre>
+			<precio>13800</precio>
+		</motor>
+		<motor modelo="4" type="C">
+			<id>7</id>
+			<nombre>SEAT Mii 3P 2016</nombre>
+			<descripcion>110CV | 4 puertas | Gasolina</descripcion>
+			<imagen_nombre>Mii3P.jpg</imagen_nombre>
+			<precio>10503</precio>
+		</motor>
+		<motor modelo="4" type="A">
+			<id>8</id>
+			<nombre>SEAT Mii 5P 2016</nombre>
+			<descripcion>150CV | 5 puertas | Diesel</descripcion>
+			<imagen_nombre>Mii5P.jpg</imagen_nombre>
+			<precio>12340</precio>
 		</motor>
 	</motores>
 	<accesorios>
@@ -62,15 +101,15 @@
 			<nombre>Navegador</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
 			<imagen_nombre>navegador.jpg</imagen_nombre>
-			<precio>100</precio>
+			<precio>230</precio>
 			<modelos_disponibles>5</modelos_disponibles>
 		</accesorio>
 		<accesorio type="A">
 			<id>3</id>
-			<nombre>Yantas de aleaci�n</nombre>
+			<nombre>Yantas de aleacion</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
 			<imagen_nombre>yantas_aleacion.jpg</imagen_nombre>
-			<precio>200</precio>
+			<precio>150</precio>
 			<modelos_disponibles>5</modelos_disponibles>
 		</accesorio>
 		<accesorio type="A">
@@ -78,7 +117,7 @@
 			<nombre>Asientos Calefactados</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
 			<imagen_nombre>asientos_calefacion.jpg</imagen_nombre>
-			<precio>300</precio>
+			<precio>275</precio>
 			<modelos_disponibles>5</modelos_disponibles>
 		</accesorio>
 		<accesorio type="C">
@@ -86,15 +125,15 @@
 			<nombre>Velocidad de Crucero</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
 			<imagen_nombre>velocidad_crucero.jpg</imagen_nombre>
-			<precio>150</precio>
+			<precio>300</precio>
 			<modelos_disponibles>5</modelos_disponibles>
 		</accesorio>
 		<accesorio type="B">
 			<id>6</id>
-			<nombre>Aparcamiento autom�tico</nombre>
+			<nombre>Aparcamiento automatico</nombre>
 			<descripcion>Desripcion accesprop</descripcion>
 			<imagen_nombre>aparcamiento_auto.jpg</imagen_nombre>
-			<precio>100</precio>
+			<precio>250</precio>
 			<modelos_disponibles>5</modelos_disponibles>
 		</accesorio>
 	</accesorios>

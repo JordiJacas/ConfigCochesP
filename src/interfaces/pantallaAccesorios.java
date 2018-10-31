@@ -14,6 +14,7 @@ import model.Accesorio;
 import model.SubModelo;
 
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
@@ -37,6 +38,7 @@ public class pantallaAccesorios extends JFrame {
 	private JTextField textFieldModelo;
 	private JTextField textFieldTotal;
 	private ArrayList<Accesorio> aAccesorios = new ArrayList<Accesorio>();
+	private ArrayList<SubModelo> aSubModelo = new ArrayList<SubModelo>();
 	private readXMLCars readAccesorios = new readXMLCars(); 
 	
 	/**
@@ -60,8 +62,8 @@ public class pantallaAccesorios extends JFrame {
 	 */
 	public pantallaAccesorios(SubModelo subModelo, pantallaSubmodelos frame) {
 		aAccesorios = readAccesorios.readAccesorios();
+		aSubModelo = readAccesorios.readSubModelos();
 		
-		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaAccesorios.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setTitle("Concesionario ESTEVE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,7 +100,7 @@ public class pantallaAccesorios extends JFrame {
 		contentPane.add(lblTitulo, gbc_lblTitulo);
 		
 		textFieldTotal = new JTextField();
-		textFieldTotal.setText(Integer.toString(subModelo.getId()));
+		textFieldTotal.setText(Integer.toString(subModelo.getPrecio()));
 		textFieldTotal.setEditable(false);
 		textFieldTotal.setColumns(10);
 		GridBagConstraints gbc_textFieldTotal = new GridBagConstraints();
@@ -109,7 +111,7 @@ public class pantallaAccesorios extends JFrame {
 		contentPane.add(textFieldTotal, gbc_textFieldTotal);
 		
 		textFieldModelo = new JTextField();
-		textFieldModelo.setText(Integer.toString(subModelo.getId()));
+		textFieldModelo.setText(Integer.toString(subModelo.getPrecio()));
 		textFieldModelo.setEditable(false);
 		textFieldModelo.setColumns(10);
 		GridBagConstraints gbc_textFieldModelo = new GridBagConstraints();
@@ -158,6 +160,7 @@ public class pantallaAccesorios extends JFrame {
 		contentPane.add(lblAccesorios, gbc_lblAccesorios);
 		
 		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(0,2,0,10));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 50, 5, 50);
 		gbc_panel.gridheight = 4;
@@ -172,18 +175,25 @@ public class pantallaAccesorios extends JFrame {
 			JCheckBox check = new JCheckBox(accesorio.getNombre());
 			check.setPreferredSize(new Dimension(200,20));
 			check.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			if(subModelo.getType() == accesorio.getType()) {
+			if(subModelo.getType().equals(accesorio.getType())) {
 				check.setEnabled(true);
 			}
 			else {
+				String ToolTip ="";
+				for (SubModelo submodelo : aSubModelo) {
+					if(submodelo.getType().equals(accesorio.getType())) {
+						ToolTip = ToolTip + submodelo.toString() +  ", ";
+					}
+				}
 				check.setEnabled(false);
+				check.setToolTipText(ToolTip);
 			}
 			check.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent chck) {
 					
 					int pAccesorio = accesorio.getPrecio();
 					int pAccesorios = Integer.parseInt(textFieldAccesorios.getText());
-					int pTotal = Integer.parseInt(textFieldModelo.getText());
+					int pTotal = Integer.parseInt(textFieldTotal.getText());
 					
 					if(chck.getStateChange() == ItemEvent.SELECTED) {
 						pAccesorios = pAccesorios + pAccesorio;

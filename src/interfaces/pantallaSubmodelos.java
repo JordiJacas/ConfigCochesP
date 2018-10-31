@@ -108,7 +108,7 @@ public class pantallaSubmodelos extends JFrame {
 				elemento = (String) it.next();
 				String [] aElemento = elemento.split(" | ");
 				for(SubModelo subModelo:aSubmodelos) {
-					if(subModelo.toString() == elemento) {
+					if(elemento.equals(subModelo.toString())) {
 						pasarSiguientePantalla(subModelo);
 					}
 				}	

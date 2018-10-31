@@ -41,6 +41,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import javax.swing.DropMode;
 		
 public class pantallaCompra extends JFrame {
 
@@ -67,9 +68,10 @@ public class pantallaCompra extends JFrame {
 	
 	/**
 	 * Create the frame.
-	 * pantallaCliente frame, String userName
+	 * 
 	 */
 	public pantallaCompra(pantallaCliente frame, String userName) {
+		setResizable(false);
 		aModelo = readCars.readModelos();
 		
 		setTitle("Concesionario ESTEVE");
@@ -112,7 +114,6 @@ public class pantallaCompra extends JFrame {
 		pUser.add(lblUser);
 		
 		JLabel lblId = new JLabel(Integer.toString(aModelo.get(0).getId()));
-		System.out.println(lblId.getText());
 		
 		JLabel lblMostrar = new JLabel();
 		lblMostrar.setBackground(Color.WHITE);
@@ -131,14 +132,17 @@ public class pantallaCompra extends JFrame {
 		gbc_lblMostrar.gridy = 1;
 		contentPane.add(lblMostrar, gbc_lblMostrar);
 		
-		JTextArea areaDescripcion = new JTextArea();
+		JTextArea areaDescripcion = new JTextArea(10,1);
+		areaDescripcion.setLineWrap(true);
+		areaDescripcion.setEditable(false);
 		areaDescripcion.setBackground(Color.WHITE);
 		areaDescripcion.setText(aModelo.get(0).getDescripcion());
 		GridBagConstraints gbc_areaDescripcion = new GridBagConstraints();
+		gbc_areaDescripcion.anchor = GridBagConstraints.NORTH;
+		gbc_areaDescripcion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_areaDescripcion.gridwidth = 2;
 		gbc_areaDescripcion.gridheight = 2;
 		gbc_areaDescripcion.insets = new Insets(10, 0, 5, 50);
-		gbc_areaDescripcion.fill = GridBagConstraints.BOTH;
 		gbc_areaDescripcion.gridx = 3;
 		gbc_areaDescripcion.gridy = 5;
 		contentPane.add(areaDescripcion, gbc_areaDescripcion);
