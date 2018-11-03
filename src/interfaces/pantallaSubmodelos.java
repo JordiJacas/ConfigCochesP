@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Impl.createFile;
 import Impl.readXMLCars;
 import model.Modelo;
 import model.SubModelo;
@@ -16,6 +17,8 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.Insets;
 
 import javax.swing.DefaultListModel;
@@ -25,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.ActionEvent;
 
 public class pantallaSubmodelos extends JFrame {
@@ -32,6 +36,7 @@ public class pantallaSubmodelos extends JFrame {
 	private JPanel contentPane;
 	private ArrayList<SubModelo> aSubmodelos = new ArrayList<SubModelo>();
 	private readXMLCars readSubModelos = new readXMLCars();
+	private createFile f = new createFile();
 	
 	/**
 	 * Launch the application.
@@ -134,17 +139,56 @@ public class pantallaSubmodelos extends JFrame {
 		gbc_btnAnterior.gridx = 0;
 		gbc_btnAnterior.gridy = 3;
 		contentPane.add(btnAnterior, gbc_btnAnterior);
-	}
+	
+	this.addWindowListener( new WindowAdapter() {
+		public void windowClosing(java.awt.event.WindowEvent e) {
+			//Creamos las opciones
+			Object [] opciones ={"OK","CANCEL"};
+			// Creamos las pregunta de guardar datos
+			int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quiere salir guardando los datos?","Mensaje de Confirmacion",
+			JOptionPane.YES_NO_OPTION,
+			JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
+			//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
+			if (eleccion == JOptionPane.NO_OPTION) {
+				int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Quieres salir SIN guardar los datos?","Mensaje de Confirmacion",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
+						if (eleccion2 == JOptionPane.YES_OPTION) {
+							System.exit(0);
+						}
+			} 
+			else {
+				List<String> submodelo = listSubmodelos.getSelectedValuesList();
+				Iterator it = submodelo.iterator();
+				String elemento="";
+				elemento = (String) it.next();
+				String [] aElemento = elemento.split(" | ");
+				for(SubModelo subModelo:aSubmodelos) {
+					if(elemento.equals(subModelo.toString())) {
+						saveFile(subModelo.toString());
+					}
+				}
+			}
+		}
+	});
+	
+}
 
 	private void pasarAnteriorPantalla(pantallaCompra frame) {
+		f.deleteLastLine();
 		this.setVisible(false);
 		frame.setVisible(true);
 	}
 	
 	private void pasarSiguientePantalla(SubModelo subModelo) {
-		pantallaAccesorios pCompra = new pantallaAccesorios(subModelo, this);
+		saveFile(subModelo.toString());
+		pantallaAccesorios pSubmodelo = new pantallaAccesorios(subModelo, this);
 		this.setVisible(false);
-		pCompra.setVisible(true);
+		pSubmodelo.setVisible(true);
 	}
 	
+	private void saveFile(String modelo) {
+		f.incorporateToFile(modelo);
+		f.closeFile();
+	}
 }

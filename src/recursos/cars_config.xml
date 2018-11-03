@@ -63,7 +63,7 @@
 			<nombre>SEAT Ibiza III</nombre>
 			<descripcion>105CV | 3 puertas | Gasolina</descripcion>
 			<imagen_nombre>ibizaIII.jpg</imagen_nombre>
-			<precio>125030</precio>
+			<precio>12530</precio>
 		</motor>
 		<motor modelo="2" type="A">
 			<id>6</id>
@@ -91,7 +91,7 @@
 		<accesorio type="A">
 			<id>1</id>
 			<nombre>Conectores USB</nombre>
-			<descripcion>Desripcion accesprop</descripcion>
+			<descripcion>Descripcion Accesorio</descripcion>
 			<imagen_nombre>con_usb.jpg</imagen_nombre>
 			<precio>50</precio>
 			<modelos_disponibles>5</modelos_disponibles>
@@ -99,7 +99,7 @@
 		<accesorio type="B">
 			<id>2</id>
 			<nombre>Navegador</nombre>
-			<descripcion>Desripcion accesprop</descripcion>
+			<descripcion>Descripcion Accesorio</descripcion>
 			<imagen_nombre>navegador.jpg</imagen_nombre>
 			<precio>230</precio>
 			<modelos_disponibles>5</modelos_disponibles>
@@ -107,7 +107,7 @@
 		<accesorio type="A">
 			<id>3</id>
 			<nombre>Yantas de aleacion</nombre>
-			<descripcion>Desripcion accesprop</descripcion>
+			<descripcion>Descripcion Accesorio</descripcion>
 			<imagen_nombre>yantas_aleacion.jpg</imagen_nombre>
 			<precio>150</precio>
 			<modelos_disponibles>5</modelos_disponibles>
@@ -115,7 +115,7 @@
 		<accesorio type="A">
 			<id>4</id>
 			<nombre>Asientos Calefactados</nombre>
-			<descripcion>Desripcion accesprop</descripcion>
+			<descripcion>Descripcion Accesorio</descripcion>
 			<imagen_nombre>asientos_calefacion.jpg</imagen_nombre>
 			<precio>275</precio>
 			<modelos_disponibles>5</modelos_disponibles>
@@ -123,7 +123,7 @@
 		<accesorio type="C">
 			<id>5</id>
 			<nombre>Velocidad de Crucero</nombre>
-			<descripcion>Desripcion accesprop</descripcion>
+			<descripcion>Descripcion Accesorio</descripcion>
 			<imagen_nombre>velocidad_crucero.jpg</imagen_nombre>
 			<precio>300</precio>
 			<modelos_disponibles>5</modelos_disponibles>
@@ -131,7 +131,7 @@
 		<accesorio type="B">
 			<id>6</id>
 			<nombre>Aparcamiento automatico</nombre>
-			<descripcion>Desripcion accesprop</descripcion>
+			<descripcion>Descripcion Accesorio</descripcion>
 			<imagen_nombre>aparcamiento_auto.jpg</imagen_nombre>
 			<precio>250</precio>
 			<modelos_disponibles>5</modelos_disponibles>

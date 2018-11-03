@@ -9,6 +9,6 @@ public class inerfacesTest {
 		ConfigurationLoader.getConfig();
 		pantallaLogin pC = new pantallaLogin();
 		pC.setVisible(true);
-	}
+	}	
 
 }

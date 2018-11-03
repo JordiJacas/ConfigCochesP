@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Impl.createFile;
 import Impl.readXMLCars;
 import model.Accesorio;
 import model.SubModelo;
@@ -28,7 +29,10 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ItemEvent;
 
 public class pantallaAccesorios extends JFrame {
@@ -39,7 +43,9 @@ public class pantallaAccesorios extends JFrame {
 	private JTextField textFieldTotal;
 	private ArrayList<Accesorio> aAccesorios = new ArrayList<Accesorio>();
 	private ArrayList<SubModelo> aSubModelo = new ArrayList<SubModelo>();
-	private readXMLCars readAccesorios = new readXMLCars(); 
+	private ArrayList<String> aCheckSelected = new ArrayList<String>();
+	private readXMLCars readAccesorios = new readXMLCars();
+	private createFile f = new createFile();
 	
 	/**
 	 * Launch the application.
@@ -198,10 +204,12 @@ public class pantallaAccesorios extends JFrame {
 					if(chck.getStateChange() == ItemEvent.SELECTED) {
 						pAccesorios = pAccesorios + pAccesorio;
 						pTotal = pTotal + pAccesorio;
+						aCheckSelected.add(accesorio.getNombre() + ": " + "pAccesorio");
 					}
 					else if(chck.getStateChange() == ItemEvent.DESELECTED) {
 						pAccesorios = pAccesorios - pAccesorio;
 						pTotal = pTotal - pAccesorio;
+						aCheckSelected.remove(accesorio.getNombre());
 					}
 					
 					textFieldAccesorios.setText(Integer.toString(pAccesorios));
@@ -212,6 +220,11 @@ public class pantallaAccesorios extends JFrame {
 		}
 		
 		JButton btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				pasarSiguientePantalla(aCheckSelected, textFieldTotal.getText(), textFieldAccesorios.getText(), textFieldModelo.getText());
+			}
+		});
 		GridBagConstraints gbc_btnFinalizar = new GridBagConstraints();
 		gbc_btnFinalizar.ipadx = 50;
 		gbc_btnFinalizar.insets = new Insets(0, 0, 50, 0);
@@ -231,17 +244,56 @@ public class pantallaAccesorios extends JFrame {
 		gbc_btnAnterior.gridx = 0;
 		gbc_btnAnterior.gridy = 10;
 		contentPane.add(btnAnterior, gbc_btnAnterior);
+		
+		this.addWindowListener( new WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				//Creamos las opciones
+				Object [] opciones ={"OK","CANCEL"};
+				// Creamos las pregunta de guardar datos
+				int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quiere salir guardando los datos?","Mensaje de Confirmacion",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
+				//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
+				if (eleccion == JOptionPane.NO_OPTION) {
+					int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Quieres salir SIN guardar los datos?","Mensaje de Confirmacion",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
+							if (eleccion2 == JOptionPane.YES_OPTION) {
+								System.exit(0);
+							}
+				} 
+				else {
+					String lChecks = "";
+					for (String check : aCheckSelected) {
+						lChecks = lChecks + check + ";";
+					}
+					saveFile(textFieldModelo.getText()+ ";" + textFieldAccesorios.getText() + ";" + textFieldTotal.getText() + ";" + lChecks);
+				}
+			}
+		});
 	}
 	
 	private void pasarAnteriorPantalla(pantallaSubmodelos frame) {
+		f.deleteLastLine();
 		this.setVisible(false);
 		frame.setVisible(true);
 	}
 	
-	private void pasarSiguientePantalla(String subModelo, int precio) {
-		//pantallaAccesorios pCompra = new pantallaAccesorios(subModelo, precio, this);
-		//this.setVisible(false);
-		//pCompra.setVisible(true);
+	private void pasarSiguientePantalla(ArrayList<String> checks, String pTotal, String pAccesorios, String pModelo) {
+		String lChecks = "";
+		for (String check : checks) {
+			lChecks = lChecks + check + ";";
+		}
+		saveFile(pModelo + ";" + pAccesorios + ";" + pTotal + ";" + lChecks);
+		//pantallaResumen pResumen = new pantallaResumen(this);
+		this.setVisible(false);
+		//pResumen.setVisible(true);
+		
+	}
+	
+	private void saveFile(String modelo) {
+		f.incorporateToFile(modelo);
+		f.closeFile();
 	}
 
 }

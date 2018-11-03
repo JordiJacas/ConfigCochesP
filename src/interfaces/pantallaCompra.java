@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import Impl.createFile;
 import Impl.readXMLCars;
 import model.Modelo;
 
@@ -49,6 +50,7 @@ public class pantallaCompra extends JFrame {
 	private ArrayList<Modelo> aModelo = new ArrayList<Modelo>();
 	private int contadorBtn = 0;
 	private readXMLCars readCars = new readXMLCars();
+	private createFile f = new createFile();
 	
 	/**
 	 * Launch the application.
@@ -193,7 +195,6 @@ public class pantallaCompra extends JFrame {
 						pasarSiguientePantalla(modelo);
 					}
 				}
-				
 			}
 		});
 		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
@@ -239,21 +240,34 @@ public class pantallaCompra extends JFrame {
 								System.exit(0);
 							}
 				} 
-				// Aquí el else para guardar los datos en un fichero.
+				else {
+					for (Modelo modelo : aModelo) {
+						if(modelo.getId() == Integer.parseInt(lblId.getText())) {
+							saveFile(modelo.toString());
+						}
+					}
+				}
 			}
-		} ); 
+		}); 
 		
 	}
 
 	private void pasarAnteriorPantalla(pantallaCliente frame) {
+		f.deleteLastLine();
 		this.setVisible(false);
 		frame.setVisible(true);
 	}
 	
 	private void pasarSiguientePantalla(Modelo modelo) {
-		pantallaSubmodelos ps = new pantallaSubmodelos(this, modelo);
+		saveFile(modelo.getId() + ";" + modelo.getNombre());
+		pantallaSubmodelos pCompra = new pantallaSubmodelos(this, modelo);
 		this.setVisible(false);
-		ps.setVisible(true);
+		pCompra.setVisible(true);
+	}
+	
+	private void saveFile(String modelo) {
+		f.incorporateToFile(modelo);
+		f.closeFile();
 	}
 	
 }

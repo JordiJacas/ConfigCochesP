@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
 
@@ -41,6 +43,10 @@ public class pantallaCliente extends JFrame {
 	private JTextField textApellido2;
 	private JTextField textDireccion;
 	private JTextField textEmail;
+	private boolean isSave = false;
+	private String genero = "Campo Vacio";
+	private String fecha = "Campo Vacio";
+	private DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	private ButtonGroup bg = new ButtonGroup();
 	private createFile f = new createFile();
 	
@@ -53,6 +59,9 @@ public class pantallaCliente extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 480, 400);
 		setResizable(false);
+		
+		f.createFileEmployee();
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -86,21 +95,6 @@ public class pantallaCliente extends JFrame {
 		gbc_btnSigiente.gridy = 10;
 		contentPane.add(btnSigiente, gbc_btnSigiente);
 		
-		JButton btnGuardar = new JButton("GUARDAR");
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				emptyTxt();
-			}
-		});
-		GridBagConstraints gbc_btnGuardar = new GridBagConstraints();
-		gbc_btnGuardar.ipadx = 60;
-		gbc_btnGuardar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnGuardar.gridwidth = 2;
-		gbc_btnGuardar.insets = new Insets(15, 0, 5, 5);
-		gbc_btnGuardar.gridx = 0;
-		gbc_btnGuardar.gridy = 10;
-		contentPane.add(btnGuardar, gbc_btnGuardar);	
-		
 		JLabel lblFecha = new JLabel("Fecha Nacimiento");
 		lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblFecha = new GridBagConstraints();
@@ -112,6 +106,7 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(lblFecha, gbc_lblFecha);
 		
 		JRadioButton radioButtonOtro = new JRadioButton("No determinado");
+		radioButtonOtro.setActionCommand("No determinado");
 		GridBagConstraints gbc_radioButtonOtro = new GridBagConstraints();
 		gbc_radioButtonOtro.gridwidth = 2;
 		gbc_radioButtonOtro.insets = new Insets(0, 0, 5, 5);
@@ -120,6 +115,7 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(radioButtonOtro, gbc_radioButtonOtro);
 		
 		JRadioButton radioButtonMujer = new JRadioButton("Mujer");
+		radioButtonMujer.setActionCommand("Mujer");
 		GridBagConstraints gbc_radioButtonMujer = new GridBagConstraints();
 		gbc_radioButtonMujer.insets = new Insets(0, 0, 5, 5);
 		gbc_radioButtonMujer.gridx = 3;
@@ -127,6 +123,7 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(radioButtonMujer, gbc_radioButtonMujer);
 		
 		JRadioButton rdbtnHombre = new JRadioButton("Hombre");
+		rdbtnHombre.setActionCommand("Hombre");
 		GridBagConstraints gbc_rdbtnHombre = new GridBagConstraints();
 		gbc_rdbtnHombre.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnHombre.gridx = 2;
@@ -271,31 +268,76 @@ public class pantallaCliente extends JFrame {
 		gbc_lblTitulo.gridy = 1;
 		contentPane.add(lblTitulo, gbc_lblTitulo);
 		
+		JButton btnGuardar = new JButton("GUARDAR");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(bg.getSelection() != null) {
+					genero = bg.getSelection().getActionCommand();
+				}
+				if(dateChooser.getDate() != null) {
+					fecha = df.format(dateChooser.getDate());
+				}
+
+				if(emptyTxt()) {
+					if(f.incorporateToFile(textNombre.getText() + ";" + textApellido1.getText() + ";"
+							+ textApellido2.getText() + ";" + textDireccion.getText() + ";" + textEmail.getText()
+							 + ";" + genero + ";" + fecha)) {
+						pantallaCliente frame = new pantallaCliente(" ");
+						JOptionPane.showMessageDialog(frame,
+							    "Los datos se han guardado correctamente.",
+							    "Guardar Datos",
+							    JOptionPane.INFORMATION_MESSAGE);
+						isSave = true;
+					}
+					f.closeFile();
+				}
+			}
+		});
+		GridBagConstraints gbc_btnGuardar = new GridBagConstraints();
+		gbc_btnGuardar.ipadx = 60;
+		gbc_btnGuardar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnGuardar.gridwidth = 2;
+		gbc_btnGuardar.insets = new Insets(15, 0, 5, 5);
+		gbc_btnGuardar.gridx = 0;
+		gbc_btnGuardar.gridy = 10;
+		contentPane.add(btnGuardar, gbc_btnGuardar);	
+		
 		this.addWindowListener( new WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent e) {
 				//Creamos las opciones
 				Object [] opciones ={"OK","CANCEL"};
 				// Creamos las pregunta de guardar datos
-				int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quiere salir guardando los datos?","Mensaje de Confirmacion",
-				JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
-				//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
-				if (eleccion == JOptionPane.NO_OPTION) {
-					int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Quieres salir SIN guardar los datos?","Mensaje de Confirmacion",
-							JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
-							if (eleccion2 == JOptionPane.YES_OPTION) {
-								System.exit(0);
-							}
-				} else {
-					f.createFileEmployee();
-					f.incorporateToFile(textNombre.getText() + ";" + textApellido1.getText() + ";"
-					+ textApellido2.getText() + ";" + textDireccion.getText() + ";" + textEmail.getText()
-					 + ";" + bg.getSelection() + ";" + dateChooser.getDate().toString() + ";");
-					f.closeFile();
+				if(!isSave) {
+					int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quiere salir guardando los datos?","Mensaje de Confirmacion",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
+					//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
+					if (eleccion == JOptionPane.NO_OPTION) {
+						int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Quieres salir SIN guardar los datos?","Mensaje de Confirmacion",
+								JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
+								if (eleccion2 == JOptionPane.YES_OPTION) {
+									System.exit(0);
+								}
+					} else {
+						//Compravacion de los campos de Genero y fecha de nacimiento
+						//para saber si estan vacios
+						if(bg.getSelection() != null) {
+							genero = bg.getSelection().getActionCommand();
+						}
+						if(dateChooser.getDate() != null) {
+							fecha = df.format(dateChooser.getDate());
+						}
+						
+						//Guardar datos en el fichero
+						f.incorporateToFile(textNombre.getText() + ";" + textApellido1.getText() + ";"
+						+ textApellido2.getText() + ";" + textDireccion.getText() + ";" + textEmail.getText()
+						 + ";" + genero + ";" + fecha + ";");
+						f.closeFile();
+					}
 				}
-				// Aquí el else para guardar los datos en un fichero.
 			}
 		} ); 
 	}
@@ -319,15 +361,14 @@ public class pantallaCliente extends JFrame {
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;
 		}
-		this.dispose();
 		return true;
 	}
 	
 	private void pasarSiguientePantalla(String userName) {
 		if(emptyTxt()) {
-			pantallaCompra pCompra = new pantallaCompra(this, userName);
+			pantallaCompra pCliente = new pantallaCompra(this, userName);
 			this.setVisible(false);
-			pCompra.setVisible(true);
+			pCliente.setVisible(true);
 		}
 	}	
 }
