@@ -3,7 +3,7 @@
 	<languages>es,ca,en</languages>
 	<language_default>es</language_default>
 	<postfix_language_file_name>_cv.language</postfix_language_file_name>
-	<version>2.4.5</version>
+	<version>2.5.6</version>
 	<language_files_path>src\\lenguages\\</language_files_path>
 	<car_configuration_path>src\\recursos\\</car_configuration_path>
 	<car_configuration_file_name>cars_config.xml</car_configuration_file_name>

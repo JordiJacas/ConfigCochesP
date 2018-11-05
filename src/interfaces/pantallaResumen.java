@@ -7,8 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Impl.LenguageLoader;
 import Impl.createFile;
-import Impl.es_lenguage;
+import model.VariablesLenguageEnum;
 
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
@@ -45,8 +46,7 @@ public class pantallaResumen extends JFrame {
 	private ArrayList<String> aFile;
 	private createFile cFile;
 	private createFile f = new createFile();
-	private es_lenguage es = new es_lenguage();
-	private Hashtable<String, String> idioma = es.getHashtable();
+	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
 
 	/**
 	 * Launch the application.
@@ -99,7 +99,7 @@ public class pantallaResumen extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblResumen = new JLabel(idioma.get("resumen_lbl_titulo"));
+		JLabel lblResumen = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_titulo));
 		lblResumen.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblResumen = new GridBagConstraints();
 		gbc_lblResumen.insets = new Insets(0, 0, 5, 5);
@@ -107,7 +107,7 @@ public class pantallaResumen extends JFrame {
 		gbc_lblResumen.gridy = 0;
 		contentPane.add(lblResumen, gbc_lblResumen);
 		
-		JButton btnFinalizar = new JButton(idioma.get("resumen_btn_finalizar"));
+		JButton btnFinalizar = new JButton(idioma.get(VariablesLenguageEnum.resumen_btn_finalizar));
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cFile = new createFile();
@@ -116,7 +116,7 @@ public class pantallaResumen extends JFrame {
 			}
 		});
 		
-		JButton btnAnterior = new JButton(idioma.get("resumen_btn_anterior"));
+		JButton btnAnterior = new JButton(idioma.get(VariablesLenguageEnum.resumen_btn_anterior));
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pasarAnteriorPantalla(frame);
@@ -135,7 +135,7 @@ public class pantallaResumen extends JFrame {
 		gbc_btnFinalizar.gridy = 8;
 		contentPane.add(btnFinalizar, gbc_btnFinalizar);
 		
-		JLabel lblPrecioAccesorios = new JLabel(idioma.get("resumen_lbl_paccesorios") + infoAccesorios[1] + " €");
+		JLabel lblPrecioAccesorios = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_paccesorios) + infoAccesorios[1] + " €");
 		lblPrecioAccesorios.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		GridBagConstraints gbc_lblPrecioAccesorios = new GridBagConstraints();
 		gbc_lblPrecioAccesorios.anchor = GridBagConstraints.SOUTHEAST;
@@ -166,7 +166,7 @@ public class pantallaResumen extends JFrame {
 			panelAccesorios.add(lblAccesorios);
 		}
 		
-		JLabel lblPrecioModelo = new JLabel(idioma.get("resumen_lbl_pmodelo") + infoAccesorios[0] + " €");
+		JLabel lblPrecioModelo = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_pmodelo) + infoAccesorios[0] + " €");
 		lblPrecioModelo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		GridBagConstraints gbc_lblPrecioModelo = new GridBagConstraints();
 		gbc_lblPrecioModelo.anchor = GridBagConstraints.SOUTHEAST;
@@ -198,27 +198,27 @@ public class pantallaResumen extends JFrame {
 		
 		// Creamos los lable de cada campo del usuario con su informacio
 		// y la añadimos al panel
-		JLabel lblNombreCliente = new JLabel(idioma.get("resumen_lbl_nombre") + infoCliente[0] + " " + infoCliente[1] + " " + infoCliente[2]);
+		JLabel lblNombreCliente = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_nombre) + infoCliente[0] + " " + infoCliente[1] + " " + infoCliente[2]);
 		lblNombreCliente.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panelCliente.add(lblNombreCliente);
 		
-		JLabel lblDireccionCliente = new JLabel(idioma.get("resumen_lbl_direccion") + infoCliente[3]);
+		JLabel lblDireccionCliente = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_direccion) + infoCliente[3]);
 		lblDireccionCliente.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panelCliente.add(lblDireccionCliente);
 		
-		JLabel lblEmailCliente = new JLabel(idioma.get("resumen_lbl_email") + infoCliente[4]);
+		JLabel lblEmailCliente = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_email) + infoCliente[4]);
 		lblEmailCliente.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panelCliente.add(lblEmailCliente);
 		
-		JLabel lblGeneroCliente = new JLabel(idioma.get("resumen_lbl_genero") + infoCliente[5]);
+		JLabel lblGeneroCliente = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_genero) + infoCliente[5]);
 		lblGeneroCliente.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panelCliente.add(lblGeneroCliente);
 		
-		JLabel lblNacimientoCliente = new JLabel(idioma.get("resumen_lbl_nacimiento") + infoCliente[6]);
+		JLabel lblNacimientoCliente = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_nacimiento) + infoCliente[6]);
 		lblNacimientoCliente.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panelCliente.add(lblNacimientoCliente);
 		
-		JLabel lblPrecioTotal = new JLabel(idioma.get("resumen_lbl_ptotal") + infoAccesorios[2] + " €");
+		JLabel lblPrecioTotal = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_ptotal) + infoAccesorios[2] + " €");
 		lblPrecioTotal.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		GridBagConstraints gbc_lblPrecioTotal = new GridBagConstraints();
 		gbc_lblPrecioTotal.gridwidth = 2;
@@ -228,7 +228,7 @@ public class pantallaResumen extends JFrame {
 		gbc_lblPrecioTotal.gridy = 7;
 		contentPane.add(lblPrecioTotal, gbc_lblPrecioTotal);
 		
-		JLabel lblAccesorios = new JLabel(idioma.get("resumen_lbl_accesorios"));
+		JLabel lblAccesorios = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_accesorios));
 		lblAccesorios.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblAccesorios = new GridBagConstraints();
 		gbc_lblAccesorios.anchor = GridBagConstraints.WEST;
@@ -238,7 +238,7 @@ public class pantallaResumen extends JFrame {
 		gbc_lblAccesorios.gridy = 5;
 		contentPane.add(lblAccesorios, gbc_lblAccesorios);
 		
-		JLabel lblModelo = new JLabel(idioma.get("resumen_lbl_modelo"));
+		JLabel lblModelo = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_modelo));
 		lblModelo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblModelo = new GridBagConstraints();
 		gbc_lblModelo.gridwidth = 2;
@@ -248,7 +248,7 @@ public class pantallaResumen extends JFrame {
 		gbc_lblModelo.gridy = 3;
 		contentPane.add(lblModelo, gbc_lblModelo);
 		
-		JLabel lblInformacionCliente = new JLabel(idioma.get("resumen_lbl_infocliente"));
+		JLabel lblInformacionCliente = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_infocliente));
 		lblInformacionCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblInformacionCliente = new GridBagConstraints();
 		gbc_lblInformacionCliente.gridwidth = 2;

@@ -9,10 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import Impl.LenguageLoader;
 import Impl.createFile;
-import Impl.es_lenguage;
 import Impl.readXMLCars;
 import model.Modelo;
+import model.VariablesLenguageEnum;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -53,8 +54,7 @@ public class pantallaCompra extends JFrame {
 	private int contadorBtn = 0;
 	private readXMLCars readCars = new readXMLCars();
 	private createFile f = new createFile();
-	private es_lenguage es = new es_lenguage();
-	private Hashtable<String, String> idioma = es.getHashtable();
+	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
 	
 	/**
 	 * Launch the application.
@@ -95,7 +95,7 @@ public class pantallaCompra extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 1.0};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblTitulo = new JLabel(idioma.get("compra_lbl_titulo"));
+		JLabel lblTitulo = new JLabel(idioma.get(VariablesLenguageEnum.compra_lbl_titulo));
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblTitulo = new GridBagConstraints();
 		gbc_lblTitulo.insets = new Insets(0, 0, 5, 5);
@@ -113,7 +113,7 @@ public class pantallaCompra extends JFrame {
 		gbc_pUser.gridy = 0;
 		contentPane.add(pUser, gbc_pUser);
 		
-		JLabel lblUsuario = new JLabel(idioma.get("compra_lbl_usuario"));
+		JLabel lblUsuario = new JLabel(idioma.get(VariablesLenguageEnum.compra_lbl_usuario));
 		pUser.add(lblUsuario);
 		
 		JLabel lblUser = new JLabel(userName);
@@ -191,7 +191,7 @@ public class pantallaCompra extends JFrame {
 		gbc_scrollBar.gridy = 1;
 		contentPane.add(scrollBar, gbc_scrollBar);
 		
-		JButton btnSigiente = new JButton(idioma.get("compra_btn_next"));
+		JButton btnSigiente = new JButton(idioma.get(VariablesLenguageEnum.compra_btn_next));
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (Modelo modelo : aModelo) {
@@ -211,7 +211,7 @@ public class pantallaCompra extends JFrame {
 		gbc_btnSigiente.gridy = 7;
 		contentPane.add(btnSigiente, gbc_btnSigiente);
 		
-		JButton btnAnterior = new JButton(idioma.get("compra_btn_anterior"));
+		JButton btnAnterior = new JButton(idioma.get(VariablesLenguageEnum.compra_btn_anterior));
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pasarAnteriorPantalla(frame);

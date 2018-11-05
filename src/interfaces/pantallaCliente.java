@@ -31,8 +31,9 @@ import javax.swing.JRadioButton;
 import com.sun.glass.events.WindowEvent;
 import com.toedter.calendar.JDateChooser;
 
+import Impl.LenguageLoader;
 import Impl.createFile;
-import Impl.es_lenguage;
+import model.VariablesLenguageEnum;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -51,8 +52,7 @@ public class pantallaCliente extends JFrame {
 	private DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	private ButtonGroup bg = new ButtonGroup();
 	private createFile f = new createFile();
-	private es_lenguage es = new es_lenguage();
-	private Hashtable<String, String> idioma = es.getHashtable();
+	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
 	
 	/**
 	 * Create the frame.
@@ -85,7 +85,7 @@ public class pantallaCliente extends JFrame {
 		gbc_dateChooser.gridy = 9;
 		contentPane.add(dateChooser, gbc_dateChooser);
 		
-		JButton btnSigiente = new JButton(idioma.get("cliente_btn_next"));
+		JButton btnSigiente = new JButton(idioma.get(VariablesLenguageEnum.cliente_btn_next));
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pasarSiguientePantalla(userName);			
@@ -99,7 +99,7 @@ public class pantallaCliente extends JFrame {
 		gbc_btnSigiente.gridy = 10;
 		contentPane.add(btnSigiente, gbc_btnSigiente);
 		
-		JLabel lblFecha = new JLabel(idioma.get("cliente_btn_fecha"));
+		JLabel lblFecha = new JLabel(idioma.get(VariablesLenguageEnum.cliente_lbl_fecha));
 		lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblFecha = new GridBagConstraints();
 		gbc_lblFecha.anchor = GridBagConstraints.WEST;
@@ -109,7 +109,7 @@ public class pantallaCliente extends JFrame {
 		gbc_lblFecha.gridy = 9;
 		contentPane.add(lblFecha, gbc_lblFecha);
 		
-		JRadioButton radioButtonOtro = new JRadioButton(idioma.get("cliente_rbtn_other"));
+		JRadioButton radioButtonOtro = new JRadioButton(idioma.get(VariablesLenguageEnum.cliente_rdbtn_other));
 		radioButtonOtro.setActionCommand(idioma.get("cliente_rbtn_other"));
 		GridBagConstraints gbc_radioButtonOtro = new GridBagConstraints();
 		gbc_radioButtonOtro.gridwidth = 2;
@@ -118,7 +118,7 @@ public class pantallaCliente extends JFrame {
 		gbc_radioButtonOtro.gridy = 8;
 		contentPane.add(radioButtonOtro, gbc_radioButtonOtro);
 		
-		JRadioButton radioButtonMujer = new JRadioButton(idioma.get("cliente_rbtn_women"));
+		JRadioButton radioButtonMujer = new JRadioButton(idioma.get(VariablesLenguageEnum.cliente_rdbtn_women));
 		radioButtonMujer.setActionCommand(idioma.get("cliente_rbtn_women"));
 		GridBagConstraints gbc_radioButtonMujer = new GridBagConstraints();
 		gbc_radioButtonMujer.insets = new Insets(0, 0, 5, 5);
@@ -126,7 +126,7 @@ public class pantallaCliente extends JFrame {
 		gbc_radioButtonMujer.gridy = 8;
 		contentPane.add(radioButtonMujer, gbc_radioButtonMujer);
 		
-		JRadioButton rdbtnHombre = new JRadioButton(idioma.get("cliente_rbtn_men"));
+		JRadioButton rdbtnHombre = new JRadioButton(idioma.get(VariablesLenguageEnum.cliente_rdbtn_men));
 		rdbtnHombre.setActionCommand(idioma.get("cliente_rbtn_men"));
 		GridBagConstraints gbc_rdbtnHombre = new GridBagConstraints();
 		gbc_rdbtnHombre.insets = new Insets(0, 0, 5, 5);
@@ -138,7 +138,7 @@ public class pantallaCliente extends JFrame {
 		bg.add(rdbtnHombre);
 		bg.add(radioButtonOtro);
 		
-		JLabel lblGenero = new JLabel(idioma.get("cliente_lbl_genero"));
+		JLabel lblGenero = new JLabel(idioma.get(VariablesLenguageEnum.cliente_lbl_genero));
 		lblGenero.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblGenero = new GridBagConstraints();
 		gbc_lblGenero.anchor = GridBagConstraints.WEST;
@@ -158,7 +158,7 @@ public class pantallaCliente extends JFrame {
 		gbc_textEmail.gridy = 7;
 		contentPane.add(textEmail, gbc_textEmail);
 		
-		JLabel lblEmail = new JLabel(idioma.get("cliente_lbl_email"));
+		JLabel lblEmail = new JLabel(idioma.get(VariablesLenguageEnum.cliente_lbl_email));
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
 		gbc_lblEmail.anchor = GridBagConstraints.WEST;
@@ -178,7 +178,7 @@ public class pantallaCliente extends JFrame {
 		gbc_textDireccion.gridy = 6;
 		contentPane.add(textDireccion, gbc_textDireccion);
 		
-		JLabel lblDireccion = new JLabel(idioma.get("cliente_lbl_direccion"));
+		JLabel lblDireccion = new JLabel(idioma.get(VariablesLenguageEnum.cliente_lbl_direccion));
 		lblDireccion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDireccion = new GridBagConstraints();
 		gbc_lblDireccion.anchor = GridBagConstraints.WEST;
@@ -198,7 +198,7 @@ public class pantallaCliente extends JFrame {
 		gbc_textApellido2.gridy = 5;
 		contentPane.add(textApellido2, gbc_textApellido2);
 		
-		JLabel lblApellido2 = new JLabel(idioma.get("cliente_lbl_apellido2"));
+		JLabel lblApellido2 = new JLabel(idioma.get(VariablesLenguageEnum.cliente_lbl_apellido2));
 		lblApellido2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblApellido2 = new GridBagConstraints();
 		gbc_lblApellido2.anchor = GridBagConstraints.WEST;
@@ -218,7 +218,7 @@ public class pantallaCliente extends JFrame {
 		gbc_textApellido1.gridy = 4;
 		contentPane.add(textApellido1, gbc_textApellido1);
 		
-		JLabel lblApellido1 = new JLabel(idioma.get("cliente_lbl_apellido"));
+		JLabel lblApellido1 = new JLabel(idioma.get(VariablesLenguageEnum.cliente_lbl_apellido));
 		lblApellido1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblApellido1 = new GridBagConstraints();
 		gbc_lblApellido1.gridwidth = 2;
@@ -238,7 +238,7 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(textNombre, gbc_textNombre);
 		textNombre.setColumns(10);
 		
-		JLabel lblNombre = new JLabel(idioma.get("cliente_lbl_nombre"));
+		JLabel lblNombre = new JLabel(idioma.get(VariablesLenguageEnum.cliente_lbl_nombre));
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.gridwidth = 2;
@@ -257,13 +257,13 @@ public class pantallaCliente extends JFrame {
 		gbc_pUser.gridy = 1;
 		contentPane.add(pUser, gbc_pUser);
 		
-		JLabel lblUsuario = new JLabel(idioma.get("cliente_lbl_usuario"));
+		JLabel lblUsuario = new JLabel(idioma.get(VariablesLenguageEnum.cliente_lbl_usuario));
 		pUser.add(lblUsuario);
 		
 		JLabel lblnUser = new JLabel(userName);
 		pUser.add(lblnUser);
 		
-		JLabel lblTitulo = new JLabel(idioma.get("cliente_lbl_titulo"));
+		JLabel lblTitulo = new JLabel(idioma.get(VariablesLenguageEnum.cliente_lbl_titulo));
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 17));
 		GridBagConstraints gbc_lblTitulo = new GridBagConstraints();
 		gbc_lblTitulo.insets = new Insets(0, 0, 5, 5);
@@ -272,7 +272,7 @@ public class pantallaCliente extends JFrame {
 		gbc_lblTitulo.gridy = 1;
 		contentPane.add(lblTitulo, gbc_lblTitulo);
 		
-		JButton btnGuardar = new JButton(idioma.get("cliente_btn_guardar"));
+		JButton btnGuardar = new JButton(idioma.get(VariablesLenguageEnum.cliente_btn_guardar));
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				

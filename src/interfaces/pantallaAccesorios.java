@@ -9,11 +9,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Impl.LenguageLoader;
 import Impl.createFile;
-import Impl.es_lenguage;
 import Impl.readXMLCars;
 import model.Accesorio;
 import model.SubModelo;
+import model.VariablesLenguageEnum;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -48,8 +49,7 @@ public class pantallaAccesorios extends JFrame {
 	private ArrayList<String> aCheckSelected = new ArrayList<String>();
 	private readXMLCars readAccesorios = new readXMLCars();
 	private createFile f = new createFile();
-	private es_lenguage es = new es_lenguage();
-	private Hashtable<String, String> idioma = es.getHashtable();
+	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
 	
 	/**
 	 * Launch the application.
@@ -99,7 +99,7 @@ public class pantallaAccesorios extends JFrame {
 		gbc_lblSubmodelo.gridy = 2;
 		contentPane.add(lblSubmodelo, gbc_lblSubmodelo);
 		
-		JLabel lblTitulo = new JLabel(idioma.get("accesorios_lbl_titulo"));
+		JLabel lblTitulo = new JLabel(idioma.get(VariablesLenguageEnum.accesorios_lbl_titulo));
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblTitulo = new GridBagConstraints();
 		gbc_lblTitulo.anchor = GridBagConstraints.EAST;
@@ -142,7 +142,7 @@ public class pantallaAccesorios extends JFrame {
 		contentPane.add(textFieldAccesorios, gbc_textFieldAccesorios);
 		textFieldAccesorios.setColumns(10);
 		
-		JLabel lblTotalPrecio = new JLabel(idioma.get("accesorios_lbl_total"));
+		JLabel lblTotalPrecio = new JLabel(idioma.get(VariablesLenguageEnum.accesorios_lbl_total));
 		lblTotalPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblTotalPrecio = new GridBagConstraints();
 		gbc_lblTotalPrecio.anchor = GridBagConstraints.WEST;
@@ -151,7 +151,7 @@ public class pantallaAccesorios extends JFrame {
 		gbc_lblTotalPrecio.gridy = 9;
 		contentPane.add(lblTotalPrecio, gbc_lblTotalPrecio);
 		
-		JLabel lblCoche = new JLabel(idioma.get("accesorios_lbl_coche"));
+		JLabel lblCoche = new JLabel(idioma.get(VariablesLenguageEnum.accesorios_lbl_coche));
 		lblCoche.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblCoche = new GridBagConstraints();
 		gbc_lblCoche.anchor = GridBagConstraints.WEST;
@@ -160,7 +160,7 @@ public class pantallaAccesorios extends JFrame {
 		gbc_lblCoche.gridy = 8;
 		contentPane.add(lblCoche, gbc_lblCoche);
 		
-		JLabel lblAccesorios = new JLabel(idioma.get("accesorios_lbl_accesorios"));
+		JLabel lblAccesorios = new JLabel(idioma.get(VariablesLenguageEnum.accesorios_lbl_accesorios));
 		lblAccesorios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblAccesorios = new GridBagConstraints();
 		gbc_lblAccesorios.anchor = GridBagConstraints.WEST;
@@ -208,12 +208,12 @@ public class pantallaAccesorios extends JFrame {
 					if(chck.getStateChange() == ItemEvent.SELECTED) {
 						pAccesorios = pAccesorios + pAccesorio;
 						pTotal = pTotal + pAccesorio;
-						aCheckSelected.add(accesorio.getNombre() + ": " + "pAccesorio");
+						aCheckSelected.add(accesorio.getNombre() + ": " + pAccesorio);
 					}
 					else if(chck.getStateChange() == ItemEvent.DESELECTED) {
 						pAccesorios = pAccesorios - pAccesorio;
 						pTotal = pTotal - pAccesorio;
-						aCheckSelected.remove(accesorio.getNombre());
+						aCheckSelected.remove(accesorio.getNombre() + ": " + pAccesorio);
 					}
 					
 					textFieldAccesorios.setText(Integer.toString(pAccesorios));
@@ -223,7 +223,7 @@ public class pantallaAccesorios extends JFrame {
 			panel.add(check);
 		}
 		
-		JButton btnFinalizar = new JButton(idioma.get("accesorios_btn_finalizar"));
+		JButton btnFinalizar = new JButton(idioma.get(VariablesLenguageEnum.accesorios_btn_finalizar));
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pasarSiguientePantalla(aCheckSelected, textFieldTotal.getText(), textFieldAccesorios.getText(), textFieldModelo.getText());
@@ -236,7 +236,7 @@ public class pantallaAccesorios extends JFrame {
 		gbc_btnFinalizar.gridy = 10;
 		contentPane.add(btnFinalizar, gbc_btnFinalizar);
 		
-		JButton btnAnterior = new JButton(idioma.get("accesorios_btn_anterior"));
+		JButton btnAnterior = new JButton(idioma.get(VariablesLenguageEnum.accesorios_btn_anterior));
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pasarAnteriorPantalla(frame);
@@ -289,9 +289,9 @@ public class pantallaAccesorios extends JFrame {
 			lChecks = lChecks + check + ";";
 		}
 		saveFile(pModelo + ";" + pAccesorios + ";" + pTotal + ";" + lChecks);
-		//pantallaResumen pResumen = new pantallaResumen(this);
+		pantallaResumen pResumen = new pantallaResumen(this);
 		this.setVisible(false);
-		//pResumen.setVisible(true);
+		pResumen.setVisible(true);
 		
 	}
 	

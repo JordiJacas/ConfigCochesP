@@ -9,8 +9,9 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
 
-import Impl.es_lenguage;
+import Impl.LenguageLoader;
 import config.ConfigurationLoader;
+import model.VariablesLenguageEnum;
 
 import java.awt.Toolkit;
 import java.awt.GridBagLayout;
@@ -38,8 +39,7 @@ public class pantallaLogin extends JFrame {
 	private JButton btnEntrar;
 	private boolean employeeVersion;
 	private boolean isError = false;
-	private es_lenguage es = new es_lenguage();
-	private Hashtable<String, String> idioma = es.getHashtable();
+	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
 
 	/**
 	 * Create the frame.
@@ -61,7 +61,7 @@ public class pantallaLogin extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0};
 		contentPane.setLayout(gbl_contentPane);
 		
-		btnEntrar = new JButton(idioma.get("login_btn_entrar"));
+		btnEntrar = new JButton(idioma.get(VariablesLenguageEnum.login_btn_entrar));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				compareLoginPassword();
@@ -93,7 +93,7 @@ public class pantallaLogin extends JFrame {
 		gbc_textPassword.gridy = 2;
 		contentPane.add(textPassword, gbc_textPassword);
 		
-		JLabel lblPassword = new JLabel(idioma.get("login_lbl_password"));
+		JLabel lblPassword = new JLabel(idioma.get(VariablesLenguageEnum.login_lbl_password));
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.WEST;
@@ -112,7 +112,7 @@ public class pantallaLogin extends JFrame {
 		contentPane.add(textLogin, gbc_textLogin);
 		textLogin.setColumns(10);
 		
-		JLabel lblLogin = new JLabel(idioma.get("login_lbl_user"));
+		JLabel lblLogin = new JLabel(idioma.get(VariablesLenguageEnum.login_lbl_user));
 		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblLogin = new GridBagConstraints();
 		gbc_lblLogin.anchor = GridBagConstraints.WEST;

@@ -1,7 +1,7 @@
 package model;
 
 public enum VariablesLenguageEnum {
-	login_btn,
+	login_btn_entrar,
 	login_lbl_password,
 	login_lbl_user,
 	cliente_btn_next,
@@ -14,13 +14,14 @@ public enum VariablesLenguageEnum {
 	cliente_lbl_email,
 	cliente_lbl_direccion,
 	cliente_lbl_apellido2,
-	cliente_lbl_aplellido,
 	cliente_lbl_nombre,
 	cliente_lbl_usuario,
 	cliente_lbl_titulo,
+	cliente_lbl_apellido,
 	compra_lbl_titulo,
 	compra_btn_next,
 	compra_btn_anterior,
+	compra_lbl_usuario,
 	submodelo_lbl_titulo,
 	submodelo_btn_next,
 	submodelo_btn_anterior,
