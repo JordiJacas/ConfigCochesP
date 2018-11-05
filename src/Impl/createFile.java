@@ -28,7 +28,7 @@ public class createFile {
 	
 	public boolean createFileEmployee() {
 		try {
-			f = new FileWriter("src\\files_temp\\fs_employee.txt", true);
+			f = new FileWriter("src\\files_temp\\fs_employee.txt");
 			f.write("Datos temporales" + System.lineSeparator());
 			closeFile();
 			

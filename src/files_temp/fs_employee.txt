@@ -1,0 +1,5 @@
+Datos Temporales
+Jordi;Jacas;Ventura;Las rosas;jcdjf@gmail.com;Hombre;07/05/1996
+2;Ibiza
+SEAT Ibiza IV FR | 200CV | 5 puertas | Diesel | 13800
+13800;325;14125;Conectores USB: 50;Asientos Calefactados: 275;
