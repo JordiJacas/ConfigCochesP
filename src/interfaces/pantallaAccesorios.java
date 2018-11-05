@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Impl.createFile;
+import Impl.es_lenguage;
 import Impl.readXMLCars;
 import model.Accesorio;
 import model.SubModelo;
@@ -31,6 +32,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ItemEvent;
@@ -46,6 +48,8 @@ public class pantallaAccesorios extends JFrame {
 	private ArrayList<String> aCheckSelected = new ArrayList<String>();
 	private readXMLCars readAccesorios = new readXMLCars();
 	private createFile f = new createFile();
+	private es_lenguage es = new es_lenguage();
+	private Hashtable<String, String> idioma = es.getHashtable();
 	
 	/**
 	 * Launch the application.
@@ -95,7 +99,7 @@ public class pantallaAccesorios extends JFrame {
 		gbc_lblSubmodelo.gridy = 2;
 		contentPane.add(lblSubmodelo, gbc_lblSubmodelo);
 		
-		JLabel lblTitulo = new JLabel("Compra de Accesorios");
+		JLabel lblTitulo = new JLabel(idioma.get("accesorios_lbl_titulo"));
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblTitulo = new GridBagConstraints();
 		gbc_lblTitulo.anchor = GridBagConstraints.EAST;
@@ -138,7 +142,7 @@ public class pantallaAccesorios extends JFrame {
 		contentPane.add(textFieldAccesorios, gbc_textFieldAccesorios);
 		textFieldAccesorios.setColumns(10);
 		
-		JLabel lblTotalPrecio = new JLabel("Precio total");
+		JLabel lblTotalPrecio = new JLabel(idioma.get("accesorios_lbl_total"));
 		lblTotalPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblTotalPrecio = new GridBagConstraints();
 		gbc_lblTotalPrecio.anchor = GridBagConstraints.WEST;
@@ -147,7 +151,7 @@ public class pantallaAccesorios extends JFrame {
 		gbc_lblTotalPrecio.gridy = 9;
 		contentPane.add(lblTotalPrecio, gbc_lblTotalPrecio);
 		
-		JLabel lblCoche = new JLabel("Precio del modelo");
+		JLabel lblCoche = new JLabel(idioma.get("accesorios_lbl_coche"));
 		lblCoche.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblCoche = new GridBagConstraints();
 		gbc_lblCoche.anchor = GridBagConstraints.WEST;
@@ -156,7 +160,7 @@ public class pantallaAccesorios extends JFrame {
 		gbc_lblCoche.gridy = 8;
 		contentPane.add(lblCoche, gbc_lblCoche);
 		
-		JLabel lblAccesorios = new JLabel("Augmento en el precio");
+		JLabel lblAccesorios = new JLabel(idioma.get("accesorios_lbl_accesorios"));
 		lblAccesorios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblAccesorios = new GridBagConstraints();
 		gbc_lblAccesorios.anchor = GridBagConstraints.WEST;
@@ -219,7 +223,7 @@ public class pantallaAccesorios extends JFrame {
 			panel.add(check);
 		}
 		
-		JButton btnFinalizar = new JButton("Finalizar");
+		JButton btnFinalizar = new JButton(idioma.get("accesorios_btn_finalizar"));
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pasarSiguientePantalla(aCheckSelected, textFieldTotal.getText(), textFieldAccesorios.getText(), textFieldModelo.getText());
@@ -232,7 +236,7 @@ public class pantallaAccesorios extends JFrame {
 		gbc_btnFinalizar.gridy = 10;
 		contentPane.add(btnFinalizar, gbc_btnFinalizar);
 		
-		JButton btnAnterior = new JButton("Anterior");
+		JButton btnAnterior = new JButton(idioma.get("accesorios_btn_anterior"));
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pasarAnteriorPantalla(frame);

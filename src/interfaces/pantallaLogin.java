@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
 
+import Impl.es_lenguage;
 import config.ConfigurationLoader;
 
 import java.awt.Toolkit;
@@ -27,6 +28,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Hashtable;
 
 public class pantallaLogin extends JFrame {
 
@@ -36,6 +38,8 @@ public class pantallaLogin extends JFrame {
 	private JButton btnEntrar;
 	private boolean employeeVersion;
 	private boolean isError = false;
+	private es_lenguage es = new es_lenguage();
+	private Hashtable<String, String> idioma = es.getHashtable();
 
 	/**
 	 * Create the frame.
@@ -57,7 +61,7 @@ public class pantallaLogin extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0};
 		contentPane.setLayout(gbl_contentPane);
 		
-		btnEntrar = new JButton("Entrar");
+		btnEntrar = new JButton(idioma.get("login_btn_entrar"));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				compareLoginPassword();
@@ -89,7 +93,7 @@ public class pantallaLogin extends JFrame {
 		gbc_textPassword.gridy = 2;
 		contentPane.add(textPassword, gbc_textPassword);
 		
-		JLabel lblPassword = new JLabel("Password:");
+		JLabel lblPassword = new JLabel(idioma.get("login_lbl_password"));
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.WEST;
@@ -108,7 +112,7 @@ public class pantallaLogin extends JFrame {
 		contentPane.add(textLogin, gbc_textLogin);
 		textLogin.setColumns(10);
 		
-		JLabel lblLogin = new JLabel("Login:");
+		JLabel lblLogin = new JLabel(idioma.get("login_lbl_user"));
 		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblLogin = new GridBagConstraints();
 		gbc_lblLogin.anchor = GridBagConstraints.WEST;

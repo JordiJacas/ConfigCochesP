@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Impl.createFile;
+import Impl.es_lenguage;
 import Impl.readXMLCars;
 import model.Modelo;
 import model.SubModelo;
@@ -25,6 +26,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionListener;
@@ -37,6 +39,8 @@ public class pantallaSubmodelos extends JFrame {
 	private ArrayList<SubModelo> aSubmodelos = new ArrayList<SubModelo>();
 	private readXMLCars readSubModelos = new readXMLCars();
 	private createFile f = new createFile();
+	private es_lenguage es = new es_lenguage();
+	private Hashtable<String, String> idioma = es.getHashtable();
 	
 	/**
 	 * Launch the application.
@@ -76,7 +80,7 @@ public class pantallaSubmodelos extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblTitulo = new JLabel("Selecci\u00F3n de caracter\u00EDticas del modelo");
+		JLabel lblTitulo = new JLabel(idioma.get("submodelo_lbl_titulo"));
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblTitulo = new GridBagConstraints();
 		gbc_lblTitulo.gridwidth = 3;
@@ -103,7 +107,7 @@ public class pantallaSubmodelos extends JFrame {
 		listSubmodelos.setModel(modelDatos);
 		listSubmodelos.setVisible(true);
 		
-		JButton btnSigiente = new JButton("Sigiente");
+		JButton btnSigiente = new JButton(idioma.get("submodelo_btn_next"));
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -126,7 +130,7 @@ public class pantallaSubmodelos extends JFrame {
 		gbc_btnSigiente.gridy = 3;
 		contentPane.add(btnSigiente, gbc_btnSigiente);
 		
-		JButton btnAnterior = new JButton("Anterior");
+		JButton btnAnterior = new JButton(idioma.get("submodelo_btn_anterior"));
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pasarAnteriorPantalla(frame);

@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import Impl.createFile;
+import Impl.es_lenguage;
 import Impl.readXMLCars;
 import model.Modelo;
 
@@ -28,6 +29,7 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
@@ -51,6 +53,8 @@ public class pantallaCompra extends JFrame {
 	private int contadorBtn = 0;
 	private readXMLCars readCars = new readXMLCars();
 	private createFile f = new createFile();
+	private es_lenguage es = new es_lenguage();
+	private Hashtable<String, String> idioma = es.getHashtable();
 	
 	/**
 	 * Launch the application.
@@ -91,7 +95,7 @@ public class pantallaCompra extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 1.0};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblTitulo = new JLabel("SELECCIONAR EL MODELO DEL TITULO");
+		JLabel lblTitulo = new JLabel(idioma.get("compra_lbl_titulo"));
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblTitulo = new GridBagConstraints();
 		gbc_lblTitulo.insets = new Insets(0, 0, 5, 5);
@@ -109,7 +113,7 @@ public class pantallaCompra extends JFrame {
 		gbc_pUser.gridy = 0;
 		contentPane.add(pUser, gbc_pUser);
 		
-		JLabel lblUsuario = new JLabel("Usuario:");
+		JLabel lblUsuario = new JLabel(idioma.get("compra_lbl_usuario"));
 		pUser.add(lblUsuario);
 		
 		JLabel lblUser = new JLabel(userName);
@@ -187,7 +191,7 @@ public class pantallaCompra extends JFrame {
 		gbc_scrollBar.gridy = 1;
 		contentPane.add(scrollBar, gbc_scrollBar);
 		
-		JButton btnSigiente = new JButton("Sigiente");
+		JButton btnSigiente = new JButton(idioma.get("compra_btn_next"));
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (Modelo modelo : aModelo) {
@@ -207,7 +211,7 @@ public class pantallaCompra extends JFrame {
 		gbc_btnSigiente.gridy = 7;
 		contentPane.add(btnSigiente, gbc_btnSigiente);
 		
-		JButton btnAnterior = new JButton("Anterior");
+		JButton btnAnterior = new JButton(idioma.get("compra_btn_anterior"));
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pasarAnteriorPantalla(frame);
