@@ -1,4 +1,1 @@
 Datos temporales
-2;Ibiza
-SEAT Ibiza IV FR | 200CV | 5 puertas | Diesel | 13800
-13800;425;14225;Asientos Calefactados: 275;Yantas de aleacion: 150;

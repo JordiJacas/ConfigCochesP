@@ -55,12 +55,27 @@ public class pantallaCliente extends JFrame {
 	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
 	
 	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					pantallaCliente frame = new pantallaCliente("user");
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	/**
 	 * Create the frame.
 	 */
 	public pantallaCliente(String userName) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaCliente.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setTitle("Concesionario ESTEVE");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 480, 400);
 		setResizable(false);
 		
@@ -88,7 +103,16 @@ public class pantallaCliente extends JFrame {
 		JButton btnSigiente = new JButton(idioma.get(VariablesLenguageEnum.cliente_btn_next));
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				pasarSiguientePantalla(userName);			
+				if(isSave) {
+					pasarSiguientePantalla(userName);			
+				}
+				else {
+					pantallaCliente frame = new pantallaCliente(" ");
+					JOptionPane.showMessageDialog(frame,
+						    "Guarda los datos para continuar",
+						    "Guardar Datos",
+						    JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		GridBagConstraints gbc_btnSigiente = new GridBagConstraints();
@@ -314,12 +338,12 @@ public class pantallaCliente extends JFrame {
 				Object [] opciones ={"OK","CANCEL"};
 				// Creamos las pregunta de guardar datos
 				if(!isSave) {
-					int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quiere salir guardando los datos?","Mensaje de Confirmacion",
+					int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quieres guardar los datos antes de salir?","Mensaje de Confirmacion",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
 					//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
 					if (eleccion == JOptionPane.NO_OPTION) {
-						int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Quieres salir SIN guardar los datos?","Mensaje de Confirmacion",
+						int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Estas seguro que quieres salir?","Mensaje de Confirmacion",
 								JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
 								if (eleccion2 == JOptionPane.YES_OPTION) {
@@ -336,10 +360,16 @@ public class pantallaCliente extends JFrame {
 						}
 						
 						//Guardar datos en el fichero
-						f.incorporateToFile(textNombre.getText() + ";" + textApellido1.getText() + ";"
+						if(f.incorporateToFile(textNombre.getText() + ";" + textApellido1.getText() + ";"
 						+ textApellido2.getText() + ";" + textDireccion.getText() + ";" + textEmail.getText()
-						 + ";" + genero + ";" + fecha + ";");
-						f.closeFile();
+						 + ";" + genero + ";" + fecha + ";")) {
+							JOptionPane.showMessageDialog(rootPane,
+								    "Datos guardados correctamente",
+								    "Guardar datos",
+								    JOptionPane.INFORMATION_MESSAGE);
+							f.closeFile();
+							System.exit(0);
+						};
 					}
 				}
 			}

@@ -67,7 +67,7 @@ public class pantallaSubmodelos extends JFrame {
 		setResizable(false);
 		setTitle("Concecionario ESTEVE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaSubmodelos.class.getResource("/recursos/iconoEsteveTerradas.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 600, 500);
 		
 		contentPane = new JPanel();
@@ -146,20 +146,20 @@ public class pantallaSubmodelos extends JFrame {
 	
 	this.addWindowListener( new WindowAdapter() {
 		public void windowClosing(java.awt.event.WindowEvent e) {
-			//Creamos las opciones
+			///Creamos las opciones
 			Object [] opciones ={"OK","CANCEL"};
 			// Creamos las pregunta de guardar datos
-			int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quiere salir guardando los datos?","Mensaje de Confirmacion",
-			JOptionPane.YES_NO_OPTION,
-			JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
-			//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
-			if (eleccion == JOptionPane.NO_OPTION) {
-				int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Quieres salir SIN guardar los datos?","Mensaje de Confirmacion",
-						JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
-						if (eleccion2 == JOptionPane.YES_OPTION) {
-							System.exit(0);
-						}
+			int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quieres guardar los datos antes de salir?","Mensaje de Confirmacion",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
+					//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
+					if (eleccion == JOptionPane.NO_OPTION) {
+						int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Estas seguro que quieres salir?","Mensaje de Confirmacion",
+								JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
+								if (eleccion2 == JOptionPane.YES_OPTION) {
+									System.exit(0);
+								}
 			} 
 			else {
 				List<String> submodelo = listSubmodelos.getSelectedValuesList();
@@ -172,6 +172,7 @@ public class pantallaSubmodelos extends JFrame {
 						saveFile(subModelo.toString());
 					}
 				}
+				System.exit(0);
 			}
 		}
 	});
@@ -192,7 +193,12 @@ public class pantallaSubmodelos extends JFrame {
 	}
 	
 	private void saveFile(String modelo) {
-		f.incorporateToFile(modelo);
-		f.closeFile();
+		if(f.incorporateToFile(modelo)) {
+			JOptionPane.showMessageDialog(rootPane,
+				    "Datos guardados correctamente",
+				    "Guardar datos",
+				    JOptionPane.INFORMATION_MESSAGE);
+			f.closeFile();
+		};
 	}
 }
