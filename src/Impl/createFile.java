@@ -133,5 +133,8 @@ public class createFile {
 		
 		archivo = new File("src\\files_temp\\fs_employee.txt");
 		archivo.renameTo(new File("src\\historial\\fs_employee_" + format.format(dateToday) + ".txt"));
+		
+		archivo = new File("src\\files_temp\\fs_employee.xml");
+		archivo.renameTo(new File("src\\historial\\fs_employee_" + format.format(dateToday) + ".xml"));
 	}
 }

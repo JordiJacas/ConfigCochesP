@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import Impl.LenguageLoader;
 import Impl.createFile;
+import Impl.createXMLFactura;
 import model.VariablesLenguageEnum;
 
 import java.awt.FlowLayout;
@@ -45,6 +46,7 @@ public class pantallaResumen extends JFrame {
 	private BufferedReader br;
 	private ArrayList<String> aFile;
 	private createFile cFile;
+	private createXMLFactura xmlFile;
 	private createFile f = new createFile();
 	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
 
@@ -110,6 +112,11 @@ public class pantallaResumen extends JFrame {
 		JButton btnFinalizar = new JButton(idioma.get(VariablesLenguageEnum.resumen_btn_finalizar));
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//Crear factura
+				xmlFile = new createXMLFactura();
+				xmlFile.crearFactura();
+				
+				//Renombrar archivo temp y factura xml
 				cFile = new createFile();
 				cFile.renameFile();
 				System.exit(0);
