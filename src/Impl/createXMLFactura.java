@@ -67,7 +67,7 @@ public class createXMLFactura {
 
 		// Aqui contenemos los elementos de la tercera  linea
 		String partes3 = aFile.get(3);
-		String[] parte3 = partes3.split(" | ");
+		String[] parte3 = partes3.split(";");
 
 		// Aqui contenemos los elementos de la cuarta  linea
 		String partes4 = aFile.get(4);
@@ -143,27 +143,27 @@ public class createXMLFactura {
 			
 			//tag SubModelo
 			Element nombreSubmodelo = doc.createElement("Nombre");
-			nombreSubmodelo.appendChild(doc.createTextNode(parte3[0] + " " + parte3[1] + " " + parte3[2]));
+			nombreSubmodelo.appendChild(doc.createTextNode(parte3[0]));
 			submodelo.appendChild(nombreSubmodelo);
 
 			//tag Caballos de Potencia 
 			Element potencia = doc.createElement("Caballos");
-			potencia.appendChild(doc.createTextNode(parte3[4]));
+			potencia.appendChild(doc.createTextNode(parte3[1]));
 			submodelo.appendChild(potencia);
 
 			//tag Puertas 
 			Element puertas = doc.createElement("Puertas");
-			puertas.appendChild(doc.createTextNode(parte3[6] + " " + parte3[7]));
+			puertas.appendChild(doc.createTextNode(parte3[2]));
 			submodelo.appendChild(puertas);
 
 			//tag Tipo de Motor 
 			Element tipo_motor = doc.createElement("motor");
-			tipo_motor.appendChild(doc.createTextNode(parte3[9]));
+			tipo_motor.appendChild(doc.createTextNode(parte3[3]));
 			submodelo.appendChild(tipo_motor);
 
 			//tag Precio 
 			Element precio = doc.createElement("Precio");
-			precio.appendChild(doc.createTextNode(parte3[11]));
+			precio.appendChild(doc.createTextNode(parte3[4]));
 			submodelo.appendChild(precio);
 			
 			raiz.appendChild(submodelo);

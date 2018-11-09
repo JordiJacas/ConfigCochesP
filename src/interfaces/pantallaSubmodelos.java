@@ -186,7 +186,7 @@ public class pantallaSubmodelos extends JFrame {
 	}
 	
 	private void pasarSiguientePantalla(SubModelo subModelo) {
-		saveFile(subModelo.toString());
+		saveFile(subModelo.toSave());
 		pantallaAccesorios pSubmodelo = new pantallaAccesorios(subModelo, this);
 		this.setVisible(false);
 		pSubmodelo.setVisible(true);

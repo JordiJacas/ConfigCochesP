@@ -3,7 +3,9 @@ package model;
 public class SubModelo {
 	private int id;
 	private String nombre;
-	private String descripcion;
+	private int caballos;
+	private int puertas;
+	private String combustible;
 	private String imagen;
 	private int precio;
 	private int modelo;
@@ -16,11 +18,13 @@ public class SubModelo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SubModelo(int id, String nombre, String descripcion, String imagen, int precio, int modelo, String type) {
+	public SubModelo(int id, String nombre, int caballos, int puertas, String combustible, String imagen, int precio, int modelo, String type) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.descripcion = descripcion;
+		this.caballos = caballos;
+		this.puertas = puertas;
+		this.combustible = combustible;
 		this.imagen = imagen;
 		this.precio = precio;
 		this.modelo = modelo;
@@ -38,8 +42,16 @@ public class SubModelo {
 		return nombre;
 	}
 	
-	public String getDescripcion() {
-		return descripcion;
+	public int getCaballos() {
+		return caballos;
+	}
+	
+	public int getPuertas() {
+		return puertas;
+	}
+	
+	public String getCombustible() {
+		return combustible;
 	}
 	
 	public String getImagen() {
@@ -60,7 +72,11 @@ public class SubModelo {
 	
 	@Override
 	public String toString() {
-		return nombre + " | " + descripcion + " | " + precio;
+		return nombre + " | " + caballos + " CV | " + puertas + " puertas | " + combustible + " | " + precio;
+	}
+	
+	public String toSave() {
+		return nombre + ";" + caballos + ";" + puertas + ";" + combustible + ";" + precio;
 	}
 	
 	

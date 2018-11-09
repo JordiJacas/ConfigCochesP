@@ -33,56 +33,72 @@
 		<motor modelo="1" type="A">
 			<id>1</id>
 			<nombre>Seat Alhambra 1.4 Tsi Reference</nombre>
-			<descripcion>150CV | 5 puertas | Gasolina</descripcion>
+			<caballos>150</caballos>
+			<puertas>5</puertas>
+			<tipo>Gasolina</tipo>
 			<imagen_nombre>alhambra1.4.jpg</imagen_nombre>
 			<precio>31980</precio>
 		</motor>
 		<motor modelo="1" type="C">
 			<id>2</id>
 			<nombre>Seat Alhambra 2. Tdi Cr Eco Reference</nombre>
-			<descripcion>150CV | 5 puertas | Diesel</descripcion>
+			<caballos>150</caballos>
+			<puertas>5</puertas>
+			<tipo>Diesel</tipo>
 			<imagen_nombre>alhambra2.0.jpg</imagen_nombre>
 			<precio>32570</precio>
 		</motor>
 		<motor modelo="3" type="B">
 			<id>3</id>
 			<nombre>Leon ST</nombre>
-			<descripcion>400CV | 5 puertas | Diesel</descripcion>
+			<caballos>400</caballos>
+			<puertas>5</puertas>
+			<tipo>Diesel</tipo>
 			<imagen_nombre>leonST.jpg</imagen_nombre>
 			<precio>17030</precio>
 		</motor>
 		<motor modelo="3" type="A">
 			<id>4</id>
 			<nombre>Leon X-PERIENCE</nombre>
-			<descripcion>500CV | 5 puertas | Diesel</descripcion>
+			<caballos>500</caballos>
+			<puertas>5</puertas>
+			<tipo>Diesel</tipo>
 			<imagen_nombre>leonX.jpg</imagen_nombre>
 			<precio>20670</precio>
 		</motor>
 		<motor modelo="2" type="C">
 			<id>5</id>
 			<nombre>SEAT Ibiza III</nombre>
-			<descripcion>105CV | 3 puertas | Gasolina</descripcion>
+			<caballos>105</caballos>
+			<puertas>3</puertas>
+			<tipo>Gasolina</tipo>
 			<imagen_nombre>ibizaIII.jpg</imagen_nombre>
 			<precio>12530</precio>
 		</motor>
 		<motor modelo="2" type="A">
 			<id>6</id>
 			<nombre>SEAT Ibiza IV FR</nombre>
-			<descripcion>200CV | 5 puertas | Diesel</descripcion>
+			<caballos>200</caballos>
+			<puertas>5</puertas>
+			<tipo>Diesel</tipo>
 			<imagen_nombre>ibizaIV.jpg</imagen_nombre>
 			<precio>13800</precio>
 		</motor>
 		<motor modelo="4" type="C">
 			<id>7</id>
 			<nombre>SEAT Mii 3P 2016</nombre>
-			<descripcion>110CV | 4 puertas | Gasolina</descripcion>
+			<caballos>110</caballos>
+			<puertas>4</puertas>
+			<tipo>Gasolina</tipo>
 			<imagen_nombre>Mii3P.jpg</imagen_nombre>
 			<precio>10503</precio>
 		</motor>
 		<motor modelo="4" type="A">
 			<id>8</id>
 			<nombre>SEAT Mii 5P 2016</nombre>
-			<descripcion>150CV | 5 puertas | Diesel</descripcion>
+			<caballos>150</caballos>
+			<puertas>5</puertas>
+			<tipo>Diesel</tipo>
 			<imagen_nombre>Mii5P.jpg</imagen_nombre>
 			<precio>12340</precio>
 		</motor>

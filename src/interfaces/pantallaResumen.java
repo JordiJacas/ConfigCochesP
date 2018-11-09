@@ -182,15 +182,34 @@ public class pantallaResumen extends JFrame {
 		gbc_lblPrecioModelo.gridy = 4;
 		contentPane.add(lblPrecioModelo, gbc_lblPrecioModelo);
 		
-		JLabel lblModel = new JLabel(infoModelo[0]);
-		lblModel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		GridBagConstraints gbc_lblModel = new GridBagConstraints();
-		gbc_lblModel.gridwidth = 2;
-		gbc_lblModel.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblModel.insets = new Insets(0, 50, 5, 0);
-		gbc_lblModel.gridx = 0;
-		gbc_lblModel.gridy = 4;
-		contentPane.add(lblModel, gbc_lblModel);
+		//Creamos el Jpane que contendra la informacio del submodelo
+		JPanel panelSubmodelo = new JPanel();
+		panelSubmodelo.setLayout(new GridLayout(0,3,20,10));
+		GridBagConstraints gbc_panelSubmodelo = new GridBagConstraints();
+		gbc_panelSubmodelo.gridwidth = 2;
+		gbc_panelSubmodelo.anchor = GridBagConstraints.NORTHWEST;
+		gbc_panelSubmodelo.insets = new Insets(0, 50, 5, 0);
+		gbc_panelSubmodelo.gridx = 0;
+		gbc_panelSubmodelo.gridy = 4;
+		contentPane.add(panelSubmodelo, gbc_panelSubmodelo);
+		
+		// Creamos los label de cada campo del submodelo con su informacio
+		// y la añadimos al panel
+		JLabel lblNombreModel = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_nombreModelo) + infoModelo[0]);
+		lblNombreModel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		panelSubmodelo.add(lblNombreModel);
+		
+		JLabel lblCVModel = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_CV) + infoModelo[1]);
+		lblCVModel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		panelSubmodelo.add(lblCVModel);
+		
+		JLabel lblpuertasModel = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_puertas) + infoModelo[2]);
+		lblpuertasModel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		panelSubmodelo.add(lblpuertasModel);
+		
+		JLabel lblMotorModel = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_motor) + infoModelo[3]);
+		lblMotorModel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		panelSubmodelo.add(lblMotorModel);
 		
 		// Cramos el panle que contrendara la informacion del cliente
 		JPanel panelCliente = new JPanel();
@@ -203,9 +222,9 @@ public class pantallaResumen extends JFrame {
 		gbc_panelCliente.gridy = 2;
 		contentPane.add(panelCliente, gbc_panelCliente);
 		
-		// Creamos los lable de cada campo del usuario con su informacio
+		// Creamos los label de cada campo del usuario con su informacio
 		// y la añadimos al panel
-		JLabel lblNombreCliente = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_nombre) + infoCliente[0] + " " + infoCliente[1] + " " + infoCliente[2]);
+		JLabel lblNombreCliente = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_nombrecliente) + infoCliente[0] + " " + infoCliente[1] + " " + infoCliente[2]);
 		lblNombreCliente.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panelCliente.add(lblNombreCliente);
 		

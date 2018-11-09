@@ -13,11 +13,15 @@ import config.ConfigurationLoader;
 import model.Accesorio;
 import model.Modelo;
 import model.SubModelo;
+import sun.applet.Main;
 
 public class readXMLCars {
 	private int id;
 	private String nombre;
 	private String descripcion;
+	private int caballos;
+	private int puertas;
+	private String tipo;
 	private String imagen_nombre;
 	private int precio;
 	private int modelos_disponibles;
@@ -67,15 +71,19 @@ public class readXMLCars {
 			for (int j = 0; j < document.getElementsByTagName("motor").item(0).getChildNodes().getLength(); j++) {
 				id = Integer.parseInt(document.getElementsByTagName("motor").item(i).getChildNodes().item(1).getTextContent());
 				nombre = document.getElementsByTagName("motor").item(i).getChildNodes().item(3).getTextContent();
-				descripcion = document.getElementsByTagName("motor").item(i).getChildNodes().item(5).getTextContent();
-				imagen_nombre = document.getElementsByTagName("motor").item(i).getChildNodes().item(7).getTextContent();
-				precio = Integer.parseInt(document.getElementsByTagName("motor").item(i).getChildNodes().item(9).getTextContent());
+				caballos = Integer.parseInt(document.getElementsByTagName("motor").item(i).getChildNodes().item(5).getTextContent());
+				puertas = Integer.parseInt(document.getElementsByTagName("motor").item(i).getChildNodes().item(7).getTextContent());
+				tipo = document.getElementsByTagName("motor").item(i).getChildNodes().item(9).getTextContent();
+				imagen_nombre = document.getElementsByTagName("motor").item(i).getChildNodes().item(11).getTextContent();
+				precio = Integer.parseInt(document.getElementsByTagName("motor").item(i).getChildNodes().item(13).getTextContent());
 				attribModelo = Integer.parseInt(document.getElementsByTagName("motor").item(i).getAttributes().item(0).getTextContent());
 				attribType = document.getElementsByTagName("motor").item(i).getAttributes().item(1).getTextContent();
 				
 			}
-			vehiculos.add(new SubModelo(id,nombre,descripcion,imagen_nombre,precio, attribModelo, attribType));
+			vehiculos.add(new SubModelo(id,nombre,caballos,puertas,tipo,imagen_nombre,precio, attribModelo, attribType));
 		}
+	 	
+	 	
 	 	
 	 	return vehiculos;
 	}
@@ -99,5 +107,10 @@ public class readXMLCars {
 			vehiculos.add(new Accesorio(id,nombre,descripcion,imagen_nombre,precio,modelos_disponibles, attribType));
 		}
 		return vehiculos;
+	}
+	
+	public static void main(String[] args) {
+		readXMLCars r = new readXMLCars();
+		System.out.println(r.readSubModelos());
 	}
 }
