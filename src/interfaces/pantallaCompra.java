@@ -55,6 +55,9 @@ public class pantallaCompra extends JFrame {
 	private readXMLCars readCars = new readXMLCars();
 	private createFile f = new createFile();
 	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
+	private String[] saveClient = new String[2];
+	private ArrayList<String> aSaveClient;
+	private boolean isLoad = false;
 	
 	/**
 	 * Launch the application.
@@ -77,9 +80,16 @@ public class pantallaCompra extends JFrame {
 	 * 
 	 */
 	public pantallaCompra(pantallaCliente frame, String userName) {
-		setResizable(false);
 		aModelo = readCars.readModelos();
+		aSaveClient = new ArrayList<String>();
+		aSaveClient = f.getDataSave();
 		
+		if(aSaveClient.size()>1){
+			saveClient = aSaveClient.get(2).split(";");
+			isLoad = true;
+		}
+		
+		setResizable(false);
 		setTitle("Concesionario ESTEVE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaCompra.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -123,7 +133,18 @@ public class pantallaCompra extends JFrame {
 		
 		JLabel lblMostrar = new JLabel();
 		lblMostrar.setBackground(Color.WHITE);
-		ImageIcon iconolbl = new ImageIcon("src/recursos/imgCoches/" + aModelo.get(0).getImagen());
+		ImageIcon iconolbl = null;
+		
+		if(isLoad) {
+			for (Modelo modelo : aModelo) {
+				if(modelo.getId()==Integer.parseInt(saveClient[0])){
+					iconolbl = new ImageIcon("src/recursos/imgCoches/" + modelo.getImagen());
+				}
+			}
+		}
+		else {
+			iconolbl = new ImageIcon("src/recursos/imgCoches/" + aModelo.get(0).getImagen());
+		}
 		
 		ImageIcon lblicono = new ImageIcon(iconolbl.getImage().getScaledInstance(480,240,
                 java.awt.Image.SCALE_DEFAULT));
@@ -142,7 +163,18 @@ public class pantallaCompra extends JFrame {
 		areaDescripcion.setLineWrap(true);
 		areaDescripcion.setEditable(false);
 		areaDescripcion.setBackground(Color.WHITE);
-		areaDescripcion.setText(aModelo.get(0).getDescripcion());
+		
+		if(isLoad) {
+			for (Modelo modelo : aModelo) {
+				if(modelo.getId()==Integer.parseInt(saveClient[0])){
+					areaDescripcion.setText(modelo.getDescripcion());
+				}
+			}
+		}
+		else {
+			areaDescripcion.setText(aModelo.get(0).getDescripcion());
+		}
+
 		GridBagConstraints gbc_areaDescripcion = new GridBagConstraints();
 		gbc_areaDescripcion.anchor = GridBagConstraints.NORTH;
 		gbc_areaDescripcion.fill = GridBagConstraints.HORIZONTAL;
@@ -196,7 +228,7 @@ public class pantallaCompra extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				for (Modelo modelo : aModelo) {
 					if(modelo.getId() == Integer.parseInt(lblId.getText())) {
-						pasarSiguientePantalla(modelo);
+						pasarSiguientePantalla(modelo, userName);
 					}
 				}
 			}
@@ -262,9 +294,9 @@ public class pantallaCompra extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	private void pasarSiguientePantalla(Modelo modelo) {
+	private void pasarSiguientePantalla(Modelo modelo, String userName) {
 		saveFile(modelo.getId() + ";" + modelo.getNombre());
-		pantallaSubmodelos pCompra = new pantallaSubmodelos(this, modelo);
+		pantallaSubmodelos pCompra = new pantallaSubmodelos(this, modelo, userName);
 		this.setVisible(false);
 		pCompra.setVisible(true);
 	}

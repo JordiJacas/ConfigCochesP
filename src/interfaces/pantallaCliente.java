@@ -11,7 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
@@ -29,10 +32,12 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
 import com.sun.glass.events.WindowEvent;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_OVERLAYPeer;
 import com.toedter.calendar.JDateChooser;
 
 import Impl.LenguageLoader;
 import Impl.createFile;
+import jdk.management.resource.internal.inst.DatagramChannelImplRMHooks;
 import model.VariablesLenguageEnum;
 
 import java.awt.event.ActionListener;
@@ -53,6 +58,9 @@ public class pantallaCliente extends JFrame {
 	private ButtonGroup bg = new ButtonGroup();
 	private createFile f = new createFile();
 	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
+	private String[] saveClient = new String[6];
+	private ArrayList<String> aSaveClient;
+	private boolean isLoad = false;
 	
 	/**
 	 * Launch the application.
@@ -73,13 +81,21 @@ public class pantallaCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public pantallaCliente(String userName) {
+		aSaveClient = new ArrayList<String>();
+		f.createFileEmployee();
+		aSaveClient = f.getDataSave();
+		
+		if(aSaveClient.size()>1){
+			saveClient = aSaveClient.get(1).split(";");
+			isLoad = true;
+		}
+		
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaCliente.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setTitle("Concesionario ESTEVE");
 		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 480, 400);
 		setResizable(false);
-		
-		f.createFileEmployee();
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -100,6 +116,18 @@ public class pantallaCliente extends JFrame {
 		gbc_dateChooser.gridy = 9;
 		contentPane.add(dateChooser, gbc_dateChooser);
 		
+		//Insertar fecha guardada en el archivo
+		if(isLoad && !saveClient[6].equals(fecha)) {
+			Date date2;
+			try {
+				dateChooser.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(saveClient[6]));
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		}
+	
 		JButton btnSigiente = new JButton(idioma.get(VariablesLenguageEnum.cliente_btn_next));
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -134,7 +162,7 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(lblFecha, gbc_lblFecha);
 		
 		JRadioButton radioButtonOtro = new JRadioButton(idioma.get(VariablesLenguageEnum.cliente_rdbtn_other));
-		radioButtonOtro.setActionCommand(idioma.get("cliente_rbtn_other"));
+		radioButtonOtro.setActionCommand(idioma.get(VariablesLenguageEnum.cliente_rdbtn_other));
 		GridBagConstraints gbc_radioButtonOtro = new GridBagConstraints();
 		gbc_radioButtonOtro.gridwidth = 2;
 		gbc_radioButtonOtro.insets = new Insets(0, 0, 5, 5);
@@ -143,7 +171,7 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(radioButtonOtro, gbc_radioButtonOtro);
 		
 		JRadioButton radioButtonMujer = new JRadioButton(idioma.get(VariablesLenguageEnum.cliente_rdbtn_women));
-		radioButtonMujer.setActionCommand(idioma.get("cliente_rbtn_women"));
+		radioButtonMujer.setActionCommand(idioma.get(VariablesLenguageEnum.cliente_rdbtn_women));
 		GridBagConstraints gbc_radioButtonMujer = new GridBagConstraints();
 		gbc_radioButtonMujer.insets = new Insets(0, 0, 5, 5);
 		gbc_radioButtonMujer.gridx = 3;
@@ -151,7 +179,7 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(radioButtonMujer, gbc_radioButtonMujer);
 		
 		JRadioButton rdbtnHombre = new JRadioButton(idioma.get(VariablesLenguageEnum.cliente_rdbtn_men));
-		rdbtnHombre.setActionCommand(idioma.get("cliente_rbtn_men"));
+		rdbtnHombre.setActionCommand(idioma.get(VariablesLenguageEnum.cliente_rdbtn_men));
 		GridBagConstraints gbc_rdbtnHombre = new GridBagConstraints();
 		gbc_rdbtnHombre.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnHombre.gridx = 2;
@@ -161,6 +189,20 @@ public class pantallaCliente extends JFrame {
 		bg.add(radioButtonMujer);
 		bg.add(rdbtnHombre);
 		bg.add(radioButtonOtro);
+		
+		//Seleccionamos el radio Button guardado en el fichero
+		if(isLoad && !saveClient[5].equals(genero)) {
+			if(radioButtonMujer.getText().toUpperCase().equals(saveClient[5].toUpperCase())) {
+				radioButtonMujer.setSelected(true);
+			}
+			else if(radioButtonOtro.getText().toUpperCase().equals(saveClient[5].toUpperCase())) {
+				System.out.println("h");
+				radioButtonOtro.setSelected(true);
+			}
+			else if(rdbtnHombre.getText().toUpperCase().equals(saveClient[5].toUpperCase())) {
+				rdbtnHombre.setSelected(true);
+			}
+		}
 		
 		JLabel lblGenero = new JLabel(idioma.get(VariablesLenguageEnum.cliente_lbl_genero));
 		lblGenero.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -173,6 +215,8 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(lblGenero, gbc_lblGenero);
 		
 		textEmail = new JTextField();
+		//Cargamos los datos guardados en el archivo
+		if(saveClient!=null) {textEmail.setText(saveClient[4]);}
 		textEmail.setColumns(10);
 		GridBagConstraints gbc_textEmail = new GridBagConstraints();
 		gbc_textEmail.gridwidth = 4;
@@ -193,6 +237,8 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(lblEmail, gbc_lblEmail);
 		
 		textDireccion = new JTextField();
+		//Cargamos los datos guardados en el archivo
+		if(isLoad) {textDireccion.setText(saveClient[3]);}
 		textDireccion.setColumns(10);
 		GridBagConstraints gbc_textDireccion = new GridBagConstraints();
 		gbc_textDireccion.gridwidth = 4;
@@ -213,6 +259,8 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(lblDireccion, gbc_lblDireccion);
 		
 		textApellido2 = new JTextField();
+		//Cargamos los datos guardados en el archivo
+		if(isLoad) {textApellido2.setText(saveClient[2]);}
 		textApellido2.setColumns(10);
 		GridBagConstraints gbc_textApellido2 = new GridBagConstraints();
 		gbc_textApellido2.fill = GridBagConstraints.HORIZONTAL;
@@ -233,6 +281,8 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(lblApellido2, gbc_lblApellido2);
 		
 		textApellido1 = new JTextField();
+		//Cargamos los datos guardados en el archivo
+		if(isLoad) {textApellido1.setText(saveClient[1]);}
 		textApellido1.setColumns(10);
 		GridBagConstraints gbc_textApellido1 = new GridBagConstraints();
 		gbc_textApellido1.gridwidth = 4;
@@ -253,6 +303,8 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(lblApellido1, gbc_lblApellido1);
 		
 		textNombre = new JTextField();
+		//Cargamos los datos guardados en el archivo
+		if(isLoad) {textNombre.setText(saveClient[0]);}
 		GridBagConstraints gbc_textNombre = new GridBagConstraints();
 		gbc_textNombre.gridwidth = 4;
 		gbc_textNombre.insets = new Insets(0, 0, 5, 0);
@@ -294,7 +346,8 @@ public class pantallaCliente extends JFrame {
 		gbc_lblTitulo.gridwidth = 3;
 		gbc_lblTitulo.gridx = 1;
 		gbc_lblTitulo.gridy = 1;
-		contentPane.add(lblTitulo, gbc_lblTitulo);
+		contentPane.add(lblTitulo, gbc_lblTitulo);		
+
 		
 		JButton btnGuardar = new JButton(idioma.get(VariablesLenguageEnum.cliente_btn_guardar));
 		btnGuardar.addActionListener(new ActionListener() {
@@ -334,6 +387,12 @@ public class pantallaCliente extends JFrame {
 		this.addWindowListener( new WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent e) {
+				if(bg.getSelection() != null) {
+					genero = bg.getSelection().getActionCommand();
+				}
+				if(dateChooser.getDate() != null) {
+					fecha = df.format(dateChooser.getDate());
+				}
 				//Creamos las opciones
 				Object [] opciones ={"OK","CANCEL"};
 				// Creamos las pregunta de guardar datos
@@ -404,5 +463,5 @@ public class pantallaCliente extends JFrame {
 			this.setVisible(false);
 			pCliente.setVisible(true);
 		}
-	}	
+	}
 }

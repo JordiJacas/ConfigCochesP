@@ -69,7 +69,7 @@ public class pantallaResumen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pantallaResumen(pantallaAccesorios frame) {
+	public pantallaResumen(pantallaAccesorios frame, String userName) {
 		/*
 		 * Configuraciones JFrame
 		 */
@@ -119,7 +119,8 @@ public class pantallaResumen extends JFrame {
 				//Renombrar archivo temp y factura xml
 				cFile = new createFile();
 				cFile.renameFile();
-				System.exit(0);
+				
+				pasarSiguientePantalla(userName);
 			}
 		});
 		
@@ -293,6 +294,12 @@ public class pantallaResumen extends JFrame {
 		this.setVisible(false);
 		frame.setVisible(true);
 	}
+	
+	private void pasarSiguientePantalla(String userName) {
+			pantallaCliente pCliente = new pantallaCliente(userName);
+			this.setVisible(false);
+			pCliente.setVisible(true);
+	}	
 	
 	public void readFileResum() {
 		aFile = new ArrayList<String>();

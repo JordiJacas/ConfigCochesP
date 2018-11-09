@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Locale;
 
@@ -22,24 +23,44 @@ public class createFile {
     private BufferedReader br = null;
 	private Date dateToday = new Date();
 	private DateFormat format = new SimpleDateFormat("ddMMyyyy_HH.mm.ss", Locale.ENGLISH);
+	private int numLineas;
+	private static ArrayList<String> dataSave;
 	public createFile() {
 		
 	}
 	
-	public boolean createFileEmployee() {
+	public void createFileEmployee() {
+		numLineas = 0;
+		dataSave = new ArrayList<String>();
 		try {
-			f = new FileWriter("src\\files_temp\\fs_employee.txt");
+			archivo = new File("src\\files_temp\\fs_employee.txt");			
+
+			if(archivo.exists()){
+				fr = new FileReader (archivo);
+				br = new BufferedReader(fr);
+				String linea;
+				while((linea=br.readLine())!=null) {
+						numLineas++;
+						dataSave.add(linea);
+				}
+				fr.close();
+			}
+			else {
+				dataSave = null;
+			}
+			f = new FileWriter("src\\files_temp\\fs_employee.txt");			
 			f.write("Datos temporales" + System.lineSeparator());
 			closeFile();
-			
-			return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 	
+	public ArrayList<String> getDataSave() {
+		return dataSave;
+	}
+
 	public boolean incorporateToFile(String line) {
 		try {
 			f = new FileWriter("src\\files_temp\\fs_employee.txt", true);
@@ -136,5 +157,10 @@ public class createFile {
 		
 		archivo = new File("src\\files_temp\\fs_employee.xml");
 		archivo.renameTo(new File("src\\historial\\fs_employee_" + format.format(dateToday) + ".xml"));
+	}
+	
+	public static void main(String[] args) {
+		createFile c = new createFile();
+		//System.out.println(c.createFileEmployee());
 	}
 }

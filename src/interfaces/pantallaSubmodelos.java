@@ -41,6 +41,9 @@ public class pantallaSubmodelos extends JFrame {
 	private readXMLCars readSubModelos = new readXMLCars();
 	private createFile f = new createFile();
 	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
+	private String saveClient;
+	private ArrayList<String> aSaveClient;
+	private boolean isLoad = false;
 	
 	/**
 	 * Launch the application.
@@ -61,8 +64,18 @@ public class pantallaSubmodelos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pantallaSubmodelos(pantallaCompra frame, Modelo modelo) {
+	public pantallaSubmodelos(pantallaCompra frame, Modelo modelo, String userName) {
 		aSubmodelos = readSubModelos.readSubModelos();
+		//aSubmodelos.add(new SubModelo(1,"d",1,1,"c","c",1,1,"d"));
+		//aSubmodelos.add(new SubModelo(1,"d",1,1,"c","c",1,1,"d"));
+		aSaveClient = new ArrayList<String>();
+		aSaveClient = f.getDataSave();
+		
+		if(aSaveClient.size()>1){
+			saveClient = aSaveClient.get(3);
+			saveClient.replace(";", " | ");
+			isLoad = true;
+		}
 		
 		setResizable(false);
 		setTitle("Concecionario ESTEVE");
@@ -107,6 +120,14 @@ public class pantallaSubmodelos extends JFrame {
 		listSubmodelos.setModel(modelDatos);
 		listSubmodelos.setVisible(true);
 		
+		if(isLoad) {
+			 for(int i = 0; i < listSubmodelos.getModel().getSize(); i++) {
+			    if(listSubmodelos.getModel().getElementAt(i).equals(saveClient)) {
+			    	listSubmodelos.setSelectedIndex(i);
+			    }
+			 }
+		}
+		
 		JButton btnSigiente = new JButton(idioma.get(VariablesLenguageEnum.submodelo_btn_next));
 		btnSigiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -118,7 +139,7 @@ public class pantallaSubmodelos extends JFrame {
 				String [] aElemento = elemento.split(" | ");
 				for(SubModelo subModelo:aSubmodelos) {
 					if(elemento.equals(subModelo.toString())) {
-						pasarSiguientePantalla(subModelo);
+						pasarSiguientePantalla(subModelo, userName);
 					}
 				}	
 			}
@@ -185,9 +206,9 @@ public class pantallaSubmodelos extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	private void pasarSiguientePantalla(SubModelo subModelo) {
+	private void pasarSiguientePantalla(SubModelo subModelo, String userName) {
 		saveFile(subModelo.toSave());
-		pantallaAccesorios pSubmodelo = new pantallaAccesorios(subModelo, this);
+		pantallaAccesorios pSubmodelo = new pantallaAccesorios(subModelo, this, userName);
 		this.setVisible(false);
 		pSubmodelo.setVisible(true);
 	}

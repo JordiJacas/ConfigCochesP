@@ -70,7 +70,7 @@ public class pantallaAccesorios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pantallaAccesorios(SubModelo subModelo, pantallaSubmodelos frame) {
+	public pantallaAccesorios(SubModelo subModelo, pantallaSubmodelos frame, String userName) {
 		aAccesorios = readAccesorios.readAccesorios();
 		aSubModelo = readAccesorios.readSubModelos();
 		
@@ -226,7 +226,7 @@ public class pantallaAccesorios extends JFrame {
 		JButton btnFinalizar = new JButton(idioma.get(VariablesLenguageEnum.accesorios_btn_finalizar));
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				pasarSiguientePantalla(aCheckSelected, textFieldTotal.getText(), textFieldAccesorios.getText(), textFieldModelo.getText());
+				pasarSiguientePantalla(aCheckSelected, textFieldTotal.getText(), textFieldAccesorios.getText(), textFieldModelo.getText(), userName);
 			}
 		});
 		GridBagConstraints gbc_btnFinalizar = new GridBagConstraints();
@@ -284,13 +284,13 @@ public class pantallaAccesorios extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	private void pasarSiguientePantalla(ArrayList<String> checks, String pTotal, String pAccesorios, String pModelo) {
+	private void pasarSiguientePantalla(ArrayList<String> checks, String pTotal, String pAccesorios, String pModelo, String userName) {
 		String lChecks = "";
 		for (String check : checks) {
 			lChecks = lChecks + check + ";";
 		}
 		saveFile(pModelo + ";" + pAccesorios + ";" + pTotal + ";" + lChecks);
-		pantallaResumen pResumen = new pantallaResumen(this);
+		pantallaResumen pResumen = new pantallaResumen(this, userName);
 		this.setVisible(false);
 		pResumen.setVisible(true);
 		

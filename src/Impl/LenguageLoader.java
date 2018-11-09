@@ -17,14 +17,18 @@ import model.VariablesLenguageEnum;
 public class LenguageLoader {
 	
 	private static LenguageLoader lenguageConfig;
-	private File fResum;
 	private FileReader fr;
+	private File language;
 	private BufferedReader br;
 	private ArrayList<String> aFile;
 	private String pathLenguage = ConfigurationLoader.getConfig().getLanguage_file_path();
 	private String postfix = ConfigurationLoader.getConfig().getPostfix_language_file_name();
 	private String language_default = ConfigurationLoader.getConfig().getLanguage_default();
 	private Hashtable<VariablesLenguageEnum, String> idioma = new Hashtable<VariablesLenguageEnum, String>();
+	private File languageES = new File(pathLenguage + language_default + postfix);
+	private File languageCA;
+	private File languageIN;
+	private String[] languages = ConfigurationLoader.getConfig().getLanguages();
 
 	public Hashtable<VariablesLenguageEnum, String> getIdioma() {
 		return idioma;
@@ -33,11 +37,24 @@ public class LenguageLoader {
 	private LenguageLoader() {
 		aFile = new ArrayList<String>();
 		String linea;
+		languageES = new File(pathLenguage + language_default + postfix);
+		languageCA = new File(pathLenguage + languages[1] + postfix);
+		languageIN = new File(pathLenguage + languages[2] + postfix);
 		
 		
 		try {
-			fResum = new File(pathLenguage + language_default + postfix);
-			fr = new FileReader (fResum);
+			
+			if(languageCA.exists()) {
+				language = languageCA;
+			}
+			else if(languageIN.exists()) {
+				language = languageIN;
+			}
+			else {
+				language = languageES;
+			}
+			
+			fr = new FileReader (language);
 			br = new BufferedReader(fr);
 			
 			while((linea=br.readLine())!=null) {
