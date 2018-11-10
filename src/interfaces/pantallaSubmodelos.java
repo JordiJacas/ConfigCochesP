@@ -66,12 +66,10 @@ public class pantallaSubmodelos extends JFrame {
 	 */
 	public pantallaSubmodelos(pantallaCompra frame, Modelo modelo, String userName) {
 		aSubmodelos = readSubModelos.readSubModelos();
-		//aSubmodelos.add(new SubModelo(1,"d",1,1,"c","c",1,1,"d"));
-		//aSubmodelos.add(new SubModelo(1,"d",1,1,"c","c",1,1,"d"));
 		aSaveClient = new ArrayList<String>();
 		aSaveClient = f.getDataSave();
 		
-		if(aSaveClient.size()>1){
+		if(aSaveClient.size()>3){
 			saveClient = aSaveClient.get(3);
 			saveClient.replace(";", " | ");
 			isLoad = true;
@@ -120,6 +118,7 @@ public class pantallaSubmodelos extends JFrame {
 		listSubmodelos.setModel(modelDatos);
 		listSubmodelos.setVisible(true);
 		
+		//Cargamos los datos en el fichero temporal
 		if(isLoad) {
 			 for(int i = 0; i < listSubmodelos.getModel().getSize(); i++) {
 			    if(listSubmodelos.getModel().getElementAt(i).equals(saveClient)) {

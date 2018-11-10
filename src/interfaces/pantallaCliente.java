@@ -117,7 +117,7 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(dateChooser, gbc_dateChooser);
 		
 		//Insertar fecha guardada en el archivo
-		if(isLoad && !saveClient[6].equals(fecha)) {
+		if(isLoad && !fecha.equals(saveClient[6]) && !saveClient[6].isEmpty()) {
 			Date date2;
 			try {
 				dateChooser.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(saveClient[6]));
@@ -192,14 +192,14 @@ public class pantallaCliente extends JFrame {
 		
 		//Seleccionamos el radio Button guardado en el fichero
 		if(isLoad && !saveClient[5].equals(genero)) {
-			if(radioButtonMujer.getText().toUpperCase().equals(saveClient[5].toUpperCase())) {
+			if(saveClient[5].toUpperCase().equals("DONA") || saveClient[5].toUpperCase().equals("MUJER") || saveClient[5].toUpperCase().equals("WOMEN")) {
 				radioButtonMujer.setSelected(true);
 			}
-			else if(radioButtonOtro.getText().toUpperCase().equals(saveClient[5].toUpperCase())) {
+			else if(saveClient[5].toUpperCase().equals("NO DETERMINAT") || saveClient[5].toUpperCase().equals("NO DETERMINADO") || saveClient[5].toUpperCase().equals("OTHER")) {
 				System.out.println("h");
 				radioButtonOtro.setSelected(true);
 			}
-			else if(rdbtnHombre.getText().toUpperCase().equals(saveClient[5].toUpperCase())) {
+			else if(saveClient[5].toUpperCase().equals("HOME") || saveClient[5].toUpperCase().equals("HOMBRE") || saveClient[5].toUpperCase().equals("MAN")) {
 				rdbtnHombre.setSelected(true);
 			}
 		}
@@ -359,19 +359,24 @@ public class pantallaCliente extends JFrame {
 				if(dateChooser.getDate() != null) {
 					fecha = df.format(dateChooser.getDate());
 				}
+				
 
 				if(emptyTxt()) {
+					
 					if(f.incorporateToFile(textNombre.getText() + ";" + textApellido1.getText() + ";"
 							+ textApellido2.getText() + ";" + textDireccion.getText() + ";" + textEmail.getText()
 							 + ";" + genero + ";" + fecha)) {
-						pantallaCliente frame = new pantallaCliente(" ");
-						JOptionPane.showMessageDialog(frame,
+
+						JOptionPane.showMessageDialog(rootPane,
 							    "Los datos se han guardado correctamente.",
 							    "Guardar Datos",
 							    JOptionPane.INFORMATION_MESSAGE);
 						isSave = true;
 					}
+					
+
 					f.closeFile();
+
 				}
 			}
 		});

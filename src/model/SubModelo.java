@@ -76,7 +76,7 @@ public class SubModelo {
 	}
 	
 	public String toSave() {
-		return nombre + ";" + caballos + ";" + puertas + ";" + combustible + ";" + precio;
+		return nombre + ";" + caballos + " CV;" + puertas + " puertas;" + combustible + ";" + precio;
 	}
 	
 	

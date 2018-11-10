@@ -25,6 +25,7 @@ public class createFile {
 	private DateFormat format = new SimpleDateFormat("ddMMyyyy_HH.mm.ss", Locale.ENGLISH);
 	private int numLineas;
 	private static ArrayList<String> dataSave;
+	
 	public createFile() {
 		
 	}
@@ -44,9 +45,6 @@ public class createFile {
 						dataSave.add(linea);
 				}
 				fr.close();
-			}
-			else {
-				dataSave = null;
 			}
 			f = new FileWriter("src\\files_temp\\fs_employee.txt");			
 			f.write("Datos temporales" + System.lineSeparator());
@@ -161,6 +159,7 @@ public class createFile {
 	
 	public static void main(String[] args) {
 		createFile c = new createFile();
-		//System.out.println(c.createFileEmployee());
+		c.createFileEmployee();
+		System.out.println(c.getDataSave());
 	}
 }

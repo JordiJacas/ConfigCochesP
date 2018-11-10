@@ -50,6 +50,9 @@ public class pantallaAccesorios extends JFrame {
 	private readXMLCars readAccesorios = new readXMLCars();
 	private createFile f = new createFile();
 	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
+	private String[] saveClient;
+	private ArrayList<String> aSaveClient;
+	private boolean isLoad = false;
 	
 	/**
 	 * Launch the application.
@@ -73,6 +76,15 @@ public class pantallaAccesorios extends JFrame {
 	public pantallaAccesorios(SubModelo subModelo, pantallaSubmodelos frame, String userName) {
 		aAccesorios = readAccesorios.readAccesorios();
 		aSubModelo = readAccesorios.readSubModelos();
+		
+		aSaveClient = new ArrayList<String>();
+		aSaveClient = f.getDataSave();
+		
+		if(aSaveClient.size()>4){
+			saveClient = aSaveClient.get(4).split(";");
+			
+			isLoad = true;
+		}
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(pantallaAccesorios.class.getResource("/recursos/iconoEsteveTerradas.png")));
 		setTitle("Concesionario ESTEVE");
@@ -183,6 +195,15 @@ public class pantallaAccesorios extends JFrame {
 		for (Accesorio accesorio : aAccesorios) {
 			
 			JCheckBox check = new JCheckBox(accesorio.getNombre());
+			if(isLoad) {
+				for (int i = 3; i < saveClient.length; i++) {
+					String[] aTemp = saveClient[i].split(":");
+					if(accesorio.getNombre().equals(aTemp[0])) {
+						check.setSelected(true);
+					}
+				}
+			}
+			
 			check.setPreferredSize(new Dimension(200,20));
 			check.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			if(subModelo.getType().equals(accesorio.getType())) {
@@ -221,6 +242,10 @@ public class pantallaAccesorios extends JFrame {
 				}
 			});
 			panel.add(check);
+			
+			//Cargar lbl del precio con la infmarcion del fichero temp.
+			textFieldAccesorios.setText(saveClient[1]);
+			textFieldTotal.setText(saveClient[2]);
 		}
 		
 		JButton btnFinalizar = new JButton(idioma.get(VariablesLenguageEnum.accesorios_btn_finalizar));

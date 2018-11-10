@@ -66,7 +66,7 @@ public class pantallaCompra extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//pantallaCompra frame = new pantallaCompra();
+					//pantallaCompra frame = new pantallaCompra("d");
 					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,14 +77,14 @@ public class pantallaCompra extends JFrame {
 	
 	/**
 	 * Create the frame.
-	 * 
+	 *  
 	 */
 	public pantallaCompra(pantallaCliente frame, String userName) {
 		aModelo = readCars.readModelos();
 		aSaveClient = new ArrayList<String>();
 		aSaveClient = f.getDataSave();
 		
-		if(aSaveClient.size()>1){
+		if(aSaveClient.size()>2){
 			saveClient = aSaveClient.get(2).split(";");
 			isLoad = true;
 		}
@@ -139,11 +139,13 @@ public class pantallaCompra extends JFrame {
 			for (Modelo modelo : aModelo) {
 				if(modelo.getId()==Integer.parseInt(saveClient[0])){
 					iconolbl = new ImageIcon("src/recursos/imgCoches/" + modelo.getImagen());
+					lblId.setText(Integer.toString(modelo.getId()));
 				}
 			}
 		}
 		else {
 			iconolbl = new ImageIcon("src/recursos/imgCoches/" + aModelo.get(0).getImagen());
+			
 		}
 		
 		ImageIcon lblicono = new ImageIcon(iconolbl.getImage().getScaledInstance(480,240,
@@ -246,7 +248,7 @@ public class pantallaCompra extends JFrame {
 		JButton btnAnterior = new JButton(idioma.get(VariablesLenguageEnum.compra_btn_anterior));
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				pasarAnteriorPantalla(frame);
+				//pasarAnteriorPantalla(frame);
 			}
 		});
 		GridBagConstraints gbc_btnAnterior = new GridBagConstraints();
