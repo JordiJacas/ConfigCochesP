@@ -54,3 +54,4 @@ guardar_datos_al_cerrar=¿Quieres guardar los datos antes de salir?
 guardar_datos_al_cerrar_negativo=¿Estas seguro que quieres salir?
 pantalla_cliente_campo_obligatorio=los campos con * son obligatorios
 pantalla_cliente_formato_correo_erroneo=El correo electrònico tiene que tener el formato correcto.
+carga_fichero_temp=¿Quieres cargar los datos del fichero temporal?

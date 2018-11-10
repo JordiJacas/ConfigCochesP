@@ -244,8 +244,10 @@ public class pantallaAccesorios extends JFrame {
 			panel.add(check);
 			
 			//Cargar lbl del precio con la infmarcion del fichero temp.
-			textFieldAccesorios.setText(saveClient[1]);
-			textFieldTotal.setText(saveClient[2]);
+			if(isLoad) {
+				textFieldAccesorios.setText(saveClient[1]);
+				textFieldTotal.setText(saveClient[2]);
+			}
 		}
 		
 		JButton btnFinalizar = new JButton(idioma.get(VariablesLenguageEnum.accesorios_btn_finalizar));

@@ -56,5 +56,6 @@ public enum VariablesLenguageEnum {
 	guardar_datos_al_cerrar,
 	guardar_datos_al_cerrar_negativo,
 	pantalla_cliente_campo_obligatorio,
-	pantalla_cliente_formato_correo_erroneo;
+	pantalla_cliente_formato_correo_erroneo,
+	carga_fichero_temp;
 }

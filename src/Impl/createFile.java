@@ -14,7 +14,10 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Locale;
 
-public class createFile {
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class createFile extends JFrame{
 	
 	private FileWriter f;
 	private ArrayList<String> aFile;
@@ -45,6 +48,19 @@ public class createFile {
 						dataSave.add(linea);
 				}
 				fr.close();
+				
+				if(numLineas>1) {
+					//Creamos las opciones
+					Object [] opciones ={"OK","CANCEL"};
+					// Creamos las pregunta de guardar datos
+					int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quieres cargar los datos del fichero temporal?","Mensaje de Confirmacion",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
+							//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
+							if (eleccion == JOptionPane.NO_OPTION) {
+								dataSave = null;
+							}
+				}
 			}
 			f = new FileWriter("src\\files_temp\\fs_employee.txt");			
 			f.write("Datos temporales" + System.lineSeparator());
