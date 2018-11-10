@@ -137,7 +137,7 @@ public class pantallaCliente extends JFrame {
 				else {
 					pantallaCliente frame = new pantallaCliente(" ");
 					JOptionPane.showMessageDialog(frame,
-						    "Guarda los datos para continuar",
+						    VariablesLenguageEnum.pantalla_cliente_pasar_pantalla_sin_datos_guardados,
 						    "Guardar Datos",
 						    JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -368,7 +368,7 @@ public class pantallaCliente extends JFrame {
 							 + ";" + genero + ";" + fecha)) {
 
 						JOptionPane.showMessageDialog(rootPane,
-							    "Los datos se han guardado correctamente.",
+							    VariablesLenguageEnum.guardar_datos_cliente,
 							    "Guardar Datos",
 							    JOptionPane.INFORMATION_MESSAGE);
 						isSave = true;
@@ -428,7 +428,7 @@ public class pantallaCliente extends JFrame {
 						+ textApellido2.getText() + ";" + textDireccion.getText() + ";" + textEmail.getText()
 						 + ";" + genero + ";" + fecha + ";")) {
 							JOptionPane.showMessageDialog(rootPane,
-								    "Datos guardados correctamente",
+								    VariablesLenguageEnum.guardar_datos_cliente,
 								    "Guardar datos",
 								    JOptionPane.INFORMATION_MESSAGE);
 							f.closeFile();
@@ -447,14 +447,14 @@ public class pantallaCliente extends JFrame {
 			
 			pantallaCliente frame = new pantallaCliente(" ");
 			JOptionPane.showMessageDialog(frame,
-				    "Los campos con * no pueden estar vacios.",
+				    VariablesLenguageEnum.pantalla_cliente_campo_obligatorio,
 				    "Empty Error",
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;
 		} 
 		if (!(textEmail.getText().contains("@") && textEmail.getText().contains("."))) {
 			JOptionPane.showMessageDialog(this,
-				    "El correo electrònico tiene que tener el formato correcto.",
+				    VariablesLenguageEnum.pantalla_cliente_formato_correo_erroneo,
 				    "Empty Error",
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;

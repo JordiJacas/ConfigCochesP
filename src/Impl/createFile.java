@@ -17,6 +17,8 @@ import java.util.Locale;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import model.VariablesLenguageEnum;
+
 public class createFile extends JFrame{
 	
 	private FileWriter f;
@@ -53,7 +55,7 @@ public class createFile extends JFrame{
 					//Creamos las opciones
 					Object [] opciones ={"OK","CANCEL"};
 					// Creamos las pregunta de guardar datos
-					int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quieres cargar los datos del fichero temporal?","Mensaje de Confirmacion",
+					int eleccion = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.carga_fichero_temp,"Mensaje de Confirmacion",
 							JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
 							//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
