@@ -30,6 +30,7 @@ public class createFile extends JFrame{
 	private DateFormat format = new SimpleDateFormat("ddMMyyyy_HH.mm.ss", Locale.ENGLISH);
 	private int numLineas;
 	private static ArrayList<String> dataSave;
+	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
 	
 	public createFile() {
 		
@@ -55,7 +56,7 @@ public class createFile extends JFrame{
 					//Creamos las opciones
 					Object [] opciones ={"OK","CANCEL"};
 					// Creamos las pregunta de guardar datos
-					int eleccion = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.carga_fichero_temp,"Mensaje de Confirmacion",
+					int eleccion = JOptionPane.showOptionDialog(rootPane,idioma.get(VariablesLenguageEnum.carga_fichero_temp),"Mensaje de Confirmacion",
 							JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
 							//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar

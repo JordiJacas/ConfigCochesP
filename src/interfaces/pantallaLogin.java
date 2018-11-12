@@ -146,7 +146,7 @@ public class pantallaLogin extends JFrame {
 		if(isError) {
 			pantallaLogin frame = new pantallaLogin();
 			JOptionPane.showMessageDialog(frame,
-					VariablesLenguageEnum.login_message_error,
+					idioma.get(VariablesLenguageEnum.login_message_error),
 				    "Login error",
 				    JOptionPane.ERROR_MESSAGE);
 		}
@@ -156,7 +156,7 @@ public class pantallaLogin extends JFrame {
 		if(textLogin.getText().isEmpty() || textPassword.getText().isEmpty()) {
 			pantallaLogin frame = new pantallaLogin();
 			JOptionPane.showMessageDialog(frame,
-					VariablesLenguageEnum.login_campo_obligatorio,
+					idioma.get(VariablesLenguageEnum.login_campo_obligatorio),
 				    "Empty Error",
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;

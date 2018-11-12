@@ -171,12 +171,12 @@ public class pantallaSubmodelos extends JFrame {
 			///Creamos las opciones
 			Object [] opciones ={"OK","CANCEL"};
 			// Creamos las pregunta de guardar datos
-			int eleccion = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.guardar_datos_al_cerrar,"Mensaje de Confirmacion",
+			int eleccion = JOptionPane.showOptionDialog(rootPane,idioma.get(VariablesLenguageEnum.guardar_datos_al_cerrar),"Mensaje de Confirmacion",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
 					//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
 					if (eleccion == JOptionPane.NO_OPTION) {
-						int eleccion2 = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.guardar_datos_al_cerrar_negativo,"Mensaje de Confirmacion",
+						int eleccion2 = JOptionPane.showOptionDialog(rootPane,idioma.get(VariablesLenguageEnum.guardar_datos_al_cerrar_negativo),"Mensaje de Confirmacion",
 								JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
 								if (eleccion2 == JOptionPane.YES_OPTION) {
@@ -217,7 +217,7 @@ public class pantallaSubmodelos extends JFrame {
 	private void saveFile(String modelo) {
 		if(f.incorporateToFile(modelo)) {
 			JOptionPane.showMessageDialog(rootPane,
-					VariablesLenguageEnum.guardar_datos_cliente,
+					idioma.get(VariablesLenguageEnum.guardar_datos_cliente),
 				    "Guardar datos",
 				    JOptionPane.INFORMATION_MESSAGE);
 			f.closeFile();

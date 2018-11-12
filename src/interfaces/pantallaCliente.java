@@ -137,7 +137,7 @@ public class pantallaCliente extends JFrame {
 				else {
 					pantallaCliente frame = new pantallaCliente(" ");
 					JOptionPane.showMessageDialog(frame,
-						    VariablesLenguageEnum.pantalla_cliente_pasar_pantalla_sin_datos_guardados,
+						    idioma.get(VariablesLenguageEnum.pantalla_cliente_pasar_pantalla_sin_datos_guardados),
 						    "Guardar Datos",
 						    JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -368,7 +368,7 @@ public class pantallaCliente extends JFrame {
 							 + ";" + genero + ";" + fecha)) {
 
 						JOptionPane.showMessageDialog(rootPane,
-							    VariablesLenguageEnum.guardar_datos_cliente,
+							    idioma.get(VariablesLenguageEnum.guardar_datos_cliente),
 							    "Guardar Datos",
 							    JOptionPane.INFORMATION_MESSAGE);
 						isSave = true;
@@ -402,12 +402,12 @@ public class pantallaCliente extends JFrame {
 				Object [] opciones ={"OK","CANCEL"};
 				// Creamos las pregunta de guardar datos
 				if(!isSave) {
-					int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quieres guardar los datos antes de salir?","Mensaje de Confirmacion",
+					int eleccion = JOptionPane.showOptionDialog(rootPane,idioma.get(VariablesLenguageEnum.guardar_datos_al_cerrar),"Mensaje de Confirmacion",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
 					//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
 					if (eleccion == JOptionPane.NO_OPTION) {
-						int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Estas seguro que quieres salir?","Mensaje de Confirmacion",
+						int eleccion2 = JOptionPane.showOptionDialog(rootPane,idioma.get(VariablesLenguageEnum.guardar_datos_al_cerrar_negativo),"Mensaje de Confirmacion",
 								JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
 								if (eleccion2 == JOptionPane.YES_OPTION) {
@@ -447,14 +447,14 @@ public class pantallaCliente extends JFrame {
 			
 			pantallaCliente frame = new pantallaCliente(" ");
 			JOptionPane.showMessageDialog(frame,
-				    VariablesLenguageEnum.pantalla_cliente_campo_obligatorio,
+				    idioma.get(VariablesLenguageEnum.pantalla_cliente_campo_obligatorio),
 				    "Empty Error",
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;
 		} 
 		if (!(textEmail.getText().contains("@") && textEmail.getText().contains("."))) {
 			JOptionPane.showMessageDialog(this,
-				    VariablesLenguageEnum.pantalla_cliente_formato_correo_erroneo,
+				    idioma.get(VariablesLenguageEnum.pantalla_cliente_formato_correo_erroneo),
 				    "Empty Error",
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;

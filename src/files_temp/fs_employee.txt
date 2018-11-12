@@ -1,1 +1,3 @@
 Datos temporales
+a;a;aa;a;a@a.cm;Campo Vacio;Campo Vacio
+Modelo [id=1, nombre=Alhambra, descripcion=El monovolumen SEAT Alhambra ha sido diseñado para sobresalir entre los vehículos de su categoría., imagen=alhambra.jpg, precio=30960]

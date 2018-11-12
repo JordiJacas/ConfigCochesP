@@ -1,0 +1,4 @@
+r;r;r;r;r@r.r;Women;04/11/2018
+3;Leon
+Leon ST;400 CV;5 puertas;Diesel;17030
+17030;230;17260;Navegador: 230;
