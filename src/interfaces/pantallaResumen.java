@@ -90,6 +90,8 @@ public class pantallaResumen extends JFrame {
 		String[] infoModelo = StringToAstring(aFile.get(3));
 		String[] infoAccesorios = StringToAstring(aFile.get(4));
 		
+		infoAccesorios[2] = aplicarDescuento(Integer.parseInt(infoAccesorios[2]));
+		
 		/*
 		 * Elementos graficos del Jframe
 		 */
@@ -114,7 +116,7 @@ public class pantallaResumen extends JFrame {
 		JButton btnFinalizar = new JButton(idioma.get(VariablesLenguageEnum.resumen_btn_finalizar));
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				infoAccesorios[2] = aplicarDescuento(Integer.parseInt(infoAccesorios[2]));
+				//infoAccesorios[2] = aplicarDescuento(Integer.parseInt(infoAccesorios[2]));
 				//Crear factura
 				xmlFile = new createXMLFactura();
 				xmlFile.crearFactura();
@@ -309,7 +311,7 @@ public class pantallaResumen extends JFrame {
 		//Creamos las opciones
 		Object [] opciones ={"OK","CANCEL"};
 		// Creamos las pregunta de guardar datos
-		int eleccion = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.guardar_datos_al_cerrar,"Mensaje de Confirmacion",
+		int eleccion = JOptionPane.showOptionDialog(rootPane,idioma.get(VariablesLenguageEnum.guardar_datos_al_cerrar),"Mensaje de Confirmacion",
 				JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
 				//Si es un sí, abre una ventana para aplicar el descuento
