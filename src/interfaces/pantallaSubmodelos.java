@@ -123,6 +123,7 @@ public class pantallaSubmodelos extends JFrame {
 		if(isLoad) {
 			 for(int i = 0; i < listSubmodelos.getModel().getSize(); i++) {
 			    if(listSubmodelos.getModel().getElementAt(i).equals(saveClient)) {
+			    	System.out.println("hello");
 			    	listSubmodelos.setSelectedIndex(i);
 			    }
 			 }

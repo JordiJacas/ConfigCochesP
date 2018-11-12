@@ -117,7 +117,7 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(dateChooser, gbc_dateChooser);
 		
 		//Insertar fecha guardada en el archivo
-		if(isLoad && !saveClient[6].equals(fecha)) {
+		if(isLoad && saveClient[6] != fecha) {
 			Date date2;
 			try {
 				dateChooser.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(saveClient[6]));
@@ -191,7 +191,7 @@ public class pantallaCliente extends JFrame {
 		bg.add(radioButtonOtro);
 		
 		//Seleccionamos el radio Button guardado en el fichero
-		if(isLoad && !saveClient[5].equals(genero)) {
+		if(isLoad && saveClient[5] != genero) {
 			if(radioButtonMujer.getText().toUpperCase().equals(saveClient[5].toUpperCase())) {
 				radioButtonMujer.setSelected(true);
 			}
