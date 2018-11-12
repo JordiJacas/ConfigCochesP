@@ -66,7 +66,7 @@ public class pantallaCompra extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//pantallaCompra frame = new pantallaCompra();
+					//pantallaCompra frame = new pantallaCompra("d");
 					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,14 +77,14 @@ public class pantallaCompra extends JFrame {
 	
 	/**
 	 * Create the frame.
-	 * 
+	 *  
 	 */
 	public pantallaCompra(pantallaCliente frame, String userName) {
 		aModelo = readCars.readModelos();
 		aSaveClient = new ArrayList<String>();
 		aSaveClient = f.getDataSave();
 		
-		if(aSaveClient.size()>1){
+		if(aSaveClient.size()>2){
 			saveClient = aSaveClient.get(2).split(";");
 			isLoad = true;
 		}
@@ -139,11 +139,13 @@ public class pantallaCompra extends JFrame {
 			for (Modelo modelo : aModelo) {
 				if(modelo.getId()==Integer.parseInt(saveClient[0])){
 					iconolbl = new ImageIcon("src/recursos/imgCoches/" + modelo.getImagen());
+					lblId.setText(Integer.toString(modelo.getId()));
 				}
 			}
 		}
 		else {
 			iconolbl = new ImageIcon("src/recursos/imgCoches/" + aModelo.get(0).getImagen());
+			
 		}
 		
 		ImageIcon lblicono = new ImageIcon(iconolbl.getImage().getScaledInstance(480,240,
@@ -264,12 +266,12 @@ public class pantallaCompra extends JFrame {
 				//Creamos las opciones
 				Object [] opciones ={"OK","CANCEL"};
 				// Creamos las pregunta de guardar datos
-				int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quieres guardar los datos antes de salir?","Mensaje de Confirmacion",
+				int eleccion = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.guardar_datos_al_cerrar,"Mensaje de Confirmacion",
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
 						//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
 						if (eleccion == JOptionPane.NO_OPTION) {
-							int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Estas seguro que quieres salir?","Mensaje de Confirmacion",
+							int eleccion2 = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.guardar_datos_al_cerrar_negativo,"Mensaje de Confirmacion",
 									JOptionPane.YES_NO_OPTION,
 									JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
 									if (eleccion2 == JOptionPane.YES_OPTION) {
@@ -304,7 +306,7 @@ public class pantallaCompra extends JFrame {
 	private void saveFile(String modelo) {
 		if(f.incorporateToFile(modelo)) {
 			JOptionPane.showMessageDialog(rootPane,
-				    "Datos guardados correctamente",
+				    VariablesLenguageEnum.guardar_datos_cliente,
 				    "Guardar datos",
 				    JOptionPane.INFORMATION_MESSAGE);
 			f.closeFile();

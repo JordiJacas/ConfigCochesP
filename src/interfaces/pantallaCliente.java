@@ -117,7 +117,7 @@ public class pantallaCliente extends JFrame {
 		contentPane.add(dateChooser, gbc_dateChooser);
 		
 		//Insertar fecha guardada en el archivo
-		if(isLoad && saveClient[6] != fecha) {
+		if(isLoad && !fecha.equals(saveClient[6]) && !saveClient[6].isEmpty()) {
 			Date date2;
 			try {
 				dateChooser.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(saveClient[6]));
@@ -137,7 +137,7 @@ public class pantallaCliente extends JFrame {
 				else {
 					pantallaCliente frame = new pantallaCliente(" ");
 					JOptionPane.showMessageDialog(frame,
-						    "Guarda los datos para continuar",
+						    VariablesLenguageEnum.pantalla_cliente_pasar_pantalla_sin_datos_guardados,
 						    "Guardar Datos",
 						    JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -191,15 +191,15 @@ public class pantallaCliente extends JFrame {
 		bg.add(radioButtonOtro);
 		
 		//Seleccionamos el radio Button guardado en el fichero
-		if(isLoad && saveClient[5] != genero) {
-			if(radioButtonMujer.getText().toUpperCase().equals(saveClient[5].toUpperCase())) {
+		if(isLoad && !saveClient[5].equals(genero)) {
+			if(saveClient[5].toUpperCase().equals("DONA") || saveClient[5].toUpperCase().equals("MUJER") || saveClient[5].toUpperCase().equals("WOMEN")) {
 				radioButtonMujer.setSelected(true);
 			}
-			else if(radioButtonOtro.getText().toUpperCase().equals(saveClient[5].toUpperCase())) {
+			else if(saveClient[5].toUpperCase().equals("NO DETERMINAT") || saveClient[5].toUpperCase().equals("NO DETERMINADO") || saveClient[5].toUpperCase().equals("OTHER")) {
 				System.out.println("h");
 				radioButtonOtro.setSelected(true);
 			}
-			else if(rdbtnHombre.getText().toUpperCase().equals(saveClient[5].toUpperCase())) {
+			else if(saveClient[5].toUpperCase().equals("HOME") || saveClient[5].toUpperCase().equals("HOMBRE") || saveClient[5].toUpperCase().equals("MAN")) {
 				rdbtnHombre.setSelected(true);
 			}
 		}
@@ -359,19 +359,24 @@ public class pantallaCliente extends JFrame {
 				if(dateChooser.getDate() != null) {
 					fecha = df.format(dateChooser.getDate());
 				}
+				
 
 				if(emptyTxt()) {
+					
 					if(f.incorporateToFile(textNombre.getText() + ";" + textApellido1.getText() + ";"
 							+ textApellido2.getText() + ";" + textDireccion.getText() + ";" + textEmail.getText()
 							 + ";" + genero + ";" + fecha)) {
-						pantallaCliente frame = new pantallaCliente(" ");
-						JOptionPane.showMessageDialog(frame,
-							    "Los datos se han guardado correctamente.",
+
+						JOptionPane.showMessageDialog(rootPane,
+							    VariablesLenguageEnum.guardar_datos_cliente,
 							    "Guardar Datos",
 							    JOptionPane.INFORMATION_MESSAGE);
 						isSave = true;
 					}
+					
+
 					f.closeFile();
+
 				}
 			}
 		});
@@ -423,7 +428,7 @@ public class pantallaCliente extends JFrame {
 						+ textApellido2.getText() + ";" + textDireccion.getText() + ";" + textEmail.getText()
 						 + ";" + genero + ";" + fecha + ";")) {
 							JOptionPane.showMessageDialog(rootPane,
-								    "Datos guardados correctamente",
+								    VariablesLenguageEnum.guardar_datos_cliente,
 								    "Guardar datos",
 								    JOptionPane.INFORMATION_MESSAGE);
 							f.closeFile();
@@ -442,14 +447,14 @@ public class pantallaCliente extends JFrame {
 			
 			pantallaCliente frame = new pantallaCliente(" ");
 			JOptionPane.showMessageDialog(frame,
-				    "Los campos con * no pueden estar vacios.",
+				    VariablesLenguageEnum.pantalla_cliente_campo_obligatorio,
 				    "Empty Error",
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;
 		} 
 		if (!(textEmail.getText().contains("@") && textEmail.getText().contains("."))) {
 			JOptionPane.showMessageDialog(this,
-				    "El correo electrònico tiene que tener el formato correcto.",
+				    VariablesLenguageEnum.pantalla_cliente_formato_correo_erroneo,
 				    "Empty Error",
 				    JOptionPane.INFORMATION_MESSAGE);
 			return false;

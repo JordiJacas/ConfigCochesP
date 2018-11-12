@@ -14,7 +14,12 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Locale;
 
-public class createFile {
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import model.VariablesLenguageEnum;
+
+public class createFile extends JFrame{
 	
 	private FileWriter f;
 	private ArrayList<String> aFile;
@@ -25,6 +30,7 @@ public class createFile {
 	private DateFormat format = new SimpleDateFormat("ddMMyyyy_HH.mm.ss", Locale.ENGLISH);
 	private int numLineas;
 	private static ArrayList<String> dataSave;
+	
 	public createFile() {
 		
 	}
@@ -44,9 +50,19 @@ public class createFile {
 						dataSave.add(linea);
 				}
 				fr.close();
-			}
-			else {
-				dataSave = null;
+				
+				if(numLineas>1) {
+					//Creamos las opciones
+					Object [] opciones ={"OK","CANCEL"};
+					// Creamos las pregunta de guardar datos
+					int eleccion = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.carga_fichero_temp,"Mensaje de Confirmacion",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
+							//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
+							if (eleccion == JOptionPane.NO_OPTION) {
+								dataSave = null;
+							}
+				}
 			}
 			f = new FileWriter("src\\files_temp\\fs_employee.txt");			
 			f.write("Datos temporales" + System.lineSeparator());
@@ -161,6 +177,7 @@ public class createFile {
 	
 	public static void main(String[] args) {
 		createFile c = new createFile();
-		//System.out.println(c.createFileEmployee());
+		c.createFileEmployee();
+		System.out.println(c.getDataSave());
 	}
 }

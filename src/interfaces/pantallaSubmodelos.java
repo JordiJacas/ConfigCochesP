@@ -13,6 +13,7 @@ import Impl.readXMLCars;
 import model.Modelo;
 import model.SubModelo;
 import model.VariablesLenguageEnum;
+import sun.invoke.util.VerifyAccess;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -66,12 +67,10 @@ public class pantallaSubmodelos extends JFrame {
 	 */
 	public pantallaSubmodelos(pantallaCompra frame, Modelo modelo, String userName) {
 		aSubmodelos = readSubModelos.readSubModelos();
-		//aSubmodelos.add(new SubModelo(1,"d",1,1,"c","c",1,1,"d"));
-		//aSubmodelos.add(new SubModelo(1,"d",1,1,"c","c",1,1,"d"));
 		aSaveClient = new ArrayList<String>();
 		aSaveClient = f.getDataSave();
 		
-		if(aSaveClient.size()>1){
+		if(aSaveClient.size()>3){
 			saveClient = aSaveClient.get(3);
 			saveClient.replace(";", " | ");
 			isLoad = true;
@@ -120,6 +119,7 @@ public class pantallaSubmodelos extends JFrame {
 		listSubmodelos.setModel(modelDatos);
 		listSubmodelos.setVisible(true);
 		
+		//Cargamos los datos en el fichero temporal
 		if(isLoad) {
 			 for(int i = 0; i < listSubmodelos.getModel().getSize(); i++) {
 			    if(listSubmodelos.getModel().getElementAt(i).equals(saveClient)) {
@@ -171,12 +171,12 @@ public class pantallaSubmodelos extends JFrame {
 			///Creamos las opciones
 			Object [] opciones ={"OK","CANCEL"};
 			// Creamos las pregunta de guardar datos
-			int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Quieres guardar los datos antes de salir?","Mensaje de Confirmacion",
+			int eleccion = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.guardar_datos_al_cerrar,"Mensaje de Confirmacion",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,null,opciones,"CANCEL");
 					//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
 					if (eleccion == JOptionPane.NO_OPTION) {
-						int eleccion2 = JOptionPane.showOptionDialog(rootPane,"¿Estas seguro que quieres salir?","Mensaje de Confirmacion",
+						int eleccion2 = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.guardar_datos_al_cerrar_negativo,"Mensaje de Confirmacion",
 								JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
 								if (eleccion2 == JOptionPane.YES_OPTION) {
@@ -217,7 +217,7 @@ public class pantallaSubmodelos extends JFrame {
 	private void saveFile(String modelo) {
 		if(f.incorporateToFile(modelo)) {
 			JOptionPane.showMessageDialog(rootPane,
-				    "Datos guardados correctamente",
+					VariablesLenguageEnum.guardar_datos_cliente,
 				    "Guardar datos",
 				    JOptionPane.INFORMATION_MESSAGE);
 			f.closeFile();
