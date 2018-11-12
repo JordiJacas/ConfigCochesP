@@ -12,7 +12,7 @@ import org.xml.sax.SAXException;
 
 import idao.IConfig;
 
-public class configXmlFile implements IConfig{
+public class configXmlFile{
 	
 	private Document configXmlFile() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

@@ -1,12 +1,14 @@
 package idao;
 
+import java.util.ArrayList;
+
+import model.Accesorio;
+import model.Modelo;
+import model.SubModelo;
+
 public interface IConfig {
-	String CarpPath();
-	String CarFileName();
-	String EmployeeList();
-	String EmployeePassword();
-	String SpecificationsPath();
-	String version();
-	String employeeVersion();
+	ArrayList<Modelo> readModelos();
+	ArrayList<SubModelo> readSubModelos();
+	ArrayList<Accesorio> readAccesorios();
 	
 }
