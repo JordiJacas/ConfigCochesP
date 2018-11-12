@@ -1,0 +1,4 @@
+Jordi;Jacas;Ventura;Las rosas;jcdjf@gmail.com;Home;07/05/1996
+2;Ibiza
+SEAT Ibiza III;105 CV;3 puertas;Gasolina;12530
+12530;325;14125;

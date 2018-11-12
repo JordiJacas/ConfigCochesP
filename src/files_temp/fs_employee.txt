@@ -1,3 +1,5 @@
 Datos temporales
-a;a;aa;a;a@a.cm;Campo Vacio;Campo Vacio
-Modelo [id=1, nombre=Alhambra, descripcion=El monovolumen SEAT Alhambra ha sido diseñado para sobresalir entre los vehículos de su categoría., imagen=alhambra.jpg, precio=30960]
+j;j;j;j;j@j.com;Home;01/11/2018
+2;Ibiza
+SEAT Ibiza IV FR;200 CV;5 puertas;Diesel;13800
+13800;50;13850;Conectores USB: 50;
