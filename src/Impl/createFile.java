@@ -62,6 +62,7 @@ public class createFile extends JFrame{
 							//Si es un no al guardar los datos, hace una segunda pregunta para salir sin guardar
 							if (eleccion == JOptionPane.NO_OPTION) {
 								dataSave = null;
+								
 							}
 				}
 			}

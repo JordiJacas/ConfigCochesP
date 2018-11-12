@@ -14,6 +14,8 @@ import model.VariablesLenguageEnum;
 
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
@@ -112,6 +114,7 @@ public class pantallaResumen extends JFrame {
 		JButton btnFinalizar = new JButton(idioma.get(VariablesLenguageEnum.resumen_btn_finalizar));
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				infoAccesorios[2] = aplicarDescuento(Integer.parseInt(infoAccesorios[2]));
 				//Crear factura
 				xmlFile = new createXMLFactura();
 				xmlFile.crearFactura();
@@ -300,6 +303,24 @@ public class pantallaResumen extends JFrame {
 			this.setVisible(false);
 			pCliente.setVisible(true);
 	}	
+	
+	public String aplicarDescuento(int precioTotal) {
+		int descuento = 0;
+		//Creamos las opciones
+		Object [] opciones ={"OK","CANCEL"};
+		// Creamos las pregunta de guardar datos
+		int eleccion = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.guardar_datos_al_cerrar,"Mensaje de Confirmacion",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
+				//Si es un sí, abre una ventana para aplicar el descuento
+				if (eleccion == JOptionPane.YES_OPTION) {
+					while (!(descuento <= 21 && descuento > 0)) {
+						descuento = Integer.parseInt(JOptionPane.showInputDialog(rootPane,"VariablesLenguageEnum.guardar_datos_al_cerrar_negativo"));
+					}
+					precioTotal = precioTotal - (precioTotal * (descuento/100)); 
+				}
+		return Integer.toString(precioTotal);
+	}
 	
 	public void readFileResum() {
 		aFile = new ArrayList<String>();

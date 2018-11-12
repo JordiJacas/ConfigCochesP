@@ -70,7 +70,7 @@ public class pantallaSubmodelos extends JFrame {
 		aSaveClient = new ArrayList<String>();
 		aSaveClient = f.getDataSave();
 		
-		if(aSaveClient.size()>3){
+		if(aSaveClient!= null && aSaveClient.size()>3){
 			saveClient = aSaveClient.get(3);
 			saveClient.replace(";", " | ");
 			isLoad = true;

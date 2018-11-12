@@ -84,7 +84,7 @@ public class pantallaCompra extends JFrame {
 		aSaveClient = new ArrayList<String>();
 		aSaveClient = f.getDataSave();
 		
-		if(aSaveClient.size()>2){
+		if(aSaveClient!= null && aSaveClient.size()>2){
 			saveClient = aSaveClient.get(2).split(";");
 			isLoad = true;
 		}

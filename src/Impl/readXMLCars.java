@@ -10,12 +10,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 
 import config.ConfigurationLoader;
+import idao.IConfig;
 import model.Accesorio;
 import model.Modelo;
 import model.SubModelo;
 import sun.applet.Main;
 
-public class readXMLCars {
+public class readXMLCars implements IConfig {
 	private int id;
 	private String nombre;
 	private String descripcion;
@@ -107,10 +108,5 @@ public class readXMLCars {
 			vehiculos.add(new Accesorio(id,nombre,descripcion,imagen_nombre,precio,modelos_disponibles, attribType));
 		}
 		return vehiculos;
-	}
-	
-	public static void main(String[] args) {
-		readXMLCars r = new readXMLCars();
-		System.out.println(r.readSubModelos());
 	}
 }

@@ -85,7 +85,7 @@ public class pantallaCliente extends JFrame {
 		f.createFileEmployee();
 		aSaveClient = f.getDataSave();
 		
-		if(aSaveClient.size()>1){
+		if(aSaveClient!= null && aSaveClient.size()>1){
 			saveClient = aSaveClient.get(1).split(";");
 			isLoad = true;
 		}
