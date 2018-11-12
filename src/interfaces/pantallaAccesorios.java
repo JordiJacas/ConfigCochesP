@@ -80,7 +80,7 @@ public class pantallaAccesorios extends JFrame {
 		aSaveClient = new ArrayList<String>();
 		aSaveClient = f.getDataSave();
 		
-		if(aSaveClient.size()>4){
+		if(aSaveClient!= null && aSaveClient.size()>4){
 			saveClient = aSaveClient.get(4).split(";");
 			
 			isLoad = true;
