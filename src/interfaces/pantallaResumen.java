@@ -309,7 +309,7 @@ public class pantallaResumen extends JFrame {
 		//Creamos las opciones
 		Object [] opciones ={"OK","CANCEL"};
 		// Creamos las pregunta de guardar datos
-		int eleccion = JOptionPane.showOptionDialog(rootPane,VariablesLenguageEnum.guardar_datos_al_cerrar,"Mensaje de Confirmacion",
+		int eleccion = JOptionPane.showOptionDialog(rootPane,idioma.get(VariablesLenguageEnum.guardar_datos_al_cerrar),"Mensaje de Confirmacion",
 				JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
 				//Si es un sí, abre una ventana para aplicar el descuento
