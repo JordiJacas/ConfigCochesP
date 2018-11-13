@@ -72,7 +72,9 @@ public class pantallaSubmodelos extends JFrame {
 		
 		if(aSaveClient!= null && aSaveClient.size()>3){
 			saveClient = aSaveClient.get(3);
-			saveClient.replace(";", " | ");
+			//saveClient.replace(";", " | ");
+			String[] string= saveClient.split(";");
+			saveClient = string[0] + " | " + string[1] + " | "+ string[2] + " | "+ string[3] + " | "+ string[4];
 			isLoad = true;
 		}
 		
@@ -123,7 +125,6 @@ public class pantallaSubmodelos extends JFrame {
 		if(isLoad) {
 			 for(int i = 0; i < listSubmodelos.getModel().getSize(); i++) {
 			    if(listSubmodelos.getModel().getElementAt(i).equals(saveClient)) {
-			    	System.out.println("hello");
 			    	listSubmodelos.setSelectedIndex(i);
 			    }
 			 }
