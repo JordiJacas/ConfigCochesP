@@ -51,6 +51,7 @@ public class pantallaResumen extends JFrame {
 	private createXMLFactura xmlFile;
 	private createFile f = new createFile();
 	private Hashtable<VariablesLenguageEnum, String> idioma = LenguageLoader.getLenguageConfig().getIdioma();
+	private ArrayList<String> adescuento;
 
 	/**
 	 * Launch the application.
@@ -70,6 +71,7 @@ public class pantallaResumen extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
 	 */
 	public pantallaResumen(pantallaAccesorios frame, String userName) {
 		/*
@@ -89,8 +91,10 @@ public class pantallaResumen extends JFrame {
 		String[] infoCliente = StringToAstring(aFile.get(1)); 
 		String[] infoModelo = StringToAstring(aFile.get(3));
 		String[] infoAccesorios = StringToAstring(aFile.get(4));
+		adescuento = new ArrayList<String>();
 		
-		infoAccesorios[2] = aplicarDescuento(Integer.parseInt(infoAccesorios[2]));
+		adescuento = aplicarDescuento(Integer.parseInt(infoAccesorios[2]));
+		infoAccesorios[2] = adescuento.get(0);
 		
 		/*
 		 * Elementos graficos del Jframe
@@ -116,7 +120,6 @@ public class pantallaResumen extends JFrame {
 		JButton btnFinalizar = new JButton(idioma.get(VariablesLenguageEnum.resumen_btn_finalizar));
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//infoAccesorios[2] = aplicarDescuento(Integer.parseInt(infoAccesorios[2]));
 				//Crear factura
 				xmlFile = new createXMLFactura();
 				xmlFile.crearFactura();
@@ -250,7 +253,7 @@ public class pantallaResumen extends JFrame {
 		lblNacimientoCliente.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panelCliente.add(lblNacimientoCliente);
 		
-		JLabel lblPrecioTotal = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_ptotal) + infoAccesorios[2] + " €");
+		JLabel lblPrecioTotal = new JLabel(idioma.get(VariablesLenguageEnum.resumen_lbl_ptotal) + adescuento.get(1) + ": " + infoAccesorios[2] + " €");
 		lblPrecioTotal.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		GridBagConstraints gbc_lblPrecioTotal = new GridBagConstraints();
 		gbc_lblPrecioTotal.gridwidth = 2;
@@ -306,22 +309,33 @@ public class pantallaResumen extends JFrame {
 			pCliente.setVisible(true);
 	}	
 	
-	public String aplicarDescuento(int precioTotal) {
+	public ArrayList<String> aplicarDescuento(int precioTotal) {
+		ArrayList<String> array = new ArrayList<String>();
 		int descuento = 0;
 		//Creamos las opciones
 		Object [] opciones ={"OK","CANCEL"};
 		// Creamos las pregunta de guardar datos
-		int eleccion = JOptionPane.showOptionDialog(rootPane,idioma.get(VariablesLenguageEnum.guardar_datos_al_cerrar),"Mensaje de Confirmacion",
+		int eleccion = JOptionPane.showOptionDialog(rootPane,idioma.get(VariablesLenguageEnum.resumen_aplicar_descuento),"Mensaje de Confirmacion",
 				JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,null,opciones,"OK");
 				//Si es un sí, abre una ventana para aplicar el descuento
 				if (eleccion == JOptionPane.YES_OPTION) {
-					while (!(descuento <= 21 && descuento > 0)) {
-						descuento = Integer.parseInt(JOptionPane.showInputDialog(rootPane,"VariablesLenguageEnum.guardar_datos_al_cerrar_negativo"));
-					}
-					precioTotal = precioTotal - (precioTotal * (descuento/100)); 
+					while (true) {
+						descuento = Integer.parseInt(JOptionPane.showInputDialog(rootPane,idioma.get(VariablesLenguageEnum.resumen_var_descuento)));
+						if((descuento < 21 && descuento > 0)) {
+							break;
+						}else {
+							JOptionPane.showMessageDialog(rootPane,idioma.get(VariablesLenguageEnum.resumen_error_descuento),"Mensaje de Confirmacion",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
+					}	 
 				}
-		return Integer.toString(precioTotal);
+		
+		precioTotal = precioTotal - (precioTotal*descuento/100);
+		
+		array.add(Integer.toString(precioTotal));
+		array.add(descuento+"%");
+		return array;
 	}
 	
 	public void readFileResum() {

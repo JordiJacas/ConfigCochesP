@@ -57,5 +57,8 @@ public enum VariablesLenguageEnum {
 	guardar_datos_al_cerrar_negativo,
 	pantalla_cliente_campo_obligatorio,
 	pantalla_cliente_formato_correo_erroneo,
-	carga_fichero_temp;
+	carga_fichero_temp,
+	resumen_aplicar_descuento,
+	resumen_var_descuento,
+	resumen_error_descuento;
 }
